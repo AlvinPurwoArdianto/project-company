@@ -37,13 +37,13 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ route('fasilitas.index') }}" class="menu-link">
+            <a href="{{ route('artikel.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">Artikel</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ route('fasilitas.index') }}" class="menu-link">
+            <a href="{{ route('pendaftaran.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">Pendaftaran</div>
             </a>

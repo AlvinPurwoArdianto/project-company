@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artikel;
+use App\Models\Fasilitas;
+use App\Models\Pendaftaran;
 use App\Models\Program;
 
 class HomeController extends Controller
@@ -25,7 +28,10 @@ class HomeController extends Controller
     {
 
         $program = Program::count('id');
+        $fasilitas = Fasilitas::count('id');
+        $artikel = Artikel::count('id');
+        $pendaftaran = Pendaftaran::count('id');
 
-        return view('home', compact('program'));
+        return view('home', compact('program', 'fasilitas', 'artikel', 'pendaftaran'));
     }
 }

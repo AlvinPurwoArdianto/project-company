@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fasilitas;
+use App\Models\Artikel;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class FasilitasController extends Controller
+class ArtikelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class FasilitasController extends Controller
      */
     public function index()
     {
-        $fasilitas = Fasilitas::all();
-        confirmDelete('Hapus Fasilitas!', 'Apakah Anda Yakin?');
-        return view('admin.fasilitas.index', compact('fasilitas'));
+        $artikel = Artikel::all();
+        confirmDelete('Hapus Artikel!', 'Apakah Anda Yakin?');
+        return view('admin.artikel.index', compact('artikel'));
     }
 
     /**
@@ -27,8 +27,8 @@ class FasilitasController extends Controller
      */
     public function create()
     {
-        $fasilitas = Fasilitas::all();
-        return view('admin.fasilitas.create', compact('fasilitas'));
+        $artikel = Artikel::all();
+        return view('admin.artikel.create', compact('artikel'));
     }
 
     /**
@@ -40,91 +40,99 @@ class FasilitasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_fasilitas' => 'required',
+            'judul_artikel' => 'required|unique:artikels',
+            'deskripsi' => 'required',
             'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3084',
         ]);
 
-        $fasilitas = new Fasilitas();
-        $fasilitas->nama_fasilitas = $request->nama_fasilitas;
+        $artikel = new Artikel();
+        $artikel->judul_artikel = $request->judul_artikel;
+        $artikel->deskripsi = $request->deskripsi;
 
         if ($request->hasFile('cover')) {
             $img = $request->file('cover');
             $name = rand(1000, 9999) . $img->getClientOriginalName();
-            $img->move('images/fasilitas', $name);
-            $fasilitas->cover = $name;
+            $img->move('images/artikel', $name);
+            $artikel->cover = $name;
         }
 
-        $fasilitas->save();
+        $artikel->tanggal = $request->tanggal;
+
+        $artikel->save();
         Alert::success('Success', 'Data Berhasil Disimpan')->autoClose(1000);
-        return redirect()->route('fasilitas.index');
+        return redirect()->route('artikel.index');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Fasilitas  $fasilitas
+     * @param  \App\Models\Artikel  $artikel
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $artikel = Artikel::findOrFail($id);
+        return view('admin.artikel.show', compact('artikel'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Fasilitas  $fasilitas
+     * @param  \App\Models\Artikel  $artikel
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $fasilitas = Fasilitas::findOrFail($id);
-        return view('admin.fasilitas.edit', compact('fasilitas'));
+        $artikel = Artikel::findOrFail($id);
+        return view('admin.artikel.edit', compact('artikel'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Fasilitas  $fasilitas
+     * @param  \App\Models\Artikel  $artikel
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_fasilitas' => 'required',
-            'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3084',
+            'judul_artikel' => 'required',
+            'deskripsi' => 'required',
+            'cover' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3084',
         ]);
 
-        $fasilitas = Fasilitas::findOrFail($id);
-        $fasilitas->nama_fasilitas = $request->nama_fasilitas;
+        $artikel = Artikel::findOrFail($id);
+        $artikel->judul_artikel = $request->judul_artikel;
+        $artikel->deskripsi = $request->deskripsi;
+        $artikel->tanggal = $request->tanggal;
 
         if ($request->hasFile('cover')) {
-            $fasilitas->deleteImage();
+            $artikel->deleteImage();
             $img = $request->file('cover');
             $name = rand(1000, 9999) . $img->getClientOriginalName();
-            $img->move('images/fasilitas', $name);
-            $fasilitas->cover = $name;
+            $img->move('images/artikel', $name);
+            $artikel->cover = $name;
         }
 
-        $fasilitas->save();
+        $artikel->update();
         Alert::success('Success', 'Data Berhasil Diubah')->autoClose(1000);
-        return redirect()->route('fasilitas.index');
-
+        return redirect()->route('artikel.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Fasilitas  $fasilitas
+     * @param  \App\Models\Artikel  $artikel
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $fasilitas = Fasilitas::findOrFail($id);
-        $fasilitas->deleteImage();
-        $fasilitas->delete();
+        $artikel = Artikel::findOrFail($id);
+        $artikel->deleteImage();
+        $artikel->delete();
         Alert::success('Success', 'Data Berhasil Dihapus')->autoClose(1000);
-        return redirect()->route('fasilitas.index');
+        return redirect()->route('artikel.index');
     }
 }
