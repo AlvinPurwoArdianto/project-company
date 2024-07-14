@@ -2,7 +2,6 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tabel /</span> Tabel pendaftaran</h4>
-        <!-- Basic Bootstrap Table -->
         <div class="card">
             <h5 class="card-header">Table pendaftaran <a href="{{ route('pendaftaran.create') }}"
                     class="btn btn-sm btn-primary" style="float: right">Tambah</a></h5>
@@ -36,6 +35,9 @@
                                     <form action="{{ route('pendaftaran.destroy', $data->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
+                                        <a href="https://wa.me/{{ $data->no_telepon }}" class="btn btn-sm btn-info"><i
+                                                class="bi bi-whatsapp me-1"></i>
+                                            whatsApp</a>
                                         <a href="{{ route('pendaftaran.destroy', $data->id) }}"
                                             class="btn btn-sm btn-danger" data-confirm-delete="true"><i
                                                 class="bx bx-trash-alt me-1"></i>

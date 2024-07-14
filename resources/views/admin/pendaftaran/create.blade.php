@@ -60,7 +60,7 @@
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <input type="number" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="Masukan No Telepon" name="no_telepon" />
+                                    placeholder="Contoh 62xxxxxx" name="no_telepon" />
                             </div>
                         </div>
                     </div>

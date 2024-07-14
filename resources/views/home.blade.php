@@ -75,7 +75,7 @@
                                 <div class="d-flex d-sm-block d-md-flex align-items-center">
                                     <h2 class="mb-0">{{ $pendaftaran }} Orang</h2>
                                 </div>
-                                <a href="#" class="btn btn-primary btn-sm mt-2">Lihat</a>
+                                <a href="{{ route('pendaftaran.index') }}" class="btn btn-primary btn-sm mt-2">Lihat</a>
                             </div>
                         </div>
                     </div>

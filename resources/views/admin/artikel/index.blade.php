@@ -1,12 +1,7 @@
 @extends('layouts.admin.template')
 @section('content')
-    <style>
-
-    </style>
-
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tabel /</span> Tabel artikel</h4>
-        <!-- Basic Bootstrap Table -->
         <div class="card">
             <h5 class="card-header">Table artikel <a href="{{ route('artikel.create') }}" class="btn btn-sm btn-primary"
                     style="float: right">Tambah</a></h5>
