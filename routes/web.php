@@ -17,6 +17,8 @@ Auth::routes(
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/pendaftaran', [App\Http\Controllers\HomeController::class, 'daftar'])->name('pendaftaran');
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('program', ProgramController::class);
     Route::resource('fasilitas', FasilitasController::class);

@@ -34,4 +34,9 @@ class HomeController extends Controller
 
         return view('home', compact('program', 'fasilitas', 'artikel', 'pendaftaran'));
     }
+
+    public function daftar()
+    {
+        return view('daftar');
+    }
 }

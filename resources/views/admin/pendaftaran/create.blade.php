@@ -29,11 +29,18 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Tanggal Lahir</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Tempat & Tanggal
+                            Lahir</label>
+                        <div class="col-sm-5">
+                            <div class="input-group input-group-merge">
+                                <input type="text" class="form-control" id="basic-icon-default-fullname"
+                                    placeholder="Tempat Lahir" name="nama" />
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
                             <div class="input-group input-group-merge">
                                 <input type="date" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="Alamat" name="tanggal_lahir" />
+                                    placeholder="Nama Lengkap" name="nama" />
                             </div>
                         </div>
                     </div>
