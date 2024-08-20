@@ -4,11 +4,15 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\ProgramController;
+use App\Models\Artikel;
+use App\Models\Fasilitas;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $artikel = Artikel::all();
+    $fasilitas = Fasilitas::all();
+    return view('welcome', compact('artikel', 'fasilitas'));
 });
 
 Auth::routes(

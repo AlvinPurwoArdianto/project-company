@@ -17,7 +17,8 @@
                             MUCH BETTER THAN OTHERS
                         </h3>
                         <div class="heros-btn">
-                            <a href="{{ route('pendaftaran') }}" class="theme-btn round100 p2-bg">
+                            <a href="{{ route('pendaftaran') }}" class="theme-btn round100 p2-bg"
+                                style="text-decoration: none">
                                 <span class="white fw-medium">
                                     Daftar <i class="bi bi-arrow-right-circle-fill"></i>
                                 </span>
@@ -43,32 +44,22 @@
                 <div class="col-lg-6 col-md-9">
                     <div class="about-contentv02">
                         <div class="section-title">
-                            <span class="sub-title wow fadeInUp p2-clr">
+                            <span class="sub-title wow fadeInUp p2-clr" style="font-size: 40px">
                                 Profile
                             </span>
                             <h3 class="m-title mb-3 wow fadeInUp black" data-wow-delay=".3s">
-                                Invest in education invest <br> in the future
+                                Victory English School
                             </h3>
                             <p class="mb-3 pra wow fadeInUp" data-wow-delay=".4s">
-                                Lorem ipsum dolor sit amet consectetur. Amet lectus mi ultricies dictum facilisis sem.
-                                Imperdiet massa turpis sit proin
-                                metus volutpat loren ipsum Lorem ipsum dolor sit amet consectetur. Amet lectus mi
-                                ultricies dictum
-                            </p>
-                            <p class="pra wow fadeInUp" data-wow-delay=".5s">
-                                Lorem ipsum dolor sit amet cons Amet lectus mi ultricies dictum facilisis sem Lorem
-                                ipsum dolor sit amet consectetur.
-                                Amet lectus mi ultricies
+                                Sejak tahun 1998, VICTORY ENGLISH SCHOOL telah melayani masyarakat Bandung dan sekitarnya
+                                dengan program-program bahasa Inggris yang efektif dan ekonomis. VICTORY ENGLISH SCHOOL
+                                memberikan dukungan komprehensif agar siswa dapat mengambil manfaat praktis secara maksimal
+                                dari belajar bahasa Inggris.
                             </p>
                             <div class="d-flex align-items-center gap-xl-3 gap-2 mt-40 wow fadeInUp" data-wow-delay=".6s">
-                                <a href="about.html" class="theme-btn round100 p2-bg">
+                                <a href="about.html" class="theme-btn round100 p2-bg" style="text-decoration: none">
                                     <span class="white fw-medium">
                                         Read More
-                                    </span>
-                                </a>
-                                <a href="contact.html" class="theme-btn cart-btn round100">
-                                    <span class="black fw-semibold">
-                                        Contact Us
                                     </span>
                                 </a>
                             </div>
@@ -109,7 +100,7 @@
             <div class="row justify-content-center mb-60">
                 <div class="col-lg-6">
                     <div class="section-title text-center">
-                        <span class="sub-title wow fadeInUp p2-clr">
+                        <span class="sub-title wow fadeInUp p2-clr" style="font-size: 40px">
                             Artikel
                         </span>
                         <h3 class="m-title wow fadeInUp black" data-wow-delay=".3s">
@@ -119,118 +110,45 @@
                 </div>
             </div>
             <div class="row g-lg-4 g-4">
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".4s">
-                    <div class="news-card-items extra-class-item">
-                        <div class="news-image mb-xxl-4 mb-4">
-                            <img src="{{ asset('user/assets/img/ablog/class1.png') }}" alt="img">
-                            <div class="news-layer-wrapper">
-                                <div class="news-layer-image" style="background-image: url('assets/img/ablog/class1.png');">
-                                </div>
-                                <div class="news-layer-image" style="background-image: url('assets/img/ablog/class1.png');">
-                                </div>
-                                <div class="news-layer-image" style="background-image: url('assets/img/ablog/class1.png');">
-                                </div>
-                                <div class="news-layer-image" style="background-image: url('assets/img/ablog/class1.png');">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="news-content">
-                            <h4 class="mb-3">
-                                <a href="service-details.html" class="black">
-                                    Tutoring Services
-                                </a>
-                            </h4>
-                            <p class="pra mb-3">
-                                Lorem ipsum dolor sit amet consectetur. Amet lectus mi ultricies dictum facilisi
-                                Imperdiet massa turpis sit proin loren
-                                ipsum
-                            </p>
-                            <div class="d-flex align-items-center justify-content-between gap-xxl-2">
-                                <a href="service-details.html" class="theme-btn-2 fw-medium black">learn more <i
-                                        class="fas fa-long-arrow-right p3-clr"></i></a>
-                                <img src="{{ asset('user/assets/img/ablog/class-icon1.png') }}" alt="img">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".6s">
-                    <div class="news-card-items extra-class-item">
-                        <div class="news-image mb-xxl-4 mb-4">
-                            <img src="{{ asset('user/assets/img/ablog/class2.png') }}" alt="img">
-                            <div class="news-layer-wrapper">
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/class2.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/class2.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/class2.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/class2.png');">
+                @foreach ($artikel as $data)
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".4s">
+                        <div class="news-card-items extra-class-item">
+                            <div class="news-image mb-xxl-4 mb-4">
+                                <img src="{{ asset('/images/artikel/' . $data->cover) }}" width="100">
+                                <div class="news-layer-wrapper">
+                                    <div class="news-layer-image"
+                                        style="background-image: url('assets/img/ablog/class1.png');">
+                                    </div>
+                                    <div class="news-layer-image"
+                                        style="background-image: url('assets/img/ablog/class1.png');">
+                                    </div>
+                                    <div class="news-layer-image"
+                                        style="background-image: url('assets/img/ablog/class1.png');">
+                                    </div>
+                                    <div class="news-layer-image"
+                                        style="background-image: url('assets/img/ablog/class1.png');">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="news-content">
-                            <h4 class="mb-3">
-                                <a href="service-details.html" class="black">
-                                    Language Lessons
-                                </a>
-                            </h4>
-                            <p class="pra mb-3">
-                                Lorem ipsum dolor sit amet consectetur. Amet lectus mi ultricies dictum facilisi
-                                Imperdiet massa turpis sit proin
-                                loren
-                                ipsum
-                            </p>
-                            <div class="d-flex align-items-center justify-content-between gap-xxl-2">
-                                <a href="service-details.html" class="theme-btn-2 fw-medium black">learn more <i
-                                        class="fas fa-long-arrow-right p3-clr"></i></a>
-                                <img src="{{ asset('user/assets/img/ablog/class-icon2.png') }}" alt="img">
+                            <div class="news-content">
+                                <h4 class="mb-3">
+                                    <a href="service-details.html" class="black" style="text-decoration: none">
+                                        {{ $data->judul_artikel }}
+                                    </a>
+                                </h4>
+                                <p class="pra mb-3">
+                                    {{ $data->deskripsi }}
+                                </p>
+                                <div class="d-flex align-items-center justify-content-between gap-xxl-2">
+                                    <a href="{{ url('artikel/' . $data->id) }}" class="theme-btn-2 fw-medium black"
+                                        style="text-decoration: none">learn
+                                        more <i class="fas fa-long-arrow-right p3-clr"></i></a>
+                                    <img src="{{ asset('user/assets/img/ablog/class-icon1.png') }}" alt="img">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".7s">
-                    <div class="news-card-items extra-class-item">
-                        <div class="news-image mb-xxl-4 mb-4">
-                            <img src="{{ asset('user/assets/img/ablog/class3.png') }}" alt="img">
-                            <div class="news-layer-wrapper">
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/class3.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/class3.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/class3.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/class3.png');">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="news-content">
-                            <h4 class="mb-3">
-                                <a href="service-details.html" class="black">
-                                    Study Skills Coaching
-                                </a>
-                            </h4>
-                            <p class="pra mb-3">
-                                Lorem ipsum dolor sit amet consectetur. Amet lectus mi ultricies dictum facilisi
-                                Imperdiet massa turpis sit proin
-                                loren
-                                ipsum
-                            </p>
-                            <div class="d-flex align-items-center justify-content-between gap-xxl-2">
-                                <a href="service-details.html" class="theme-btn-2 fw-medium black">learn more <i
-                                        class="fas fa-long-arrow-right p3-clr"></i></a>
-                                <img src="{{ asset('user/assets/img/ablog/class-icon3.png') }}" alt="img">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <!-- Element -->
@@ -244,7 +162,7 @@
             <div class="row justify-content-center mb-60">
                 <div class="col-lg-6">
                     <div class="section-title text-center">
-                        <span class="sub-title wow fadeInUp p5-clr">
+                        <span class="sub-title wow fadeInUp p5-clr" style="font-size: 40px">
                             Fasilitas
                         </span>
                         <h3 class="m-title wow fadeInUp black" data-wow-delay=".3s">
@@ -254,147 +172,42 @@
                 </div>
             </div>
             <div class="row g-lg-4 g-4">
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="news-card-items">
-                        <div class="news-image mb-xxl-4 mb-4">
-                            <img src="{{ asset('user/assets/img/ablog/blogv2-a.png') }}" alt="img">
-                            <div class="news-layer-wrapper">
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/blogv2-a.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/blogv2-a.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/blogv2-a.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/blogv2-a.png');">
+                @foreach ($fasilitas as $data)
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="news-card-items">
+                            <div class="news-image mb-xxl-4 mb-4">
+                                <img src="{{ asset('/images/fasilitas/' . $data->cover) }}" width="100">
+                                <div class="news-layer-wrapper">
+                                    <div class="news-layer-image"
+                                        style="background-image: url('assets/img/ablog/blogv2-a.png');">
+                                    </div>
+                                    <div class="news-layer-image"
+                                        style="background-image: url('assets/img/ablog/blogv2-a.png');">
+                                    </div>
+                                    <div class="news-layer-image"
+                                        style="background-image: url('assets/img/ablog/blogv2-a.png');">
+                                    </div>
+                                    <div class="news-layer-image"
+                                        style="background-image: url('assets/img/ablog/blogv2-a.png');">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="post-date d-center p5-bg">
-                                <span>
-                                    <span class="d-block">
-                                        22
-                                    </span>
-                                    <span>
-                                        Jan
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="news-content">
-                            <h4 class="mb-3">
-                                <a href="blog-details.html" class="black">
-                                    Lifelong Learning Endless <br>
-                                    Possibilities
-                                </a>
-                            </h4>
-                            <p class="pra mb-4">
-                                Lorem ipsum dolor sit amet consectetur. Amet lectus mi ultricies dictum facilisis sem.
-                                Imperdiet massa turpis sit proin
-                                metus volutpat loren ipsum
-                            </p>
-                            <a href="blog-details.html" class="theme-btn-2 fw-medium black">Read More <i
-                                    class="fas fa-long-arrow-right p2-clr"></i></a>
+                            {{-- <div class="news-content">
+                                <h4 class="mb-3">
+                                    <a href="blog-details.html" class="black">
+                                    </a>
+                                </h4>
+                                <p class="pra mb-4">
+                                    Lorem ipsum dolor sit amet consectetur. Amet lectus mi ultricies dictum facilisis sem.
+                                    Imperdiet massa turpis sit proin
+                                    metus volutpat loren ipsum
+                                </p>
+                                <a href="blog-details.html" class="theme-btn-2 fw-medium black">Read More <i
+                                        class="fas fa-long-arrow-right p2-clr"></i></a>
+                            </div> --}}
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="news-card-items">
-                        <div class="news-image mb-xxl-4 mb-4">
-                            <img src="{{ asset('user/assets/img/ablog/blogv2-b.png') }}" alt="img">
-                            <div class="news-layer-wrapper">
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/blogv2-b.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/blogv2-b.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/blogv2-b.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/blogv2-b.png');">
-                                </div>
-                            </div>
-                            <div class="post-date d-center p5-bg">
-                                <span>
-                                    <span class="d-block">
-                                        22
-                                    </span>
-                                    <span>
-                                        Jan
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="news-content">
-                            <h4 class="mb-3">
-                                <a href="blog-details.html" class="black">
-                                    Be Curious Be Inspired Be <br>
-                                    Educated
-                                </a>
-                            </h4>
-                            <p class="pra mb-4">
-                                Lorem ipsum dolor sit amet consectetur. Amet lectus mi ultricies dictum facilisis sem.
-                                Imperdiet massa
-                                turpis sit proin
-                                metus volutpat loren ipsum
-                            </p>
-                            <a href="blog-details.html" class="theme-btn-2 fw-medium black">Read More <i
-                                    class="fas fa-long-arrow-right p2-clr"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="news-card-items">
-                        <div class="news-image mb-xxl-4 mb-4">
-                            <img src="{{ asset('user/assets/img/ablog/blogv2-c.png') }}" alt="img">
-                            <div class="news-layer-wrapper">
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/blogv2-c.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/blogv2-c.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/blogv2-c.png');">
-                                </div>
-                                <div class="news-layer-image"
-                                    style="background-image: url('assets/img/ablog/blogv2-c.png');">
-                                </div>
-                            </div>
-                            <div class="post-date d-center p5-bg">
-                                <span>
-                                    <span class="d-block">
-                                        22
-                                    </span>
-                                    <span>
-                                        Jan
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="news-content">
-                            <h4 class="mb-3">
-                                <a href="blog-details.html" class="black">
-                                    Empowering Students Transform
-                                    <br>
-                                    Lives Matter
-                                </a>
-                            </h4>
-                            <p class="pra mb-4">
-                                Lorem ipsum dolor sit amet consectetur. Amet lectus mi ultricies dictum facilisis sem.
-                                Imperdiet massa
-                                turpis sit proin
-                                metus volutpat loren ipsum
-                            </p>
-                            <a href="blog-details.html" class="theme-btn-2 fw-medium black">Read More <i
-                                    class="fas fa-long-arrow-right p2-clr"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         <!-- Element -->

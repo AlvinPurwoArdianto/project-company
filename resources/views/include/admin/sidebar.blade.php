@@ -1,7 +1,10 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
+        {{-- <span class="app-brand-logo demo"> --}}
+        {{-- </span> --}}
         <a href="{{ route('home') }}" class="app-brand-link">
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">Victory</span>
+            {{-- <span class="app-brand-text demo menu-text fw-bolder ms-2">Victory</span> --}}
+            <img src="{{ asset('admin/assets/img/avatars/logo.png') }}" alt="logo" width="100%" height="100%">
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">

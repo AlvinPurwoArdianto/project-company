@@ -34,13 +34,13 @@
                         <div class="col-sm-5">
                             <div class="input-group input-group-merge">
                                 <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="Tempat Lahir" name="nama" />
+                                    placeholder="Tempat Lahir" name="tempat_lahir" />
                             </div>
                         </div>
                         <div class="col-sm-5">
                             <div class="input-group input-group-merge">
                                 <input type="date" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="Nama Lengkap" name="nama" />
+                                    placeholder="Tanggal Lahir" name="tanggal_lahir" />
                             </div>
                         </div>
                     </div>
@@ -66,8 +66,8 @@
                         <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">No Telepon</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="number" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="Contoh 62xxxxxx" name="no_telepon" />
+                                <input type="tel" pattern="[0-9]{12}" class="form-control" id="phone"
+                                    placeholder="Contoh 08xxxxxx" name="no_telepon" />
                             </div>
                         </div>
                     </div>

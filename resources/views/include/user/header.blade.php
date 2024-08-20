@@ -5,7 +5,7 @@
                 <div class="header-left">
                     <div class="logo">
                         <a href="index.html" class="header-logo">
-                            <img src="{{ asset('user/assets/img/logo/logo-victory.jpg') }}" height="42px" width="147px"
+                            <img src="{{ asset('user/assets/img/logo/logo-victory.jpg') }}" height="50px" width="150px"
                                 alt="logo-img">
                         </a>
                     </div>
@@ -16,28 +16,28 @@
                             <nav id="mobile-menu">
                                 <ul>
                                     <li class="has-dropdown active menu-thumb">
-                                        <a href="#scrollUp">
-                                            Home
+                                        <a href="#scrollUp" style="text-decoration: none">
+                                            Beranda
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#about">Profile</a>
+                                        <a href="#about" style="text-decoration: none">Profil</a>
                                     </li>
                                     <li>
-                                        <a href="#kegiatan">
-                                            Kegiatan
+                                        <a href="#kegiatan"style="text-decoration: none">
+                                            Artikel
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#blog">
-                                            Blog
+                                        <a href="#blog"style="text-decoration: none">
+                                            Fasilitas
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#contact">Contact Us</a>
+                                        <a href="#contact"style="text-decoration: none">Tentang Kami</a>
                                     </li>
                                     <li>
-                                        <a href="/pendaftaran">Pendaftaran</a>
+                                        <a href="/pendaftaran"style="text-decoration: none">Pendaftaran</a>
                                     </li>
                                 </ul>
                             </nav>

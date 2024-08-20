@@ -42,9 +42,10 @@ class PendaftaranController extends Controller
         $request->validate([
             'nama' => 'required',
             'jenis_kelamin' => 'required',
+            'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'alamat' => 'required',
-            'email' => 'required|unique:pendaftarans',
+            'email' => 'required',
             'no_telepon' => 'required|min:10',
             'tanggal_pendaftaran' => 'required',
         ]);
@@ -53,6 +54,7 @@ class PendaftaranController extends Controller
 
         $pendaftaran->nama = $request->nama;
         $pendaftaran->jenis_kelamin = $request->jenis_kelamin;
+        $pendaftaran->tempat_lahir = $request->tempat_lahir;
         $pendaftaran->tanggal_lahir = $request->tanggal_lahir;
         $pendaftaran->alamat = $request->alamat;
         $pendaftaran->email = $request->email;

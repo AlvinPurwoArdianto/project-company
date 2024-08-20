@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('jenis_kelamin');
+            $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->text('alamat');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('no_telepon');
             $table->date('tanggal_pendaftaran');
             $table->timestamps();

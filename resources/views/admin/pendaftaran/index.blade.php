@@ -35,8 +35,8 @@
                                     <form action="{{ route('pendaftaran.destroy', $data->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="https://wa.me/{{ $data->no_telepon }}" class="btn btn-sm btn-info"><i
-                                                class="bi bi-whatsapp me-1"></i>
+                                        <a href="https://wa.me/62{{ $data->no_telepon }}?text=Haloo Kita Dari Tim Victory, Apakah Anda Yakin Ingin Bergabung?"
+                                            class="btn btn-sm btn-info"><i class="bi bi-whatsapp me-1"></i>
                                             whatsApp</a>
                                         <a href="{{ route('pendaftaran.destroy', $data->id) }}"
                                             class="btn btn-sm btn-danger" data-confirm-delete="true"><i
