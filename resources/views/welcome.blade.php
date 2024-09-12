@@ -1,5 +1,100 @@
 @extends('layouts.user.template')
 @section('content')
+    {{-- MODAL --}}
+    <div class="modal fade" id="daftar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">PENDAFTARAN</h1>
+                </div>
+                <div class="modal-body">
+                    <p>
+                    <form action="#" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama Lengkap</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input type="text" class="form-control" id="basic-icon-default-fullname"
+                                        placeholder="Nama Lengkap" name="nama" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Jenis Kelamin</label>
+                            <div class="col-sm-10">
+                                <select name="jenis_kelamin" id="" class="form-control">
+                                    <option value="" selected disabled>Pilih Jenis Kelamin</option>
+                                    <option value="Laki-Laki">Laki-Laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Tempat & Tanggal
+                                Lahir</label>
+                            <div class="col-sm-5">
+                                <div class="input-group input-group-merge">
+                                    <input type="text" class="form-control" id="basic-icon-default-fullname"
+                                        placeholder="Tempat Lahir" name="tempat_lahir" />
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="input-group input-group-merge">
+                                    <input type="date" class="form-control" id="basic-icon-default-fullname"
+                                        placeholder="Tanggal Lahir" name="tanggal_lahir" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Alamat</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <textarea type="text" class="form-control" id="basic-icon-default-fullname" placeholder="Masukan Alamat Anda"
+                                        name="alamat"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Email</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input type="email" class="form-control" id="basic-icon-default-fullname"
+                                        placeholder="Masukan Email Anda" name="email" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">No Telepon</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input type="tel" pattern="[0-9]{12}" class="form-control" id="phone"
+                                        placeholder="Contoh 08xxxxxx" name="no_telepon" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Tanggal Daftar</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input type="date" class="form-control" id="basic-icon-default-fullname"
+                                        placeholder="Tanggal Pendaftaran" name="tanggal_pendaftaran" />
+                                </div>
+                            </div>
+                        </div>
+                        </p>
+                </div>
+                <div class="modal-footer">
+                    <a href="/" class="btn btn-primary">Kembali</a>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Hero Section Start -->
     <section class="bannerv2-section position-relative fix" id="scrollUp">
         <div class="container">
@@ -7,8 +102,7 @@
                 <div class="col-lg-6 col-md-9">
                     <div class="herov2-content position-relative">
                         <h1 class="mb-lg-4 mb-3 wow fadeInUp text-danger" data-wow-delay=".3s"
-                            style="font-family: Bona Nova SC;font-weight: 700;
-  font-style: normal;">
+                            style="font-family: Bona Nova SC;font-weight: 700; font-style: normal;">
                             <b>VICTORY</b>
                         </h1>
                         <h2 class="mb-lg-4 mb-3 wow fadeInUp text-primary"><b>ENGLISH SCHOOL</b>
@@ -25,15 +119,19 @@
                             </a>
                         </div>
                         <!-- Element -->
-                        <img src="{{ asset('user/assets/img/abanner/reg.png') }}" alt="img" class="small-aregtengle">
+                        <img src="{{ asset('user/assets/img/abanner/reg.png') }}" alt="img"
+                            class="small-aregtengle">
                     </div>
                 </div>
             </div>
         </div>
         <!-- Element -->
         <img src="{{ asset('user/assets/img/abanner/kyte.png') }}" alt="img" class="banner-kyte">
+
+        {{-- FOTO SATUU --}}
         <img src="{{ asset('user/assets/img/abanner/banner-v2-thumb.png') }}" alt="img"
             class="banner-shape wow fadeInLeft" data-wow-delay=".3s">
+
         <img src="{{ asset('user/assets/img/abanner/banner-shadow.png') }}" alt="img" class="banner-shadow">
     </section>
 
@@ -51,17 +149,76 @@
                                 Victory English School
                             </h3>
                             <p class="mb-3 pra wow fadeInUp" data-wow-delay=".4s">
-                                Sejak tahun 1998, VICTORY ENGLISH SCHOOL telah melayani masyarakat Bandung dan sekitarnya
-                                dengan program-program bahasa Inggris yang efektif dan ekonomis. VICTORY ENGLISH SCHOOL
-                                memberikan dukungan komprehensif agar siswa dapat mengambil manfaat praktis secara maksimal
+                                Sejak tahun 1998, <b>VICTORY ENGLISH SCHOOL</b> telah melayani masyarakat Bandung dan
+                                sekitarnya
+                                dengan program-program bahasa Inggris yang efektif dan ekonomis. <b>VICTORY ENGLISH
+                                    SCHOOL</b>
+                                memberikan dukungan komprehensif agar siswa dapat mengambil manfaat praktis secara
+                                maksimal
                                 dari belajar bahasa Inggris.
                             </p>
                             <div class="d-flex align-items-center gap-xl-3 gap-2 mt-40 wow fadeInUp" data-wow-delay=".6s">
-                                <a href="about.html" class="theme-btn round100 p2-bg" style="text-decoration: none">
+                                <button class="theme-btn round100 p2-bg" style="text-decoration: none"
+                                    data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                     <span class="white fw-medium">
                                         Read More
                                     </span>
-                                </a>
+                                </button>
+
+                                {{-- MODAL --}}
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <center>
+                                                        <img src="{{ asset('user/assets/img/logo/logo copy.png') }}"
+                                                            width="80%" height="60%" alt="logo-victory">
+                                                    </center>
+                                                    <p style="font-size: 15px; text-align: justify">
+                                                        Sejak tahun 1998, <b>VICTORY ENGLISH SCHOOL</b> telah melayani
+                                                        masyarakat
+                                                        Bandung dan sekitarnya
+                                                        dengan program-program bahasa Inggris yang efektif dan ekonomis.
+                                                        <b>VICTORY
+                                                            ENGLISH
+                                                            SCHOOL</b>
+                                                        memberikan dukungan komprehensif agar siswa dapat mengambil
+                                                        manfaat
+                                                        praktis
+                                                        secara maksimal
+                                                        dari belajar bahasa Inggris.
+                                                    </p>
+
+                                                    <p style="font-size: 15px; text-align: justify">
+                                                        VICTORY ENGLISH SCHOOL memiliki metoda pengajaran yang sangat
+                                                        berbeda dengan lembaga-lembaga bahasa Inggris lainnya, sehingga
+                                                        semua siswa baik dewasa, remaja atau anak-anak (TK, SD, SMP,
+                                                        SMA/SMK, Mahasiswa, Karyawan atau Guru) dapat belajar bahasa
+                                                        Ingrris
+                                                        lisan dan tulisan dengan baik. VICTORY ENGLISH SCHOOL memiliki
+                                                        tenaga pengajar yang profesional dan berpengalaman dalam
+                                                        mengajar
+                                                        bahasa Inggris.
+                                                        VICTORY ENGLISH SCHOOL memahami dan memperhatikan kebutuhan
+                                                        belajar
+                                                        setiap siswa.
+
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

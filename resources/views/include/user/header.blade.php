@@ -5,7 +5,7 @@
                 <div class="header-left">
                     <div class="logo">
                         <a href="index.html" class="header-logo">
-                            <img src="{{ asset('user/assets/img/logo/logo-victory.jpg') }}" height="50px" width="150px"
+                            <img src="{{ asset('user/assets/img/logo/logo copy.png') }}" height="50px" width="150px"
                                 alt="logo-img">
                         </a>
                     </div>
@@ -37,23 +37,19 @@
                                         <a href="#contact"style="text-decoration: none">Tentang Kami</a>
                                     </li>
                                     <li>
-                                        <a href="/pendaftaran"style="text-decoration: none">Pendaftaran</a>
+                                        {{-- <a href="/pendaftaran"style="text-decoration: none">Pendaftaran</a> --}}
+                                        <button data-bs-toggle="modal" data-bs-target="#daftar"
+                                            style="text-decoration: none; border: none;"><b>Pendaftaran</b></button>
                                     </li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
                 </div>
-                <div class="menu-toggle-inner d-flex gap-sm-4 gap-3 align-items-center">
-                    <a href="#0" class="search-trigger search-icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </a>
-                    <div class="header__hamburger d-xl-none my-auto">
-                        <div class="sidebar__toggle">
-                            <i class="fas fa-bars"></i>
-                        </div>
-                    </div>
-                </div>
+
+                {{-- MODAL --}}
+
+
             </div>
         </div>
     </div>
