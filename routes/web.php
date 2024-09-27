@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\ProgramController;
 use App\Models\Artikel;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $artikel = Artikel::all();
     $fasilitas = Fasilitas::all();
-    return view('welcome', compact('artikel', 'fasilitas'));
+    return view('coba', compact('artikel', 'fasilitas'));
 });
 
 Auth::routes(
@@ -22,6 +23,7 @@ Auth::routes(
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/pendaftaran', [App\Http\Controllers\HomeController::class, 'daftar'])->name('pendaftaran');
+Route::post('/', [FrontController::class, 'store'])->name('pendaftaran.store');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('program', ProgramController::class);

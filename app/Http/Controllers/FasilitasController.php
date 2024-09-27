@@ -55,7 +55,7 @@ class FasilitasController extends Controller
         }
 
         $fasilitas->save();
-        Alert::success('Success', 'Data Berhasil Disimpan')->autoClose(1000);
+        toast('Data Berhasil Ditambahkan!', 'success')->position('top-end');
         return redirect()->route('fasilitas.index');
     }
 

@@ -39,16 +39,16 @@ class PendaftaranController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required',
-            'jenis_kelamin' => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required',
-            'alamat' => 'required',
-            'email' => 'required',
-            'no_telepon' => 'required|min:10',
-            'tanggal_pendaftaran' => 'required',
-        ]);
+        // $request->validate([
+        //     'nama' => 'required',
+        //     'jenis_kelamin' => 'required',
+        //     'tempat_lahir' => 'required',
+        //     'tanggal_lahir' => 'required',
+        //     'alamat' => 'required',
+        //     'email' => 'required',
+        //     'no_telepon' => 'required|min:10',
+        //     'tanggal_pendaftaran' => 'required',
+        // ]);
 
         $pendaftaran = new Pendaftaran();
 
@@ -64,7 +64,7 @@ class PendaftaranController extends Controller
         $pendaftaran->save();
         Alert::success('Success', 'Data Berhasil Ditambahkan')->autoClose(1000);
 
-        return redirect()->route('pendaftaran.index');
+        return redirect()->url('/');
     }
 
     /**
