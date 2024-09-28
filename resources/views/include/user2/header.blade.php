@@ -1,8 +1,8 @@
 <header class="header_section long_section px-0">
     <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="#">
             <span>
-                Edgecut
+                Victory
             </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -14,23 +14,23 @@
             <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
                 <ul class="navbar-nav  ">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Profil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html"> About</a>
+                        <a class="nav-link" href="#">Artikel</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="furniture.html">Furnitures</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="blog.html">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
+                        <a class="nav-link" href="#">Contact Us</a>
                     </li>
                 </ul>
             </div>
-            <div class="quote_btn-container">
+            {{-- <div class="quote_btn-container">
                 <a href="">
                     <span>
                         Login
@@ -42,7 +42,7 @@
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </button>
                 </form>
-            </div>
+            </div> --}}
         </div>
     </nav>
 </header>

@@ -19,7 +19,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="mt-2">Deskripsi</label>
-                                                <textarea type="text" class="form-control mt-2" name="deskripsi" disabled> {{ $artikel->deskripsi }} </textarea>
+                                                <textarea type="text" class="form-control mt-2" name="deskripsi" disabled> {!! $artikel->deskripsi !!} </textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label class="mt-2">Tanggal</label>

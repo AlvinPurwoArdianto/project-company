@@ -1,4 +1,7 @@
 @extends('layouts.admin.template')
+@section('styles')
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.1/ckeditor5.css" />
+@endsection
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tabel /</span> Tabel Artikel</h4>
@@ -18,11 +21,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    {{-- <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Deskripsi</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <textarea type="text" class="form-control" id="basic-icon-default-fullname" placeholder="Deskripsi" name="deskripsi"></textarea>
+                            </div>
+                        </div>
+                    </div> --}}
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Deskripsi</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <textarea type="text" id="deskripsi" placeholder="Deskripsi" rows="15" name="deskripsi"></textarea>
                             </div>
                         </div>
                     </div>
@@ -54,4 +65,36 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="importmap">
+    {
+        "imports": {
+            "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.1.1/ckeditor5.js",
+            "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.1.1/"
+        }
+    }
+</script>
+    <script type="module">
+        import {
+            ClassicEditor,
+            Essentials,
+            Bold,
+            Italic,
+            Font,
+            Paragraph
+        } from 'ckeditor5';
+
+        ClassicEditor
+            .create(document.querySelector('#deskripsi'), {
+                plugins: [Essentials, Bold, Italic, Font, Paragraph],
+                toolbar: [
+                    'undo', 'redo', '|', 'bold', 'italic', '|',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+                ]
+            })
+            .then( /* ... */ )
+            .catch( /* ... */ );
+    </script>
 @endsection

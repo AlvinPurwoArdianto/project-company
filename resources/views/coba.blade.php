@@ -1,45 +1,51 @@
 @extends('layouts.user2.template')
 @section('content')
     {{-- BAGIAN PROGRAM --}}
-
-    {{-- BAGIAN AKHIR PROGRAM --}}
-
-
-    <!-- Fasilitas section -->
-    <section class="furniture_section layout_padding">
-        <div class="container">
-            <div class="heading_container">
-                <h2 style="text-align: center">
-                    FASILITAS
-                </h2>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="box">
-                        <div class="img-box">
-                            <img src="{{ asset('user2/images/f1.png') }}" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                brown Chair Design
-                            </h5>
-                            <div class="price_box">
-                                <h6 class="price_heading">
-                                    <span>$</span> 100.00
-                                </h6>
-                                <a href="">
-                                    Buy Now
-                                </a>
-                            </div>
-                        </div>
+    <div class="container layput_padding" style="margin-top: 3rem; margin-bottom: 3rem">
+        <div class="heading_container">
+            <h2>
+                PROGRAM
+            </h2>
+        </div>
+        <div class="row" style="margin-top: 2rem; margin-bottom: 5rem">
+            <div class="col mx-auto" style="display: flex; gap: 20px">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Program 1</h2>
+                        <p class="card-text">
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Program 2</h2>
+                        <p class="card-text">
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Program 3</h2>
+                        <p class="card-text">
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Program 4</h2>
+                        <p class="card-text">
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- end furniture section -->
-
+    {{-- BAGIAN AKHIR PROGRAM --}}
 
     <!-- about section -->
     <section class="about_section layout_padding long_section">
@@ -66,13 +72,13 @@
                             maksimal
                             dari belajar bahasa Inggris.
                         </p>
-                        <button class="btn btn-primary" data-bs-target="#PROFIL" data-bs-toggle="modal">
+                        <a href="" class="btn2" data-bs-target="#PROFIL" data-bs-toggle="modal">
                             Read More
-                        </button>
+                        </a>
 
                         {{-- MODAL PFOFIL --}}
                         <div class="modal fade" id="PROFIL" data-bs-backdrop="static" data-bs-keyboard="false"
-                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="">
                             <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -100,16 +106,16 @@
                                             </p>
 
                                             <p style="font-size: 15px; text-align: justify">
-                                                VICTORY ENGLISH SCHOOL memiliki metoda pengajaran yang sangat
+                                                <b>VICTORY ENGLISH SCHOOL</b> memiliki metoda pengajaran yang sangat
                                                 berbeda dengan lembaga-lembaga bahasa Inggris lainnya, sehingga
                                                 semua siswa baik dewasa, remaja atau anak-anak (TK, SD, SMP,
                                                 SMA/SMK, Mahasiswa, Karyawan atau Guru) dapat belajar bahasa
                                                 Ingrris
-                                                lisan dan tulisan dengan baik. VICTORY ENGLISH SCHOOL memiliki
+                                                lisan dan tulisan dengan baik. <b>VICTORY ENGLISH SCHOOL</b> memiliki
                                                 tenaga pengajar yang profesional dan berpengalaman dalam
                                                 mengajar
                                                 bahasa Inggris.
-                                                VICTORY ENGLISH SCHOOL memahami dan memperhatikan kebutuhan
+                                                <b>VICTORY ENGLISH SCHOOL</b> memahami dan memperhatikan kebutuhan
                                                 belajar
                                                 setiap siswa.
 
@@ -165,6 +171,44 @@
     </section>
 
     <!-- end blog section -->
+
+    <!-- Fasilitas section -->
+
+    <section class="furniture_section layout_padding">
+        <div class="container">
+            <div class="heading_container">
+                <h2>
+                    FASILITAS
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="{{ asset('user2/images/f1.png') }}" alt="">
+                        </div>
+                        <div class="detail-box">
+                            <h5>
+                                brown Chair Design
+                            </h5>
+                            <div class="price_box">
+                                <h6 class="price_heading">
+                                    <span>$</span> 100.00
+                                </h6>
+                                <a href="">
+                                    Buy Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- end furniture section -->
+
+
 
     <!-- client section -->
 
