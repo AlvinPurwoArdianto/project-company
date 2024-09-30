@@ -108,6 +108,9 @@
     <!-- Google Map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <!-- End Google Map -->
 
 
@@ -118,6 +121,55 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
     </script>
 
+
+
+
+    {{-- BUAT SCROLL KESAMPING FASILITAS --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const row = document.querySelector('.furniture_section .row');
+            const items = document.querySelectorAll('.furniture_section .col-md-6, .furniture_section .col-lg-4');
+
+            // Clone items to fill both ends for infinite scroll effect
+            function cloneItems() {
+                // Clone items to the end
+                items.forEach(item => {
+                    const clone = item.cloneNode(true);
+                    row.appendChild(clone); // Append at the end
+                });
+
+                // Clone items to the start
+                items.forEach(item => {
+                    const clone = item.cloneNode(true);
+                    row.insertBefore(clone, row.firstChild); // Insert at the beginning
+                });
+            }
+
+            // Clone the items once at the start
+            cloneItems();
+
+            // Function to handle infinite scroll in both directions
+            function infiniteScroll() {
+                const maxScrollLeft = row.scrollWidth - row.clientWidth;
+
+                // When scrolling to the right end, jump to the left part of the scroll
+                if (row.scrollLeft >= maxScrollLeft - 1) {
+                    row.scrollLeft = row.clientWidth; // Jump to the starting clones
+                }
+
+                // When scrolling to the left end, jump to the right part of the scroll
+                if (row.scrollLeft <= 0) {
+                    row.scrollLeft = maxScrollLeft - row.clientWidth; // Jump to the ending clones
+                }
+            }
+
+            // Initial position for scroll (set to middle of cloned content)
+            row.scrollLeft = row.scrollWidth / 2;
+
+            // Attach scroll event to trigger infinite scroll logic
+            row.addEventListener('scroll', infiniteScroll);
+        });
+    </script>
 </body>
 
 </html>

@@ -33,7 +33,7 @@
                         <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Deskripsi</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <textarea type="text" id="deskripsi" placeholder="Deskripsi" rows="15" name="deskripsi"></textarea>
+                                <textarea type="text" id="deskripsi" placeholder="Deskripsi" name="deskripsi"></textarea>
                             </div>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
             "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.1.1/"
         }
     }
-</script>
+    </script>
     <script type="module">
         import {
             ClassicEditor,
@@ -97,4 +97,6 @@
             .then( /* ... */ )
             .catch( /* ... */ );
     </script>
+
+    {{-- <script src="/path/or/uri/to/tinymce.min.js" referrerpolicy="origin"></script> --}}
 @endsection

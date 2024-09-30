@@ -8,6 +8,120 @@ body {
     overflow-x: hidden;
 }
 
+
+/* BUAT NAVBAR STICKY */
+/* Tambahkan CSS ini untuk memastikan navbar memenuhi lebar layar */
+.custom_nav-container {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navbar {
+    width: 100%;
+}
+
+.navbar-nav {
+    width: 100%;
+    /* Pastikan navbar nav memanfaatkan lebar penuh */
+    justify-content: space-around;
+    /* Rata-rata item navbar */
+}
+
+/* BUAT NAVBAR STICKY */
+
+/* BUAT SCROLLL */
+.furniture_section .col-md-6,
+.furniture_section .col-lg-4 {
+    position: relative;
+    overflow: hidden;
+    /* Mengontrol elemen di dalam agar tidak keluar kecuali di-hover */
+    padding: 0;
+    margin: 0;
+    border: none;
+    flex: 0 0 auto;
+    width: auto;
+}
+
+.furniture_section img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Tambahkan transisi agar efek muncul perlahan */
+}
+
+.furniture_section .col-md-6:hover img,
+.furniture_section .col-lg-4:hover img {
+    transform: scale(1.1);
+    /* Zoom sedikit pada gambar */
+    z-index: 10;
+    /* Naikkan z-index agar gambar muncul di atas elemen lainnya */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    /* Tambahkan bayangan untuk efek keluar */
+}
+
+.furniture_section .row {
+    display: flex !important;
+    /* Pastikan layout flex menggantikan aturan grid Bootstrap */
+    flex-wrap: nowrap;
+    /* Jangan bungkus elemen ke bawah */
+    overflow-x: auto;
+    /* Aktifkan scroll horizontal */
+    white-space: nowrap;
+    /* Hindari elemen turun ke bawah */
+    gap: 15px;
+    /* Tambahkan jarak antar item */
+}
+
+.furniture_section .col-md-6,
+.furniture_section .col-lg-4 {
+    padding: 0;
+    margin: 0;
+    border: none;
+    /* Hapus padding, margin, dan border */
+    flex: 0 0 auto;
+    width: auto;
+    /* Atur lebar otomatis agar sesuai dengan konten */
+}
+
+.furniture_section img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    /* Atur agar gambar tetap proporsional */
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 9px;
+    /* Hapus margin, padding, dan border */
+}
+
+
+::-webkit-scrollbar {
+    text-emphasis: none;
+}
+
+/* AKHIR SCORLL */
+
+
+/* LEBAR MODAL */
+#PROFIL .modal-dialog {
+    max-width: 60%;
+    /* Memperlebar modal hingga 90% lebar layar */
+    width: auto;
+    /* Pastikan lebar modal sesuai dengan isinya */
+}
+
+#PROFIL .modal-content {
+    max-height: 80vh;
+    /* Batasi tinggi modal hingga 80% dari tinggi viewport */
+    overflow-y: auto;
+    /* Tambahkan scroll jika konten lebih dari tinggi yang diizinkan */
+}
+
+/* LEBAR MODAL */
+
 .layout_padding {
     padding: 90px 0;
 }
