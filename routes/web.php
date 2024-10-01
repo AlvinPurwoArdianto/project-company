@@ -19,11 +19,13 @@ Route::get('/', function () {
 Auth::routes(
     ['register' => false],
 );
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/pendaftaran', [App\Http\Controllers\HomeController::class, 'daftar'])->name('pendaftaran');
-Route::post('/', [FrontController::class, 'store'])->name('pendaftaran.store');
+Route::get('/pendaftaran', [FrontController::class, 'form'])->name('front.form');
+Route::post('/pendaftaran', [FrontController::class, 'store'])->name('front.store');
+
+// Route::get('/pendaftaran', [App\Http\Controllers\HomeController::class, 'daftar'])->name('pendaftaran');
+// Route::post('/', [FrontController::class, 'store'])->name('pendaftaran.store');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('program', ProgramController::class);

@@ -107,13 +107,28 @@ body {
 
 /* LEBAR MODAL */
 #PROFIL .modal-dialog {
-    max-width: 60%;
+    max-width: 70%;
     /* Memperlebar modal hingga 90% lebar layar */
     width: auto;
     /* Pastikan lebar modal sesuai dengan isinya */
 }
 
 #PROFIL .modal-content {
+    max-height: 90vh;
+    /* Batasi tinggi modal hingga 80% dari tinggi viewport */
+    overflow-y: auto;
+    /* Tambahkan scroll jika konten lebih dari tinggi yang diizinkan */
+}
+
+#pendaftaran .modal-dialog {
+    max-width: 70%;
+    /* Memperlebar modal hingga 90% lebar layar */
+    width: auto;
+    /* Pastikan lebar modal sesuai dengan isinya */
+}
+
+#pendaftaran .modal-content {
+    margin-top: 80px;
     max-height: 80vh;
     /* Batasi tinggi modal hingga 80% dari tinggi viewport */
     overflow-y: auto;
@@ -556,6 +571,7 @@ a:focus {
 
 .blog_section .box .img-box {
     position: relative;
+    /* height: 30%; */
 }
 
 .blog_section .box .img-box img {

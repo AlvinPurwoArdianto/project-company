@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Artikel;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class ArtikelController extends Controller
 {
@@ -59,7 +58,8 @@ class ArtikelController extends Controller
         $artikel->tanggal = $request->tanggal;
 
         $artikel->save();
-        Alert::success('Success', 'Data Berhasil Disimpan')->autoClose(1000);
+
+        toast('Data Berhasil Ditambahkan!', 'success')->position('top-end')->autoClose(1000);
         return redirect()->route('artikel.index');
 
     }
@@ -117,7 +117,8 @@ class ArtikelController extends Controller
         }
 
         $artikel->update();
-        Alert::success('Success', 'Data Berhasil Diubah')->autoClose(1000);
+
+        toast('Data Berhasil Diubah!', 'success')->position('top-end')->autoClose(1000);
         return redirect()->route('artikel.index');
     }
 
@@ -132,7 +133,8 @@ class ArtikelController extends Controller
         $artikel = Artikel::findOrFail($id);
         $artikel->deleteImage();
         $artikel->delete();
-        Alert::success('Success', 'Data Berhasil Dihapus')->autoClose(1000);
+
+        toast('Data Berhasil Dihapus!', 'success')->position('top-end')->autoClose(1000);
         return redirect()->route('artikel.index');
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Fasilitas;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class FasilitasController extends Controller
 {
@@ -15,7 +14,7 @@ class FasilitasController extends Controller
      */
     public function index()
     {
-        $fasilitas = Fasilitas::all();
+        $fasilitas = Fasilitas::latest()->get();
         confirmDelete('Hapus Fasilitas!', 'Apakah Anda Yakin?');
         return view('admin.fasilitas.index', compact('fasilitas'));
     }
@@ -55,7 +54,7 @@ class FasilitasController extends Controller
         }
 
         $fasilitas->save();
-        toast('Data Berhasil Ditambahkan!', 'success')->position('top-end');
+        toast('Data Berhasil Ditambahkan!', 'success')->position('top-end')->autoClose(1000);
         return redirect()->route('fasilitas.index');
     }
 
@@ -93,7 +92,6 @@ class FasilitasController extends Controller
     {
         $request->validate([
             'nama_fasilitas' => 'required',
-            'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3084',
         ]);
 
         $fasilitas = Fasilitas::findOrFail($id);
@@ -108,7 +106,7 @@ class FasilitasController extends Controller
         }
 
         $fasilitas->save();
-        Alert::success('Success', 'Data Berhasil Diubah')->autoClose(1000);
+        toast('Data Berhasil Diubah!', 'success')->position('top-end')->autoClose(1000);
         return redirect()->route('fasilitas.index');
 
     }
@@ -124,7 +122,7 @@ class FasilitasController extends Controller
         $fasilitas = Fasilitas::findOrFail($id);
         $fasilitas->deleteImage();
         $fasilitas->delete();
-        Alert::success('Success', 'Data Berhasil Dihapus')->autoClose(1000);
+        toast('Data Berhasil Dihapus!', 'success')->position('top-end')->autoClose(1000);
         return redirect()->route('fasilitas.index');
     }
 }

@@ -122,7 +122,7 @@
 
     @yield('js')
     @yield('script')
-    @yield('scripts')
+    @stack('scripts')
 
     @include('sweetalert::alert')
 </body>

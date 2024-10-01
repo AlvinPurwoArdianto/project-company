@@ -1,5 +1,108 @@
 @extends('layouts.user2.template')
 @section('content')
+    {{-- MODAL PENDAFTARAN --}}
+    <div class="modal fade" id="pendaftaran" tabindex="-1" role="dialog" aria-labelledby="pendaftaranLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pendaftaranLabel">Form
+                        Pendaftaran</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('front.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama
+                                Lengkap</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input type="text" class="form-control" id="basic-icon-default-fullname"
+                                        placeholder="Nama Lengkap" name="nama" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Jenis
+                                Kelamin</label>
+                            <div class="col-sm-10">
+                                <select name="jenis_kelamin" id="" class="form-control">
+                                    <option value="" selected disabled>Pilih Jenis Kelamin</option>
+                                    <option value="Laki-Laki">Laki-Laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Tempat &
+                                Tanggal
+                                Lahir</label>
+                            <div class="col-sm-5">
+                                <div class="input-group input-group-merge">
+                                    <input type="text" class="form-control" id="basic-icon-default-fullname"
+                                        placeholder="Tempat Lahir" name="tempat_lahir" />
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="input-group input-group-merge">
+                                    <input type="date" class="form-control" id="basic-icon-default-fullname"
+                                        placeholder="Tanggal Lahir" name="tanggal_lahir" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Alamat</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <textarea type="text" class="form-control" id="basic-icon-default-fullname" placeholder="Masukan Alamat Anda"
+                                        name="alamat"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Email</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input type="email" class="form-control" id="basic-icon-default-fullname"
+                                        placeholder="Masukan Email Anda" name="email" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">No
+                                Telepon</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input type="tel" pattern="[0-9]{12}" class="form-control" id="phone"
+                                        placeholder="Contoh 08xxxxxx" name="no_telepon" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Tanggal
+                                Daftar</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input type="date" class="form-control" id="basic-icon-default-fullname"
+                                        placeholder="Tanggal Pendaftaran" name="tanggal_pendaftaran" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="col-sm-10">
+                                <a href="/" class="btn btn-primary">Kembali</a>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     {{-- BAGIAN PROGRAM --}}
     <div class="container layput_padding" style="margin-top: 3rem; margin-bottom: 3rem">
         <div class="heading_container">
@@ -12,32 +115,36 @@
                 <div class="card">
                     <div class="card-body">
                         <h2>Program 1</h2>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                        <p class="card-text text-justify">
+                            Some quick example text to build on the card title and make up the bulk of the card's
+                            content.
                         </p>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-body">
                         <h2>Program 2</h2>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                        <p class="card-text text-justify">
+                            Some quick example text to build on the card title and make up the bulk of the card's
+                            content.
                         </p>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-body">
                         <h2>Program 3</h2>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                        <p class="card-text text-justify">
+                            Some quick example text to build on the card title and make up the bulk of the card's
+                            content.
                         </p>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-body">
                         <h2>Program 4</h2>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                        <p class="card-text text-justify">
+                            Some quick example text to build on the card title and make up the bulk of the card's
+                            content.
                         </p>
                     </div>
                 </div>
@@ -63,7 +170,7 @@
                                 PROFIL VICTORY
                             </h2>
                         </div>
-                        <p>
+                        <p class="text-justify">
                             sejak tahun 1998, <b>VICTORY ENGLISH SCHOOL</b> telah melayani masyarakat Bandung dan
                             sekitarnya
                             dengan program-program bahasa Inggris yang efektif dan ekonomis. <b>VICTORY ENGLISH
@@ -87,8 +194,8 @@
                                         </div>
                                         <div class="modal-body">
                                             <center>
-                                                <img src="{{ asset('user/assets/img/logo/logo copy.png') }}" width="80%"
-                                                    height="60%" alt="logo-victory">
+                                                <img src="{{ asset('user/assets/img/logo/logo copy.png') }}"
+                                                    width="80%" height="60%" alt="logo-victory">
                                             </center>
                                             <p style="font-size: 15px; text-align: justify">
                                                 Sejak tahun 1998, <b>VICTORY ENGLISH SCHOOL</b> telah melayani
@@ -148,21 +255,41 @@
             <div class="row">
                 @foreach ($artikel as $data)
                     <div class="col-md-6 col-lg-4 mx-auto">
-                        <div class="box">
+                        <div class="box" style="border-radius: 10px">
                             <div class="img-box">
-                                <img src="{{ asset('user2/images/b1.jpg') }}" alt="">
+                                <img src="{{ asset('/images/artikel/' . $data->cover) }}" class="img-hover-effect">
                             </div>
                             <div class="detail-box">
                                 <h5>
-                                    Look even slightly believable. If you are
+                                    {{ $data->judul_artikel }}
                                 </h5>
-                                <p>
-                                    alteration in some form, by injected humour, or randomised words which don't look even
-                                    slightly believable.
-                                </p>
-                                <a href="">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-{{ $data->id }}">
                                     Read More
                                 </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal untuk artikel -->
+                    <div class="modal fade" id="modal-{{ $data->id }}" tabindex="-1"
+                        aria-labelledby="modalLabel-{{ $data->id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel-{{ $data->id }}">
+                                        <strong>{{ $data->judul_artikel }}</strong>
+                                    </h5>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="{{ asset('/images/artikel/' . $data->cover) }}">
+                                    <p style="text-align: justify;">
+                                        {!! $data->deskripsi !!}
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
                             </div>
                         </div>
                     </div>

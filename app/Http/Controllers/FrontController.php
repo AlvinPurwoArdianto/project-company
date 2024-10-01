@@ -40,7 +40,13 @@ class FrontController extends Controller
 
         $pendaftaran->save();
 
-        return redirect()->route('/');
+        toast('Data Berhasil Ditambahkan!', 'success')->position('top-end')->autoClose(1000);
+        return redirect()->route('front.form');
 
+    }
+
+    public function form()
+    {
+        return view('pendaftaran.register');
     }
 }

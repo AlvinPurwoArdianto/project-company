@@ -67,11 +67,12 @@
                                             dari belajar bahasa Inggris.
                                         </p> --}}
                                         <div class="btn-box">
-                                            <a href="" class="btn1">
-                                                Contact Us
+                                            <a href="" class="btn2" data-bs-toggle="modal"
+                                                data-bs-target="#pendaftaran">
+                                                Daftar Disini
                                             </a>
-                                            <a href="" class="btn2">
-                                                About Us
+                                            <a href="" class="btn1">
+                                                Read More
                                             </a>
                                         </div>
                                     </div>

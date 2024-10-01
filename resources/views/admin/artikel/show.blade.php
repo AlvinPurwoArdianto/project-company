@@ -19,7 +19,9 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="mt-2">Deskripsi</label>
-                                                <textarea type="text" class="form-control mt-2" name="deskripsi" disabled> {!! $artikel->deskripsi !!} </textarea>
+                                                <input type="text" class="form-control mt-2" name="deskripsi"
+                                                    value="{!! $artikel->deskripsi !!}" disabled>
+                                                {!! $artikel->deskripsi !!}
                                             </div>
                                             <div class="form-group">
                                                 <label class="mt-2">Tanggal</label>

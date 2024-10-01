@@ -1,6 +1,14 @@
 @extends('layouts.admin.template')
 @section('styles')
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.1/ckeditor5.css" />
+
+    <style>
+        /* This selector targets the editable element (excluding comments). */
+        .ck-editor__editable_inline:not(.ck-comment__input *) {
+            height: 200px;
+            overflow-y: auto;
+        }
+    </style>
 @endsection
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -31,10 +39,8 @@
                     </div> --}}
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Deskripsi</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-group-merge">
-                                <textarea type="text" id="deskripsi" placeholder="Deskripsi" name="deskripsi"></textarea>
-                            </div>
+                        <div class="col-md-10">
+                            <textarea type="text" class="form-control" id="deskripsi" name="deskripsi" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -67,7 +73,7 @@
     </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
     <script type="importmap">
     {
         "imports": {
@@ -99,4 +105,4 @@
     </script>
 
     {{-- <script src="/path/or/uri/to/tinymce.min.js" referrerpolicy="origin"></script> --}}
-@endsection
+@endpush
