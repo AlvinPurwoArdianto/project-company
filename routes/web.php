@@ -7,14 +7,21 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\ProgramController;
 use App\Models\Artikel;
 use App\Models\Fasilitas;
+use App\Models\Program;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    $program = Program::all();
     $artikel = Artikel::all();
     $fasilitas = Fasilitas::all();
-    return view('coba', compact('artikel', 'fasilitas'));
+    return view('coba', compact('artikel', 'fasilitas', 'program'));
 });
+
+Route::get('/daftar', function () {
+    $program = Program::all();
+    return view('pendaftaran',compact('program'));
+})->name('daftar');
 
 Auth::routes(
     ['register' => false],

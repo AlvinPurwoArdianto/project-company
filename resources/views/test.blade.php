@@ -9,8 +9,8 @@
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="{{ asset('user2/assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('user2/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('user3/assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('user3/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -20,14 +20,14 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="{{ asset('user2/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('user2/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('user2/assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('user2/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('user2/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('user3/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('user3/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('user3/assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('user3/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('user3/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Main CSS File -->
-    <link href="{{ asset('user2/assets/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('user3/assets/css/main.css') }}" rel="stylesheet">
 </head>
 
 <body class="index-page">
@@ -41,7 +41,7 @@
                 <h1 class="sitename">Victory</h1>
             </a>
 
-            @include('include.user2.header')
+            @include('include.user2.navbar')
         </div>
     </header>
 
@@ -59,17 +59,17 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('user2/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('user2/assets/vendor/php-email-form/validate.js') }}"></script>
-    <script src="{{ asset('user2/assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('user2/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('user2/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-    <script src="{{ asset('user2/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('user2/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset('user2/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('user3/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('user3/assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('user3/assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('user3/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('user3/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('user3/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('user3/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('user3/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 
     <!-- Main JS File -->
-    <script src="{{ asset('user2/assets/js/main.js') }}"></script>
+    <script src="{{ asset('user3/assets/js/main.js') }}"></script>
 
 </body>
 
