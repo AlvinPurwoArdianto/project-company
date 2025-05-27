@@ -92,7 +92,7 @@ class ProgramController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_program' => 'required|min:3|unique:programs',
+            'nama_program' => 'required|min:3',
             'deskripsi' => 'required', 'max:255',
         ]);
 

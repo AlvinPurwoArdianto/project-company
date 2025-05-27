@@ -34,8 +34,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="tanggal_daftar" class="pb-2">Tanggal Daftar</label>
-                            <input type="date" name="tanggal_daftar" id="tanggal_pendaftaran" class="form-control" required>
+                            <label for="tanggal_pendaftaran" class="pb-2">Tanggal Daftar</label>
+                            <input type="date" name="tanggal_pendaftaran" id="tanggal_pendaftaran" class="form-control" required>
                         </div>
                         <div class="col-md-6">
                             <label for="email" class="pb-2">Email</label>

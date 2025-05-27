@@ -35,10 +35,9 @@
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-            <a href="index.html" class="logo d-flex align-items-center me-auto">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
-                <h1 class="sitename">Victory</h1>
+            <a href="{{ url('/')}}" class="me-auto" class="header-logo">
+                <img src="{{ asset('admin/assets/img/avatars/logo.png') }}" height="50px" width="150px"
+                    alt="logo-img">
             </a>
 
             @include('include.user2.header')
