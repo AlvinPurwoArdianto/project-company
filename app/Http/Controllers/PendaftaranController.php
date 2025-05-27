@@ -64,7 +64,7 @@ class PendaftaranController extends Controller
         $pendaftaran->save();
         Alert::success('Success', 'Data Berhasil Ditambahkan')->autoClose(1000);
 
-        return redirect()->route('pendaftaran.index');
+        return redirect('/');
     }
 
     /**
