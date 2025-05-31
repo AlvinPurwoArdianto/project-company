@@ -7,20 +7,20 @@
                     <span class="sitename">Victory</span>
                 </a>
                 <div class="footer-contact pt-3">
-                    <p>A108 Adam Street</p>
-                    <p>New York, NY 535022</p>
-                    <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                    <p><strong>Email:</strong> <span>info@example.com</span></p>
+                    <p>Komp. Bumi Asri Mekarrahayu Blok 1 D 39 No. 104</p>
+                    <p>Kab. Bandung, Jawa Barat, Indonesia</p>
+                    <p class="mt-3"><strong>Phone:</strong> <span>+62 852-9494-0965</span></p>
+                    <p><strong>Email:</strong> <span>victory@gmail.com</span></p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-3 footer-links">
                 <h4>Useful Links</h4>
                 <ul>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+                    <li><i class="bi bi-chevron-right"></i> <a href="#">Beranda</a></li>
+                    <li><i class="bi bi-chevron-right"></i> <a href="#">Profil</a></li>
+                    <li><i class="bi bi-chevron-right"></i> <a href="#">Artikel</a></li>
+                    <li><i class="bi bi-chevron-right"></i> <a href="#">Contact</a></li>
                 </ul>
             </div>
 

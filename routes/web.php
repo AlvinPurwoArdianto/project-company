@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('coba', compact('artikel', 'fasilitas', 'program'));
 });
 
+Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel');
+
 Route::get('/daftar', function () {
     $program = Program::all();
     return view('pendaftaran',compact('program'));

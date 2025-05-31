@@ -25,6 +25,8 @@
     <link href="{{ asset('user2/assets/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('user2/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('user2/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC&display=swap" rel="stylesheet">
+
 
     <!-- Main CSS File -->
     <link href="{{ asset('user2/assets/css/main.css') }}" rel="stylesheet">

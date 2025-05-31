@@ -96,44 +96,49 @@
 
 
     <!-- Hero Section Start -->
-    <section class="bannerv2-section position-relative fix" id="scrollUp">
+    <section class="bannerv2-section position-relative fix" id="scrollUp"
+        style="background-color: #EDE7F6; padding: 80px 0;">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-lg-6 col-md-9">
                     <div class="herov2-content position-relative">
-                        <h1 class="mb-lg-4 mb-3 wow fadeInUp text-danger" data-wow-delay=".3s"
-                            style="font-family: Bona Nova SC;font-weight: 700; font-style: normal;">
-                            <b>VICTORY</b>
+                        <h1 class="mb-lg-3 mb-2 wow fadeInUp" data-wow-delay=".3s"
+                            style="font-family: 'Bona Nova SC', serif; font-weight: 700; font-style: normal; color: #8B0000; transition: all 0.3s ease;">
+                            VICTORY
                         </h1>
-                        <h2 class="mb-lg-4 mb-3 wow fadeInUp text-primary"><b>ENGLISH SCHOOL</b>
+                        <h2 class="mb-lg-3 mb-2 wow fadeInUp" data-wow-delay=".4s"
+                            style="font-family: Arial Black, sans-serif; font-weight: bold; color: #0033CC; transition: all 0.3s ease;">
+                            ENGLISH SCHOOL
                         </h2>
-                        <h3 class="mb-40 pra wow fadeInUp text-warning" data-wow-delay=".5s">
+                        <h3 class="mb-4 pra wow fadeInUp" data-wow-delay=".5s"
+                            style="color: #FFA000; font-weight: 500; font-size: 1.2rem; transition: all 0.3s ease;">
                             MUCH BETTER THAN OTHERS
                         </h3>
-                        <div class="heros-btn">
-                            <a href="{{ route('pendaftaran') }}" class="theme-btn round100 p2-bg"
-                                style="text-decoration: none">
-                                <span class="white fw-medium">
-                                    Daftar <i class="bi bi-arrow-right-circle-fill"></i>
-                                </span>
+
+                        <div class="heros-btn wow fadeInUp" data-wow-delay=".6s">
+                            <a href="{{ route('pendaftaran') }}" class="theme-btn round100"
+                                style="background-color: #0033CC; color: white; padding: 12px 30px; border-radius: 50px; font-weight: 500; text-decoration: none; display: inline-block; transition: all 0.3s ease;">
+                                Daftar <i class="bi bi-arrow-right-circle-fill ms-1"></i>
                             </a>
                         </div>
-                        <!-- Element -->
+
+                        <!-- Decorative Image -->
                         <img src="{{ asset('user/assets/img/abanner/reg.png') }}" alt="img"
-                            class="small-aregtengle">
+                            class="small-aregtengle mt-4 wow fadeInUp" data-wow-delay=".7s" style="max-width: 150px;">
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Element -->
-        <img src="{{ asset('user/assets/img/abanner/kyte.png') }}" alt="img" class="banner-kyte">
 
-        {{-- FOTO SATUU --}}
+        <!-- Background Decorations -->
+        <img src="{{ asset('user/assets/img/abanner/kyte.png') }}" alt="img" class="banner-kyte wow fadeIn"
+            data-wow-delay=".3s">
         <img src="{{ asset('user/assets/img/abanner/banner-v2-thumb.png') }}" alt="img"
-            class="banner-shape wow fadeInLeft" data-wow-delay=".3s">
-
-        <img src="{{ asset('user/assets/img/abanner/banner-shadow.png') }}" alt="img" class="banner-shadow">
+            class="banner-shape wow fadeInLeft" data-wow-delay=".4s">
+        <img src="{{ asset('user/assets/img/abanner/banner-shadow.png') }}" alt="img"
+            class="banner-shadow wow fadeInUp" data-wow-delay=".5s">
     </section>
+
 
     <!-- About Section Start -->
     <section class="about-sectionv02 space-top position-relative overflow-hidden" id="about">
