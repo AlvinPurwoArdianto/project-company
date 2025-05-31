@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
@@ -40,16 +39,16 @@ class ArtikelController extends Controller
     {
         $request->validate([
             'judul_artikel' => 'required|unique:artikels',
-            'deskripsi' => 'required',
-            'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3084',
+            'deskripsi'     => 'required',
+            'cover'         => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3084',
         ]);
 
-        $artikel = new Artikel();
+        $artikel                = new Artikel();
         $artikel->judul_artikel = $request->judul_artikel;
-        $artikel->deskripsi = $request->deskripsi;
+        $artikel->deskripsi     = $request->deskripsi;
 
         if ($request->hasFile('cover')) {
-            $img = $request->file('cover');
+            $img  = $request->file('cover');
             $name = rand(1000, 9999) . $img->getClientOriginalName();
             $img->move('images/artikel', $name);
             $artikel->cover = $name;
@@ -73,7 +72,14 @@ class ArtikelController extends Controller
     public function show($id)
     {
         $artikel = Artikel::findOrFail($id);
-        return view('admin.artikel.show', compact('artikel'));
+
+        // Cek jika route saat ini route admin
+        if (request()->is('admin/*')) {
+            return view('admin.artikel.show', compact('artikel'));
+        }
+
+        // Jika bukan admin (frontend)
+        return view('artikel', compact('artikel'));
     }
 
     /**
@@ -99,18 +105,18 @@ class ArtikelController extends Controller
     {
         $request->validate([
             'judul_artikel' => 'required',
-            'deskripsi' => 'required',
-            'cover' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3084',
+            'deskripsi'     => 'required',
+            'cover'         => 'image|mimes:jpeg,png,jpg,gif,svg|max:3084',
         ]);
 
-        $artikel = Artikel::findOrFail($id);
+        $artikel                = Artikel::findOrFail($id);
         $artikel->judul_artikel = $request->judul_artikel;
-        $artikel->deskripsi = $request->deskripsi;
-        $artikel->tanggal = $request->tanggal;
+        $artikel->deskripsi     = $request->deskripsi;
+        $artikel->tanggal       = $request->tanggal;
 
         if ($request->hasFile('cover')) {
             $artikel->deleteImage();
-            $img = $request->file('cover');
+            $img  = $request->file('cover');
             $name = rand(1000, 9999) . $img->getClientOriginalName();
             $img->move('images/artikel', $name);
             $artikel->cover = $name;
