@@ -349,19 +349,6 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="news-content">
-                                <h4 class="mb-3">
-                                    <a href="blog-details.html" class="black">
-                                    </a>
-                                </h4>
-                                <p class="pra mb-4">
-                                    Lorem ipsum dolor sit amet consectetur. Amet lectus mi ultricies dictum facilisis sem.
-                                    Imperdiet massa turpis sit proin
-                                    metus volutpat loren ipsum
-                                </p>
-                                <a href="blog-details.html" class="theme-btn-2 fw-medium black">Read More <i
-                                        class="fas fa-long-arrow-right p2-clr"></i></a>
-                            </div> --}}
                         </div>
                     </div>
                 @endforeach

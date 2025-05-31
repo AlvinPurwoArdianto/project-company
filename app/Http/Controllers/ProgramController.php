@@ -55,8 +55,7 @@ class ProgramController extends Controller
         $program->deskripsi = $request->deskripsi;
         $program->save();
 
-        Alert::success('Success', 'Data Berhasil Disimpan')->autoClose(1000);
-        return redirect()->route('program.index');
+        return redirect()->route('program.index')->with('success', 'Data Berhasil Disimpan');
     }
 
     /**
@@ -101,8 +100,7 @@ class ProgramController extends Controller
         $program->deskripsi = $request->deskripsi;
         $program->save();
 
-        Alert::success('Success', 'Data Berhasil Diubah')->autoClose(1000);
-        return redirect()->route('program.index');
+        return redirect()->route('program.index')->with('success', 'Data Berhasil Diupdate');
     }
 
     /**

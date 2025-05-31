@@ -26,7 +26,6 @@ Route::get('/daftar', function () {
 Auth::routes(
     ['register' => false],
 );
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/pendaftaran', [FrontController::class, 'form'])->name('front.form');
 Route::post('/pendaftaran', [FrontController::class, 'store'])->name('front.store');
@@ -35,6 +34,8 @@ Route::post('/pendaftaran', [FrontController::class, 'store'])->name('front.stor
 // Route::post('/', [FrontController::class, 'store'])->name('pendaftaran.store');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
     Route::resource('program', ProgramController::class);
     Route::resource('fasilitas', FasilitasController::class);
     Route::resource('artikel', ArtikelController::class);
