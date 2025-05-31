@@ -10,79 +10,127 @@
                 <form action="{{ route('pendaftaran.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nama Lengkap</label>
+                        <label class="col-sm-2 col-form-label" for="nama">Nama Lengkap</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="Nama Lengkap" name="nama" />
+                                <input type="text"
+                                    class="form-control @error('nama') is-invalid @enderror"
+                                    id="nama"
+                                    placeholder="Nama Lengkap"
+                                    name="nama"
+                                    value="{{ old('nama') }}" />
                             </div>
+                            @error('nama')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
+
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Jenis Kelamin</label>
+                        <label class="col-sm-2 col-form-label">Jenis Kelamin</label>
                         <div class="col-sm-10">
-                            <select name="jenis_kelamin" id="" class="form-control">
+                            <select name="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror">
                                 <option value="" selected disabled>Pilih Jenis Kelamin</option>
-                                <option value="Laki-Laki">Laki-Laki</option>
-                                <option value="Perempuan">Perempuan</option>
+                                <option value="Laki-Laki" {{ old('jenis_kelamin') == 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
+                                <option value="Perempuan" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                             </select>
+                            @error('jenis_kelamin')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
+
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Tempat & Tanggal
-                            Lahir</label>
+                        <label class="col-sm-2 col-form-label">Tempat & Tanggal Lahir</label>
                         <div class="col-sm-5">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="Tempat Lahir" name="tempat_lahir" />
+                                <input type="text"
+                                    class="form-control @error('tempat_lahir') is-invalid @enderror"
+                                    placeholder="Tempat Lahir"
+                                    name="tempat_lahir"
+                                    value="{{ old('tempat_lahir') }}" />
                             </div>
+                            @error('tempat_lahir')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-sm-5">
                             <div class="input-group input-group-merge">
-                                <input type="date" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="Tanggal Lahir" name="tanggal_lahir" />
+                                <input type="date"
+                                    class="form-control @error('tanggal_lahir') is-invalid @enderror"
+                                    name="tanggal_lahir"
+                                    value="{{ old('tanggal_lahir') }}" />
                             </div>
+                            @error('tanggal_lahir')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
+
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Alamat</label>
+                        <label class="col-sm-2 col-form-label">Alamat</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <textarea type="text" class="form-control" id="basic-icon-default-fullname" placeholder="Masukan Alamat Anda"
-                                    name="alamat"></textarea>
+                                <textarea class="form-control @error('alamat') is-invalid @enderror"
+                                    placeholder="Masukan Alamat Anda"
+                                    name="alamat">{{ old('alamat') }}</textarea>
                             </div>
+                            @error('alamat')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
+
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Email</label>
+                        <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="email" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="Masukan Email Anda" name="email" />
+                                <input type="email"
+                                    class="form-control @error('email') is-invalid @enderror"
+                                    placeholder="Masukan Email Anda"
+                                    name="email"
+                                    value="{{ old('email') }}" />
                             </div>
+                            @error('email')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
+
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">No Telepon</label>
+                        <label class="col-sm-2 col-form-label">No Telepon</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="tel" pattern="[0-9]{12}" class="form-control" id="phone"
-                                    placeholder="Contoh 08xxxxxx" name="no_telepon" />
+                                <input type="tel"
+                                    class="form-control @error('no_telepon') is-invalid @enderror"
+                                    placeholder="Contoh 08xxxxxx"
+                                    name="no_telepon"
+                                    value="{{ old('no_telepon') }}" />
                             </div>
+                            @error('no_telepon')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
+
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Tanggal Daftar</label>
+                        <label class="col-sm-2 col-form-label">Tanggal Daftar</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="date" class="form-control" id="basic-icon-default-fullname"
-                                    placeholder="Tanggal Pendaftaran" name="tanggal_pendaftaran" />
+                                <input type="date"
+                                    class="form-control @error('tanggal_pendaftaran') is-invalid @enderror"
+                                    name="tanggal_pendaftaran"
+                                    value="{{ old('tanggal_pendaftaran') }}" />
                             </div>
+                            @error('tanggal_pendaftaran')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
+
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <a href="{{ route('pendaftaran.index') }} " class="btn btn-primary">Kembali</a>
+                            <a href="{{ route('pendaftaran.index') }}" class="btn btn-danger">Kembali</a>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
