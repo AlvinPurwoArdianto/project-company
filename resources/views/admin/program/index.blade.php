@@ -22,7 +22,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td><strong>{{ $data->nama_program }}</strong></td>
-                        <td>{{ Str::limit($data->deskripsi, 100, '...') }}</td>
+                        <td>{!! Str::limit($data->deskripsi, 100, '...') !!}</td>
                         <td>
                             <div class="d-flex gap-2">
                                 <a href="{{ route('program.edit', $data->id) }}" class="btn btn-sm btn-warning">
