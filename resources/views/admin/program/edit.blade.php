@@ -30,7 +30,7 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <a href="{{ route('program.index') }} " class="btn btn-primary">Kembali</a>
+                            <a href="{{ route('program.index') }} " class="btn btn-danger">Kembali</a>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>

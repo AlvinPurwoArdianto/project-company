@@ -37,7 +37,7 @@
 :root {
     --nav-color: #5f687b;
     /* The default color of the main navmenu links */
-    --nav-hover-color: #5E35B1;
+    --nav-hover-color: #5d9af7;
     /* Applied to main navmenu links when they are hovered over or active */
     --nav-mobile-background-color: #ffffff;
     /* Used as the background color for mobile navigation menu */
@@ -45,7 +45,7 @@
     /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
     --nav-dropdown-color: #5f687b;
     /* Used for navigation links of the dropdown items in the navigation menu. */
-    --nav-dropdown-hover-color: #5E35B1;
+    --nav-dropdown-hover-color: #5d9af7;
     /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
@@ -622,8 +622,8 @@ h6 {
 }
 
 .footer .social-links a:hover {
-    color: var(--accent-color);
-    border-color: var(--accent-color);
+    color: #1c6ce4;
+    border-color: #E6F0FF;
 }
 
 .footer h4 {
@@ -647,7 +647,7 @@ h6 {
     margin-right: 3px;
     font-size: 12px;
     line-height: 0;
-    color: var(--accent-color);
+    color: #5d9af7;
 }
 
 .footer .footer-links ul li {
@@ -667,7 +667,7 @@ h6 {
 }
 
 .footer .footer-links ul a:hover {
-    color: var(--accent-color);
+    color: #5d9af7;
 }
 
 .footer .footer-about a {
@@ -713,7 +713,7 @@ h6 {
     top: calc(50% - 30px);
     left: calc(50% - 30px);
     border: 6px solid #ffffff;
-    border-color: var(--accent-color) transparent var(--accent-color) transparent;
+    border-color:#5d9af7 transparent#5d9af7 transparent;
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -740,7 +740,7 @@ h6 {
     right: 15px;
     bottom: -15px;
     z-index: 99999;
-    background-color: var(--accent-color);
+    background-color: #2e7bf0;
     width: 44px;
     height: 44px;
     border-radius: 50px;
@@ -1373,11 +1373,11 @@ section,
     height: 12px;
     background-color: white;
     opacity: 1;
-    border: 1px solid #d086fd;
+    border: 1px solid #5d9af7;
 }
 
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
-    background-color: #b54af7;
+    background-color: #5d9af7;
 }
 
 /*--------------------------------------------------------------
@@ -1532,8 +1532,8 @@ section,
 
 .contact .info-item i {
     font-size: 20px;
-    color: var(--accent-color);
-    background: color-mix(in srgb, var(--accent-color), transparent 92%);
+    color: #1c6ce4;
+    background: #E6F0FF;
     width: 44px;
     height: 44px;
     display: flex;
@@ -1558,7 +1558,7 @@ section,
 }
 
 .contact .info-item:hover i {
-    background: var(--accent-color);
+    background: #98bffa;
     color: var(--contrast-color);
 }
 
@@ -1813,29 +1813,29 @@ section,
 --------------------------------------------------------------*/
 
 .btn-outline-purple {
-    border: 2px solid #d086fd;
-    color: #d086fd;
+    border: 2px solid #5d9af7;
+    color: #1c6ce4;
     background-color: #fff;
     transition: all 0.3s ease;
 }
 
 .btn-outline-purple:hover {
-    background-color: #b54af7;
+    background-color: #5d9af7;
     color: #fff;
 }
 
 .bg-purple {
-    background-color: #b54af7 !important;
+    background-color: #1c6ce4;
 }
 .bg-purple2{
-    background-color: #b174d6 !important;
+    background-color: #5d9af7;
 }
 .text-purple {
-    color: #b54af7 !important;
+    color: #1c6ce4;
 }
 .btn-primary:hover {
-    background-color: #5E35B1 !important;
-    box-shadow: 0 4px 12px rgba(103, 58, 183, 0.3);
+    background-color: #5d9af7 !important;
+    box-shadow: 0 4px 12px #1c6ce4;
 }
 
 /* Facility Image Hover Effects */
