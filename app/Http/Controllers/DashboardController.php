@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Artikel;
 use App\Models\Fasilitas;
+use App\Models\Informasi;
 use App\Models\Pendaftaran;
 use App\Models\Program;
 use Carbon\Carbon;
@@ -22,7 +23,7 @@ class DashboardController extends Controller
     public function index()
     {
         $program     = Program::count();
-        $artikel     = Artikel::count();
+        $informasi     = Informasi::count();
         $fasilitas   = Fasilitas::count();
         $pendaftaran = Pendaftaran::count();
 
@@ -40,7 +41,7 @@ class DashboardController extends Controller
 
         return view('admin.dashboard', compact(
             'program',
-            'artikel',
+            'informasi',
             'fasilitas',
             'pendaftaran',
             'chart_data',

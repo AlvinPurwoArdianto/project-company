@@ -45,52 +45,84 @@
                         </td>
                     </tr>
                     <div class="modal fade" id="detailModal{{ $data->id }}" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Detail Pendaftaran</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="row mb-3">
-                                        <div class="col-md-4 fw-bold">Nama Lengkap</div>
-                                        <div class="col-md-8">: {{ $data->nama }}</div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6 class="mb-3 text-primary">Informasi Pribadi</h6>
+                                            <div class="row mb-2">
+                                                <div class="col-md-5 fw-bold">Nama Lengkap</div>
+                                                <div class="col-md-7">: {{ $data->nama }}</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-5 fw-bold">Email</div>
+                                                <div class="col-md-7">: {{ $data->email }}</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-5 fw-bold">Jenis Kelamin</div>
+                                                <div class="col-md-7">: {{ $data->jenis_kelamin }}</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-5 fw-bold">Tempat Lahir</div>
+                                                <div class="col-md-7">: {{ $data->tempat_lahir }}</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-5 fw-bold">Tanggal Lahir</div>
+                                                <div class="col-md-7">: {{ \Carbon\Carbon::parse($data->tanggal_lahir)->translatedFormat('d F Y') }}</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-5 fw-bold">No. Telepon</div>
+                                                <div class="col-md-7">: {{ $data->no_telepon }}</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-5 fw-bold">Alamat</div>
+                                                <div class="col-md-7">: {{ $data->alamat }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <h6 class="mb-3 text-primary">Informasi Pendaftaran</h6>
+                                            <div class="row mb-2">
+                                                <div class="col-md-5 fw-bold">Nama Bank</div>
+                                                <div class="col-md-7">: {{ $data->bank }}</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-5 fw-bold">No. Rekening</div>
+                                                <div class="col-md-7">: {{ $data->no_rekening }}</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-5 fw-bold">Nama Orang Tua</div>
+                                                <div class="col-md-7">: {{ $data->nama_orang_tua }}</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-5 fw-bold">Alamat Orang Tua</div>
+                                                <div class="col-md-7">: {{ $data->alamat_orang_tua }}</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-5 fw-bold">Tanggal Daftar</div>
+                                                <div class="col-md-7">: {{ \Carbon\Carbon::parse($data->tanggal_pendaftaran)->translatedFormat('d F Y') }}</div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4 fw-bold">Email</div>
-                                        <div class="col-md-8">: {{ $data->email }}</div>
+
+                                    @if($data->keterangan)
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <h6 class="mb-2 text-primary">Keterangan</h6>
+                                            <div class="p-3 bg-light rounded">{{ $data->keterangan }}</div>
+                                        </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4 fw-bold">Jenis Kelamin</div>
-                                        <div class="col-md-8">: {{ $data->jenis_kelamin }}</div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4 fw-bold">Tempat Lahir</div>
-                                        <div class="col-md-8">: {{ $data->tempat_lahir }}</div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4 fw-bold">Tanggal Lahir</div>
-                                        <div class="col-md-8">: {{
-                                            \Carbon\Carbon::parse($data->tanggal_lahir)->format('d F Y') }}</div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4 fw-bold">No. Telepon</div>
-                                        <div class="col-md-8">: {{ $data->no_telepon }}</div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4 fw-bold">Alamat</div>
-                                        <div class="col-md-8">: {{ $data->alamat }}</div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <div class="col-md-4 fw-bold">Tanggal Daftar</div>
-                                        <div class="col-md-8">: {{
-                                            \Carbon\Carbon::parse($data->tanggal_pendaftaran)->format('d F Y') }}</div>
-                                    </div>
+                                    @endif
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="https://wa.me/62{{ $data->no_telepon }}?text=Haloo Kita Dari Tim Victory, Apakah Anda Yakin Ingin Bergabung?"
-                                        class="btn btn-primary">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                    <a href="https://wa.me/62{{ ltrim($data->no_telepon, '0') }}?text=Haloo Kita Dari Tim Victory, Apakah Anda Yakin Ingin Bergabung?"
+                                        class="btn btn-success" target="_blank">
                                         <i class="bi bi-whatsapp me-1"></i> Hubungi WhatsApp
                                     </a>
                                 </div>
