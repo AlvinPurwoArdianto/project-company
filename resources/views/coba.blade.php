@@ -235,21 +235,21 @@
 
             <div class="container">
                 <div class="row gy-4">
-                    @foreach ($artikel as $data)
+                    @foreach ($informasi as $data)
                         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
                             <div class="card shadow-sm border-0 h-100 artikel-item">
                                 <div class="position-relative">
-                                    <img src="{{ asset('/images/artikel/' . $data->cover) }}" class="card-img-top"
+                                    <img src="{{ asset('/images/informasi/' . $data->gambar) }}" class="card-img-top"
                                         alt="Article Image" style="height: 200px; object-fit: cover;">
-                                    <a href="{{ route('artikel', $data->id) }}" class="stretched-link"></a>
+                                    <a href="{{ route('informasi', $data->id) }}" class="stretched-link"></a>
                                     <div class="position-absolute top-0 end-0 m-2 badge bg-purple text-white">
                                         {{ \Carbon\Carbon::parse($data->created_at)->format('d M Y') }}
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title text-dark">{{ $data->judul_artikel }}</h5>
+                                    <h5 class="card-title text-dark">{{ $data->nama_informasi }}</h5>
                                     <p class="card-text text-muted">{!! Str::limit(strip_tags($data->deskripsi), 80) !!}</p>
-                                    <a href="{{ route('artikel', $data->id) }}"
+                                    <a href="{{ route('informasi', $data->id) }}"
                                         class="btn btn-sm btn-outline-purple mt-2">Baca Selengkapnya</a>
                                 </div>
                             </div>

@@ -85,15 +85,15 @@ color: #ffab00 !important;
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <h5 class="card-title mb-0">Artikel</h5>
-                            <h2 class="fw-bold mt-2">{{ $artikel }}</h2>
-                            <p class="mb-0">Total Artikel</p>
+                            <h5 class="card-title mb-0">Informasi</h5>
+                            <h2 class="fw-bold mt-2">{{ $informasi }}</h2>
+                            <p class="mb-0">Total Informasi</p>
                         </div>
                         <div class="avatar bg-light-info p-3">
                             <i class='bx bx-news text-info fs-3'></i>
                         </div>
                     </div>
-                    <a href="{{ route('artikel.index') }}" class="btn btn-info btn-sm mt-3 w-100">Lihat Detail</a>
+                    <a href="{{ route('informasi.index') }}" class="btn btn-info btn-sm mt-3 w-100">Lihat Detail</a>
                 </div>
             </div>
         </div>
