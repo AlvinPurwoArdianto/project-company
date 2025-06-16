@@ -422,7 +422,7 @@
                             </div><!-- End Info Item -->
 
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.320912219891!2d107.55011167463466!3d-6.971414893029214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68eedf1a3a396b%3A0xdce95942be7b53cb!2sBumi%20Asri%20Mekar%20Rahayu!5e0!3m2!1sid!2sid!4v1748508088577!5m2!1sid!2sid"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.2996492266175!2d107.54942231018717!3d-6.973930192997666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ef5b98950b6d%3A0x17575cdfbd8b8a73!2sVICTORY%20ENGLISH%20SCHOOL!5e0!3m2!1sid!2sid!4v1749649902485!5m2!1sid!2sid"
                                 frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen=""
                                 loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
@@ -461,7 +461,8 @@
                                     <div class="error-message"></div>
                                     <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                                    <button type="submit">Kirim Pesan</button>
+                                    <button type="submit" style="background-color: #1c6ce4">Kirim Pesan</button>
+
                                 </div>
 
                             </div>

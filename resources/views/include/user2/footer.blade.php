@@ -9,13 +9,13 @@
                 <div class="footer-contact pt-3">
                     <p>Komp. Bumi Asri Mekarrahayu Blok 1 D 39 No. 104</p>
                     <p>Kab. Bandung, Jawa Barat, Indonesia</p>
-                    <p class="mt-3"><strong>Phone:</strong> <span>+62 852-9494-0965</span></p>
+                    <p class="mt-3"><strong>No Telepon:</strong> <span>+62 852-9494-0965</span></p>
                     <p><strong>Email:</strong> <span>victory@gmail.com</span></p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-3 footer-links">
-                <h4>Useful Links</h4>
+                <h4>Halaman</h4>
                 <ul>
                     <li><i class="bi bi-chevron-right"></i> <a href="#">Beranda</a></li>
                     <li><i class="bi bi-chevron-right"></i> <a href="#">Profil</a></li>
