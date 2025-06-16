@@ -462,6 +462,7 @@
                                     <div class="sent-message">Your message has been sent. Thank you!</div>
 
                                     <button type="submit" style="background-color: #1c6ce4">Kirim Pesan</button>
+
                                 </div>
 
                             </div>
