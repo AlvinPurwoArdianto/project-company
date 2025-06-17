@@ -20,7 +20,7 @@
                     <li><i class="bi bi-chevron-right"></i> <a href="#">Beranda</a></li>
                     <li><i class="bi bi-chevron-right"></i> <a href="#">Profil</a></li>
                     <li><i class="bi bi-chevron-right"></i> <a href="#">Artikel</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">Contact</a></li>
+                    <li><i class="bi bi-chevron-right"></i> <a href="#">Kontak</a></li>
                 </ul>
             </div>
 
@@ -30,7 +30,7 @@
                 <div class="social-links d-flex">
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
-                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.instagram.com/victory.englishschool/" target="_blank"><i class="bi bi-instagram"></i></a>
                     <a href=""><i class="bi bi-linkedin"></i></a>
                 </div>
             </div>

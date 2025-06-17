@@ -19,6 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel');
+Route::get('/informasi', [ArtikelController::class, 'informasi'])->name('informasi');
+
 
 Route::get('/daftar', function () {
     $program = Program::all();

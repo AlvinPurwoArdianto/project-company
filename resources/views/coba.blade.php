@@ -18,7 +18,7 @@
                             ENGLISH SCHOOL
                         </h2>
 
-                        <p style="color: #FFA000; font-weight: 700; font-size: 1.6rem; margin-bottom: 0.8rem;">
+                        <p style="color: #8B0000; font-weight: 700; font-size: 1.6rem; margin-bottom: 0.8rem;">
                             MUCH BETTER THAN OTHERS
                         </p>
 
@@ -94,26 +94,23 @@
             <div class="container section-title" data-aos="fade-up">
                 <span>Program<br></span>
                 <h2>Program</h2>
-                {{-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> --}}
             </div><!-- End Section Title -->
 
             <div class="container">
-
                 <div class="row gy-4">
                     @foreach ($program as $data)
-                        <div class="col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="100">
-                            <div class="service-item position-relative">
-                                {{-- <div class="icon"><i class="bi bi-activity icon"></i></div> --}}
-                                <h4>{{ $data->nama_program }}</h4>
-                                <p>{{ $data->deskripsi }}</p>
+                        <div class="col-lg-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                            <div class="service-item position-relative w-100">
+                                <h4 class="text-center">{{ $data->nama_program }}</h4>
+                                <p>{!! $data->deskripsi !!}</p>
                             </div>
                         </div><!-- End Service Item -->
                     @endforeach
                 </div>
-
             </div>
 
-        </section><!-- /Featured Services Section -->
+        </section>
+        <!-- /Featured Services Section -->
 
         <!-- Stats Section -->
         {{-- <section id="stats" class="stats section">
@@ -161,101 +158,130 @@
         </section><!-- /Stats Section --> --}}
 
         <!-- Services Section -->
-        <section id="fasilitas" class="services section light-background py-5" style="background-color: #E6F0FF;">
-            <div class="container section-title text-center mb-5" data-aos="fade-up">
+        <section id="fasilitas" class="services section py-5"
+            style="background: linear-gradient(135deg, #E6F0FF 0%, #ffffff 100%);">
+            <div class="container section-title" data-aos="fade-up">
                 <span>Fasilitas</span>
                 <h2>Fasilitas</h2>
+                <div class="title-underline mx-auto mt-3" style="width: 80px; height: 4px; background: #638afd;"></div>
             </div>
 
             <div class="container">
-                <div class="row justify-content-center gy-3">
-                    @foreach ($fasilitas as $data)
-                        <div class="col-lg-3 col-md-5" data-aos="fade-up" data-aos-delay="100">
-                            <button type="button"
-                                class="btn btn-outline-purple w-100 py-2 px-3 rounded-4 shadow-sm d-flex align-items-center gap-3 text-start"
-                                data-bs-toggle="modal" data-bs-target="#fasilitasModal{{ $data->id }}">
-
-                                <!-- Foto Kecil -->
-                                <img src="{{ asset('/images/fasilitas/' . $data->cover) }}"
-                                    alt="{{ $data->nama_fasilitas }}" class="img-thumbnail"
-                                    style="width: 45px; height: 45px; object-fit: cover; border-radius: 0.75rem;">
-
-                                <!-- Nama Fasilitas -->
-                                <span class="fw-semibold fs-6">{{ $data->nama_fasilitas }}</span>
-                            </button>
-                        </div>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="fasilitasModal{{ $data->id }}" tabindex="-1"
-                            aria-labelledby="modalLabel{{ $data->id }}" aria-hidden="true">
-                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                <div class="modal-content rounded-4 shadow">
-                                    <div class="modal-header bg-purple text-white rounded-top-4">
-                                        <h5 class="modal-title" id="modalLabel{{ $data->id }}"
-                                            style="color: white;">
-                                            Fasilitas</h5>
-                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row align-items-center">
-                                            <!-- Gambar -->
-                                            <div class="col-md-5 text-center mb-3 mb-md-0">
-                                                <img src="{{ asset('/images/fasilitas/' . $data->cover) }}"
-                                                    class="img-fluid rounded"
-                                                    style="max-height: 300px; object-fit: cover;"
-                                                    alt="{{ $data->nama_fasilitas }}">
-                                            </div>
-
-                                            <!-- Info Fasilitas -->
-                                            <div class="col-md-7">
-                                                <h5 class="fw-bold mb-2">Nama Fasilitas: {{ $data->nama_fasilitas }}</h5>
-                                                <p class="text-muted fs-6">Deskripsi:
-                                                    {{ $data->deskripsi ?? 'Deskripsi fasilitas ini belum tersedia.' }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                <div class="row justify-content-center g-4">
+                    @foreach ($fasilitas->take(6) as $data)
+                        <div class="col-lg-2 col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                            <div class="facility-card h-100 rounded-4 shadow-sm hover-lift"
+                                style="background: white; transition: all 0.3s ease;">
+                                <div class="facility-img-wrapper p-3">
+                                    <img src="{{ asset('/images/fasilitas/' . $data->cover) }}"
+                                        alt="{{ $data->nama_fasilitas }}" class="img-fluid rounded-3"
+                                        style="height: 120px; width: 100%; object-fit: cover;">
+                                </div>
+                                <div class="facility-content p-3">
+                                    <h5 class="facility-title fw-semibold text-center mb-0"
+                                        style="font-size: 0.9rem; color: #1a1a1a;">
+                                        {{ $data->nama_fasilitas }}
+                                    </h5>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
+
+                @if ($fasilitas->count() > 6)
+                    <div class="text-center mt-4">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                            data-bs-target="#fasilitasModal">
+                            Lihat Semua Fasilitas <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                @endif
             </div>
         </section>
 
+        <!-- Modal -->
+        <div class="modal fade" id="fasilitasModal" tabindex="-1" aria-labelledby="fasilitasModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="fasilitasModalLabel">Semua Fasilitas</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-4">
+                            @foreach ($fasilitas as $data)
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <div class="facility-card h-100 rounded-4 shadow-sm" style="background: white;">
+                                        <div class="facility-img-wrapper p-3">
+                                            <img src="{{ asset('/images/fasilitas/' . $data->cover) }}"
+                                                alt="{{ $data->nama_fasilitas }}" class="img-fluid rounded-3"
+                                                style="height: 160px; width: 100%; object-fit: cover;">
+                                        </div>
+                                        <div class="facility-content p-3">
+                                            <h5 class="facility-title fw-semibold text-center mb-0"
+                                                style="font-size: 1rem; color: #1a1a1a;">
+                                                {{ $data->nama_fasilitas }}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Artikel Section -->
-        <section id="artikel" class="artikel section py-5 bg-light">
-            <div class="container text-center mb-5" data-aos="fade-up">
-                <span class="text-purple fw-semibold">Artikel Terbaru</span>
-                <h2 class="fw-bold">Bacaan Menarik untuk Anda</h2>
-                <p class="text-muted">Jelajahi artikel informatif dan inspiratif yang kami sajikan setiap minggunya.</p>
+        <section id="artikel" class="artikel section py-5 position-relative overflow-hidden">
+            <!-- Gambar background dengan efek blur -->
+            <div class="artikel-bg-blur"></div>
+
+            <!-- Konten utama -->
+            <div class="container text-center mb-5 position-relative" style="z-index: 2;" data-aos="fade-up">
+                <span class="text-primary fw-semibold">Informasi Terbaru</span>
+                <h2 class="fw-bold">Informasi Menarik untuk Anda</h2>
+                <p class="text-muted">Jelajahi informasi terkini seputar Victory English School</p>
             </div>
 
-            <div class="container">
+            <div class="container position-relative" style="z-index: 2;">
                 <div class="row gy-4">
-                    @foreach ($artikel as $data)
+                    @foreach ($artikel->sortByDesc('created_at')->take(4) as $data)
                         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                            <div class="card shadow-sm border-0 h-100 artikel-item">
-                                <div class="position-relative">
+                            <div class="card shadow-sm border-0 h-100 artikel-item hover-lift">
+                                <div class="position-relative overflow-hidden">
                                     <img src="{{ asset('/images/artikel/' . $data->cover) }}" class="card-img-top"
-                                        alt="Article Image" style="height: 200px; object-fit: cover;">
+                                        alt="Article Image"
+                                        style="height: 200px; object-fit: cover; transition: transform 0.3s ease;">
                                     <a href="{{ route('artikel', $data->id) }}" class="stretched-link"></a>
                                     <div class="position-absolute top-0 end-0 m-2 badge bg-purple text-white">
                                         {{ \Carbon\Carbon::parse($data->created_at)->format('d M Y') }}
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title text-dark"><b>{{ $data->judul_artikel }}</b></h5>
-                                    <p class="card-text text-muted">{!! Str::limit(strip_tags($data->deskripsi), 80) !!}</p>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-dark fw-bold mb-2">{{ $data->judul_artikel }}</h5>
+                                    <p class="card-text text-muted flex-grow-1">{!! Str::limit(strip_tags($data->deskripsi), 80) !!}</p>
                                     <a href="{{ route('artikel', $data->id) }}"
-                                        class="btn btn-sm btn-outline-purple mt-2">Baca Selengkapnya</a>
+                                        class="btn btn-sm btn-outline-purple mt-2 align-self-start">
+                                        Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
+
+                @if ($artikel->count() > 4)
+                    <div class="text-center mt-4">
+                        <a href="{{ route('informasi') }}" class="btn btn-outline-purple">
+                            Lihat Semua Informasi <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                @endif
             </div>
         </section>
 
@@ -381,98 +407,95 @@
 
         </section><!-- /Testimonials Section -->
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact section">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <span>Kontak</span>
-                <h2>Kontak</h2>
-            </div><!-- End Section Title -->
-
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-
+        <section id="contact" class="contact section py-5">
+            <div class="container">
                 <div class="row gy-4">
 
-                    <div class="col-lg-5">
+                    <!-- Kolom Kontak -->
+                    <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+                        <div class="section-title mb-4">
+                            <span>Kontak</span>
+                            <h2>Kontak</h2>
+                        </div>
 
                         <div class="info-wrap">
-                            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                            <div class="info-item d-flex mb-3">
+                                <i class="bi bi-geo-alt flex-shrink-0 me-3"></i>
                                 <div>
                                     <h3>Alamat</h3>
                                     <p>Komp. Bumi Asri Mekarrahayu Blok 1 D 39 No. 104</p>
                                 </div>
-                            </div><!-- End Info Item -->
+                            </div>
 
-                            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                                <i class="bi bi-telephone flex-shrink-0"></i>
+                            <div class="info-item d-flex mb-3">
+                                <i class="bi bi-telephone flex-shrink-0 me-3"></i>
                                 <div>
                                     <h3>No. Telepon</h3>
                                     <p>+62 852-9494-0965</p>
                                 </div>
-                            </div><!-- End Info Item -->
+                            </div>
 
-                            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                                <i class="bi bi-envelope flex-shrink-0"></i>
+                            <div class="info-item d-flex mb-3">
+                                <i class="bi bi-envelope flex-shrink-0 me-3"></i>
                                 <div>
                                     <h3>Email</h3>
                                     <p>victory@gmail.com</p>
                                 </div>
-                            </div><!-- End Info Item -->
+                            </div>
 
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.2996492266175!2d107.54942231018717!3d-6.973930192997666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ef5b98950b6d%3A0x17575cdfbd8b8a73!2sVICTORY%20ENGLISH%20SCHOOL!5e0!3m2!1sid!2sid!4v1749649902485!5m2!1sid!2sid"
-                                frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen=""
+                                frameborder="0" style="border:0; width: 100%; height: 230px;" allowfullscreen=""
                                 loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
 
-                    <div class="col-lg-7">
-                        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-                            data-aos-delay="200">
+                    <!-- Kolom Testimoni -->
+                    <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
+                        <div class="section-title mb-4">
+                            <span>Testimoni</span>
+                            <h2>Kirim Testimoni Anda</h2>
+                        </div>
+
+                        <form action="forms/contact.php" method="post" class="php-email-form">
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
                                     <label for="name-field" class="pb-2">Nama Anda</label>
-                                    <input type="text" name="name" id="name-field" class="form-control"
-                                        required="">
+                                    <input type="text" name="name" id="name-field" class="form-control" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="email-field" class="pb-2">Email Anda</label>
-                                    <input type="email" class="form-control" name="email" id="email-field"
-                                        required="">
+                                    <input type="email" class="form-control" name="email" id="email-field" required>
                                 </div>
 
                                 <div class="col-md-12">
                                     <label for="subject-field" class="pb-2">Judul</label>
                                     <input type="text" class="form-control" name="subject" id="subject-field"
-                                        required="">
+                                        required>
                                 </div>
 
                                 <div class="col-md-12">
                                     <label for="message-field" class="pb-2">Pesan</label>
-                                    <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
+                                    <textarea class="form-control" name="message" rows="8" id="message-field" required></textarea>
                                 </div>
 
                                 <div class="col-md-12 text-center">
                                     <div class="loading">Loading</div>
                                     <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                                    <div class="sent-message">Testimoni Anda berhasil dikirim. Terima kasih!</div>
 
-                                    <button type="submit" style="background-color: #1c6ce4">Kirim Pesan</button>
+                                    <button type="submit" style="background-color: #1c6ce4">Kirim Testimoni</button>
                                 </div>
-
                             </div>
                         </form>
-                    </div><!-- End Contact Form -->
+                    </div>
 
                 </div>
-
             </div>
+        </section>
 
-        </section><!-- /Contact Section -->
 
     </main>
 @endsection

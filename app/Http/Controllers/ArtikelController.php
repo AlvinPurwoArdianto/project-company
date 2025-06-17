@@ -143,4 +143,21 @@ class ArtikelController extends Controller
         toast('Data Berhasil Dihapus!', 'success')->position('top-end')->autoClose(1000);
         return redirect()->route('artikel.index');
     }
+
+    public function informasi(Request $request)
+    {
+        $query = Artikel::query();
+
+        // Search functionality
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->where('judul_artikel', 'LIKE', "%{$search}%")
+                ->orWhere('deskripsi', 'LIKE', "%{$search}%");
+        }
+
+        // Get paginated results
+        $artikels = $query->latest()->paginate(8);
+
+        return view('informasi', compact('artikels'));
+    }
 }

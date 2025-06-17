@@ -4,7 +4,12 @@
         <li><a href="#profil">Profil</a></li>
         <li><a href="#program">Program</a></li>
         <li><a href="#fasilitas">Fasilitas</a></li>
-        <li><a href="#artikel">Artikel</a></li>
+        <li>
+            <a href="{{ url('/#artikel') }}"
+               class="{{ request()->is('/') || request()->is('artikel') || request()->is('/artikel/id') ? 'active' : '' }}">
+                Informasi
+            </a>
+        </li>        
         <li class="dropdown"><a href="#"><span>Dropdown</span> <i
                     class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>

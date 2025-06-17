@@ -50,7 +50,8 @@
                                     class="form-control @error('deskripsi') is-invalid @enderror"
                                     id="editor"
                                     name="deskripsi"
-                                >{{ old('deskripsi') }}</textarea>
+                                    rows="5"
+                                >{{ old('deskripsi', $program->deskripsi ?? '') }}</textarea>
                             </div>
                             @error('deskripsi')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
