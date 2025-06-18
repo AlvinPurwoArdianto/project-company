@@ -1,58 +1,75 @@
 @extends('layouts.admin.template')
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tabel /</span> Tabel Komentar</h4>
-    <div class="card">
-        <h5 class="card-header d-flex justify-content-between align-items-center">
-            <span>Table Komentar</span>
-            <a href="{{ route('komentar.create') }}" class="btn btn-sm btn-primary">+ Tambah</a>
-        </h5>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h4 class="fw-bold mb-1">Tabel Komentar</h4>
+            <small class="text-muted">Manajemen komentar dari pengunjung</small>
+        </div>
+        <a href="{{ route('komentar.create') }}" class="btn btn-primary">
+            <i class="bx bx-plus me-1"></i> Tambah Komentar
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
         <div class="card-body">
-            <table id="komentarTable" class="table table-hover display nowrap w-100">
-                <thead>
-                    <tr>
-                        <th width="5%">No</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Komentar</th>
-                        <th>Keterangan</th>
-                        <th width="15%">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($komentar as $data)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $data->nama }}</td>
-                        <td>{{ $data->email }}</td>
-                        <td>
-                            {!! Str::limit($data->komentar, 50,) !!}
-                        </td>
-                        <td>
-                            @if($data->informasi)
-                                Komentar Dari <span class="badge bg-primary text-white">{{ $data->informasi->nama_informasi }}</span>
-                            @else
-                                -
-                            @endif
-                        </td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <a href="{{ route('komentar.edit', $data->id) }}" class="btn btn-sm btn-warning">
-                                    <i class="bx bx-edit-alt me-1"></i> Edit
-                                </a>
-                                <form action="{{ route('komentar.destroy', $data->id) }}" method="POST" class="d-inline delete-form">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn btn-sm btn-danger btn-delete">
-                                        <i class="bx bx-trash-alt me-1"></i> Delete
+            <div class="table-responsive">
+                <table id="komentarTable" class="table table-striped table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Komentar</th>
+                            <th>Komentar Dari</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($komentar as $data)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td><span class="fw-semibold text-dark">{{ $data->nama }}</span></td>
+                            <td><span class="badge bg-secondary">{{ $data->email }}</span></td>
+                            <td>
+                                <i class="bx bxs-quote-alt-left text-muted"></i>
+                                {!! Str::limit($data->komentar, 50) !!}
+                            </td>
+                            <td>
+                                @if($data->informasi)
+                                    <span class="badge bg-info">{{ $data->informasi->nama_informasi }}</span>
+                                @else
+                                    <span class="text-muted">-</span>
+                                @endif
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                        Aksi
                                     </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('komentar.edit', $data->id) }}">
+                                                <i class="bx bx-edit-alt me-1"></i> Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <form action="{{ route('komentar.destroy', $data->id) }}" method="POST" class="delete-form">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="dropdown-item text-danger btn-delete">
+                                                    <i class="bx bx-trash me-1"></i> Hapus
+                                                </button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -70,27 +87,23 @@
                 lengthMenu: "Tampilkan _MENU_ data per halaman",
                 zeroRecords: "Data tidak ditemukan",
                 info: "Menampilkan halaman _PAGE_ dari _PAGES_",
-                infoEmpty: "Tidak ada data yang tersedia",
+                infoEmpty: "Tidak ada data",
                 infoFiltered: "(difilter dari _MAX_ total data)",
                 paginate: {
                     first: "Pertama",
                     last: "Terakhir",
-                    next: "Selanjutnya",
-                    previous: "Sebelumnya"
+                    next: "›",
+                    previous: "‹"
                 }
             },
-            dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>' +
-                '<"row"<"col-sm-12"tr>>' +
-                '<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
             columnDefs: [
                 { responsivePriority: 1, targets: 0 },
                 { responsivePriority: 2, targets: 1 },
                 { responsivePriority: 3, targets: -1 },
-                { orderable: false, targets: [3, 5] } // Disable sorting for image and action columns
+                { orderable: false, targets: [3, 5] }
             ]
         });
 
-        // SweetAlert for delete
         $('.btn-delete').on('click', function(e) {
             e.preventDefault();
             let form = $(this).closest('form');

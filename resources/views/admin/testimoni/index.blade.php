@@ -1,66 +1,136 @@
 @extends('layouts.admin.template')
 @section('content')
+
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tabel /</span> Tabel Testimoni</h4>
-    <div class="card">
-        <h5 class="card-header d-flex justify-content-between align-items-center">
-            <span>Table Testimoni</span>
-            <a href="{{ route('testimoni.create') }}" class="btn btn-sm btn-primary">+ Tambah</a>
-        </h5>
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h4 class="fw-bold mb-1">Testimoni Pengguna</h4>
+            <small class="text-muted">Manajemen data testimoni dari pengguna</small>
+        </div>
+        <a href="{{ route('testimoni.create') }}" class="btn btn-primary">
+            <i class="bx bx-plus me-1"></i> Tambah Testimoni
+        </a>
+    </div>
+
+    <!-- Tab Filter -->
+    @php $activeTab = request('tab', 'all'); @endphp
+    <ul class="nav nav-pills mb-3">
+        <li class="nav-item">
+            <a class="nav-link {{ $activeTab == 'all' ? 'active' : '' }}" href="{{ route('testimoni.index', ['tab' => 'all']) }}">
+                Semua
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ $activeTab == 'approved' ? 'active' : '' }}" href="{{ route('testimoni.index', ['tab' => 'approved']) }}">
+                Dipublish
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ $activeTab == 'archived' ? 'active' : '' }}" href="{{ route('testimoni.index', ['tab' => 'archived']) }}">
+                Diarsipkan
+            </a>
+        </li>
+    </ul>
+
+    <!-- Card Table Wrapper -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Daftar Testimoni</h5>
+        </div>
         <div class="card-body">
-            <table id="testimoniTable" class="table table-hover display nowrap w-100">
-                <thead>
-                    <tr>
-                        <th width="5%">No</th>
-                        <th>Nama</th>
-                        <th>Testimoni</th>
-                        <th>Rating</th>
-                        <th>Status</th>
-                        <th width="15%">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($testimoni as $data)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $data->nama }}</td>
-                        <td>{!! Str::limit($data->testimoni, 50) !!}</td>
-                        <td>
-                            @for($i=1; $i<=$data->rating; $i++)
-                                <span class="text-warning">&#9733;</span>
-                            @endfor
-                        </td>
-                        <td>
-                            <span class="badge
-                                @if($data->status == 'approved') bg-success
-                                @elseif($data->status == 'pending') bg-warning
-                                @else bg-danger
-                                @endif
+            <div class="table-responsive">
+                <table id="testimoniTable" class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th width="5%">No</th>
+                            <th>Nama</th>
+                            <th>Testimoni</th>
+                            <th>Rating</th>
+                            <th>Status</th>
+                            <th width="15%">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($testimoni as $data)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $data->nama }}</td>
+                            <td>{!! Str::limit($data->testimoni, 50) !!}</td>
+                            <td>
+                                @for($i=1; $i<=$data->rating; $i++)
+                                    <span class="text-warning">&#9733;</span>
+                                @endfor
+                            </td>
+                            <td>
+                                <span class="badge
+                                    @if($data->status == 'approved') bg-success
+                                    @elseif($data->status == 'pending') bg-info text-white
+                                    @elseif($data->status == 'archived') bg-secondary text-white
+                                    @else bg-danger
+                                    @endif
                                 ">
-                                {{ ucfirst($data->status) }}
-                            </span>
-                        </td>
-                        <td>
-                            <div class="d-flex gap-2">
-                                <a href="{{ route('testimoni.edit', $data->id) }}" class="btn btn-sm btn-warning">
-                                    <i class="bx bx-edit-alt me-1"></i> Edit
-                                </a>
-                                <form action="{{ route('testimoni.destroy', $data->id) }}" method="POST" class="d-inline delete-form">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn btn-sm btn-danger btn-delete">
-                                        <i class="bx bx-trash-alt me-1"></i> Delete
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                    {{ ucfirst($data->status) }}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    {{-- Tombol Approve --}}
+                                    @if($data->status === 'approved')
+                                        <button type="button" class="btn btn-sm btn-primary" title="Sudah Disetujui" disabled>
+                                            <i class="bx bx-check-double"></i>
+                                        </button>
+                                    @elseif($data->status === 'archived')
+                                        <button type="button" class="btn btn-sm btn-outline-primary" title="Tidak dapat disetujui (sudah diarsipkan)" disabled>
+                                            <i class="bx bx-check"></i>
+                                        </button>
+                                    @else
+                                        <form action="{{ route('testimoni.update', $data->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="approved">
+                                            <button type="submit" class="btn btn-sm btn-success" title="Setujui">
+                                                <i class="bx bx-check"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+
+                                    {{-- Tombol Archive --}}
+                                    @if($data->status === 'archived')
+                                        <button type="button" class="btn btn-sm btn-secondary" title="Sudah Diarsipkan" disabled>
+                                            <i class="bx bx-archive"></i>
+                                        </button>
+                                    @elseif($data->status === 'approved')
+                                        <form action="{{ route('testimoni.update', $data->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="archived">
+                                            <button type="submit" class="btn btn-sm btn-secondary" title="Arsipkan" disabled>
+                                                <i class="bx bx-archive"></i>
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('testimoni.update', $data->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="archived">
+                                            <button type="submit" class="btn btn-sm btn-secondary" title="Arsipkan">
+                                                <i class="bx bx-archive"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
+
+@endsection
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -91,17 +161,18 @@
                 { responsivePriority: 1, targets: 0 },
                 { responsivePriority: 2, targets: 1 },
                 { responsivePriority: 3, targets: -1 },
-                { orderable: false, targets: [2, 5] }
+                { orderable: false, targets: [3, 5] } // Disable sorting for image and action columns
             ]
         });
+    });
 
-        // SweetAlert for delete
-        $('.btn-delete').on('click', function(e) {
+    $(document).ready(function () {
+        $('.btn-delete').on('click', function (e) {
             e.preventDefault();
             let form = $(this).closest('form');
             Swal.fire({
                 title: 'Hapus testimoni?',
-                text: "Data yang dihapus tidak dapat dikembalikan!",
+                text: "Data tidak dapat dikembalikan!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
@@ -117,4 +188,3 @@
     });
 </script>
 @endpush
-@endsection

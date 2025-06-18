@@ -81,8 +81,8 @@
         </li>
 
         <!-- Visitor Reports -->
-        <li class="menu-item mt-2 {{ Request::is('admin/laporan/pengunjung*') ? 'active' : '' }}">
-            <a href="javascript:void(0);" class="menu-link">
+        <li class="menu-item mt-2 {{ Route::currentRouteName() == 'laporan.pengunjung' ? 'active' : '' }}">
+            <a href="{{ route('laporan.pengunjung') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-group"></i>
                 <div data-i18n="Reports">Laporan Pengunjung</div>
             </a>

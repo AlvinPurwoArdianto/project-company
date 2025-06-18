@@ -1,79 +1,117 @@
 @extends('layouts.admin.template')
+
+@push('style')
+<style>
+    .star-rating label:hover,
+    .star-rating label:hover ~ label,
+    .star-rating input:checked ~ label {
+        color: #ffc107 !important;
+    }
+
+    .star-rating label {
+        transition: color 0.2s;
+        font-size: 2rem;
+        user-select: none;
+    }
+
+    .invalid-feedback {
+        display: block;
+    }
+</style>
+@endpush
+
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tabel /</span> Tabel Testimoni</h4>
-    <div class="card mb-4">
-        <div class="card-header d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">Edit Testimoni</h5>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-bold">Edit Testimoni</h4>
+            <p class="text-muted mb-0">Perbarui testimoni dan rating pengguna</p>
         </div>
-        <div class="card-body">
+        <a href="{{ route('testimoni.index') }}" class="btn btn-sm btn-secondary">
+            <i class="bx bx-arrow-back me-1"></i> Kembali
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-4">
             <form action="{{ route('testimoni.update', $testimoni->id) }}" method="POST" enctype="multipart/form-data">
-                @method('PUT')
                 @csrf
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="nama">Nama</label>
-                    <div class="col-sm-10">
-                        <div class="input-group input-group-merge">
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                id="nama" placeholder="Masukan Nama Anda" name="nama"
-                                value="{{ old('nama', $testimoni->nama) }}" />
-                        </div>
-                        @error('nama')
+                @method('PUT')
+
+                {{-- Nama --}}
+                <div class="mb-3">
+                    <label for="nama" class="form-label">Nama</label>
+                    <input type="text" name="nama" id="nama"
+                        class="form-control @error('nama') is-invalid @enderror"
+                        value="{{ old('nama', $testimoni->nama) }}" placeholder="Masukkan Nama Anda">
+                    @error('nama')
                         <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    @enderror
                 </div>
 
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="testimoni">Testimoni</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control @error('testimoni') is-invalid @enderror" id="testimoni"
-                            name="testimoni" placeholder="Tulis testimoni Anda">{{ old('testimoni', $testimoni->testimoni) }}</textarea>
-                        @error('testimoni')
+                {{-- Testimoni --}}
+                <div class="mb-3">
+                    <label for="testimoni" class="form-label">Testimoni</label>
+                    <textarea name="testimoni" id="testimoni" rows="3"
+                        class="form-control @error('testimoni') is-invalid @enderror"
+                        placeholder="Tulis testimoni Anda">{{ old('testimoni', $testimoni->testimoni) }}</textarea>
+                    @error('testimoni')
                         <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    @enderror
                 </div>
 
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="rating">Rating</label>
-                    <div class="col-sm-10">
-                        <div class="input-group input-group-merge">
-                            <input type="number" min="1" max="5" class="form-control @error('rating') is-invalid @enderror"
-                                id="rating" placeholder="Masukan rating 1-5" name="rating"
-                                value="{{ old('rating', $testimoni->rating) }}" />
-                        </div>
-                        @error('rating')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                {{-- Rating --}}
+                <div class="mb-4">
+                    <label class="form-label">Rating</label>
+                    <div class="star-rating d-flex align-items-center gap-1" style="font-size: 1.8rem;">
+                        @for ($i = 1; $i <= 5; $i++)
+                            <input type="radio" name="rating" id="rating{{ $i }}" value="{{ $i }}" class="d-none"
+                                {{ old('rating', $testimoni->rating) == $i ? 'checked' : '' }}>
+                            <label for="rating{{ $i }}" style="cursor:pointer; color:{{ old('rating', $testimoni->rating) >= $i ? '#ffc107' : '#e4e5e9' }}; margin-bottom:0;">
+                                &#9733;
+                            </label>
+                        @endfor
                     </div>
+                    @error('rating')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
                 </div>
 
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label" for="status">Status</label>
-                    <div class="col-sm-10">
-                        <div class="input-group input-group-merge">
-                            <select name="status" class="form-control @error('status') is-invalid @enderror" id="status">
-                                <option value="" disabled>Pilih Status</option>
-                                <option value="pending" {{ old('status', $testimoni->status) == 'pending' ? 'selected' : '' }}>Pending</option>
-                                <option value="approved" {{ old('status', $testimoni->status) == 'approved' ? 'selected' : '' }}>Approved</option>
-                                <option value="rejected" {{ old('status', $testimoni->status) == 'rejected' ? 'selected' : '' }}>Rejected</option>
-                            </select>
-                        </div>
-                        @error('status')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="row justify-content-end">
-                    <div class="col-sm-10">
-                        <a href="{{ route('testimoni.index') }}" class="btn btn-danger">Kembali</a>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
+                {{-- Tombol --}}
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bx bx-save me-1"></i> Simpan Perubahan
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    const labels = document.querySelectorAll('.star-rating label');
+    labels.forEach((label, idx, arr) => {
+        label.addEventListener('mouseenter', () => {
+            for (let i = 0; i <= idx; i++) arr[i].style.color = '#ffc107';
+            for (let i = idx + 1; i < arr.length; i++) arr[i].style.color = '#e4e5e9';
+        });
+        label.addEventListener('mouseleave', () => {
+            const checked = document.querySelector('.star-rating input:checked');
+            const val = checked ? checked.value : 0;
+            arr.forEach((l, i) => l.style.color = (i < val) ? '#ffc107' : '#e4e5e9');
+        });
+        label.addEventListener('click', () => {
+            arr.forEach((l, i) => l.style.color = (i <= idx) ? '#ffc107' : '#e4e5e9');
+        });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const checked = document.querySelector('.star-rating input:checked');
+        const arr = document.querySelectorAll('.star-rating label');
+        const val = checked ? checked.value : 0;
+        arr.forEach((l, i) => l.style.color = (i < val) ? '#ffc107' : '#e4e5e9');
+    });
+</script>
+@endpush

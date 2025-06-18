@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Informasi;
+use App\Models\Komentar;
 use Illuminate\Http\Request;
 
 class InformasiController extends Controller
@@ -50,7 +51,7 @@ class InformasiController extends Controller
 
     public function show($id)
     {
-        $informasi = Informasi::findOrFail($id);
+        $informasi = Informasi::with('komentar')->findOrFail($id);
 
         // Cek jika route saat ini route admin
         if (request()->is('admin/*')) {

@@ -1,22 +1,31 @@
 @extends('layouts.admin.template')
+
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tabel /</span> Tabel pendaftaran</h4>
-    <div class="card">
-        <h5 class="card-header d-flex justify-content-between align-items-center">
-            <span>Table pendaftaran</span>
-            <a href="{{ route('pendaftaran.create') }}" class="btn btn-sm btn-primary">+ Tambah</a>
-        </h5>
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h4 class="fw-bold mb-1">Daftar Data Pengguna</h4>
+            <small class="text-muted">Manajemen data pengguna yang telah mendaftar</small>
+        </div>
+    </div>
+
+    <!-- Card Table Wrapper -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Data Pengguna</h5>
+        </div>
         <div class="card-body">
-            <table id="pendaftaranTable" class="table table-hover display nowrap w-100">
-                <thead>
+            <table id="dataTable" class="table table-hover align-middle">
+                <thead class="table-light">
                     <tr>
-                        <th width="5%">No</th>
+                        <th>No</th>
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Jenis Kelamin</th>
                         <th>No Telepon</th>
-                        <th width="25%">Aksi</th>
+                        <th>Tanggal Daftar</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,106 +34,121 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->nama }}</td>
                         <td>{{ $data->email }}</td>
-                        <td>{{ $data->jenis_kelamin }}</td>
-                        <td>{{ $data->no_telepon }}</td>
                         <td>
-                            <div class="d-flex gap-2">
-                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#detailModal{{ $data->id }}">
-                                    <i class="bx bx-show me-1"></i> Detail
-                                </button>
-                                <a href="https://wa.me/62{{ $data->no_telepon }}?text=Haloo Kita Dari Tim Victory, Apakah Anda Yakin Ingin Bergabung?"
-                                    class="btn btn-sm btn-info">
-                                    <i class="bi bi-whatsapp me-1"></i> WhatsApp
-                                </a>
-                                <a href="{{ route('pendaftaran.destroy', $data->id) }}" class="btn btn-sm btn-danger"
-                                    data-confirm-delete="true">
-                                    <i class="bx bx-trash-alt me-1"></i> Delete
-                                </a>
-                            </div>
+                            <span class="badge {{ $data->jenis_kelamin == 'Laki-laki' ? 'bg-info' : 'bg-warning' }}">
+                                {{ $data->jenis_kelamin }}
+                            </span>
+                        </td>
+                        <td>{{ $data->no_telepon }}</td>
+                        <td>{{ \Carbon\Carbon::parse($data->tanggal_pendaftaran)->format('d F Y') }}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#detailModal{{ $data->id }}">
+                                <i class="bx bx-show me-1"></i> Detail
+                            </button>
                         </td>
                     </tr>
+
+                    <!-- Modal Detail -->
                     <div class="modal fade" id="detailModal{{ $data->id }}" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Detail Pendaftaran</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content rounded-4 shadow border-0">
+                                {{-- HEADER --}}
+                                <div class="modal-header py-3 px-4 border-0"
+                                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff;">
+                                    <div>
+                                        <h5 class="modal-title mb-1 text-white">
+                                            <i class="bx bx-user-circle me-2"></i> Detail Pendaftaran
+                                        </h5>
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="row">
+
+                                {{-- BODY --}}
+                                <div class="modal-body p-4">
+                                    {{-- Data Diri --}}
+                                    <h6 class="mb-3 text-primary border-bottom pb-1">Data Diri</h6>
+                                    <div class="row g-4 mb-4">
                                         <div class="col-md-6">
-                                            <h6 class="mb-3 text-primary">Informasi Pribadi</h6>
-                                            <div class="row mb-2">
-                                                <div class="col-md-5 fw-bold">Nama Lengkap</div>
-                                                <div class="col-md-7">: {{ $data->nama }}</div>
+                                            <div>
+                                                <strong class="text-dark">Nama Lengkap</strong>
+                                                <div class="text-muted">{{ $data->nama }}</div>
                                             </div>
-                                            <div class="row mb-2">
-                                                <div class="col-md-5 fw-bold">Email</div>
-                                                <div class="col-md-7">: {{ $data->email }}</div>
+                                            <div class="mt-3">
+                                                <strong class="text-dark">Jenis Kelamin</strong>
+                                                <div>
+                                                    <span class="badge {{ $data->jenis_kelamin == 'Laki-laki' ? 'bg-info' : 'bg-warning' }}">
+                                                        {{ $data->jenis_kelamin }}
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div class="row mb-2">
-                                                <div class="col-md-5 fw-bold">Jenis Kelamin</div>
-                                                <div class="col-md-7">: {{ $data->jenis_kelamin }}</div>
+                                            <div class="mt-3">
+                                                <strong class="text-dark">Tempat & Tanggal Lahir</strong>
+                                                <div class="text-muted">
+                                                    {{ $data->tempat_lahir ?? '-' }}, {{ \Carbon\Carbon::parse($data->tanggal_lahir)->translatedFormat('d F Y') }}
+                                                </div>
                                             </div>
-                                            <div class="row mb-2">
-                                                <div class="col-md-5 fw-bold">Tempat Lahir</div>
-                                                <div class="col-md-7">: {{ $data->tempat_lahir }}</div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col-md-5 fw-bold">Tanggal Lahir</div>
-                                                <div class="col-md-7">: {{ \Carbon\Carbon::parse($data->tanggal_lahir)->translatedFormat('d F Y') }}</div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col-md-5 fw-bold">No. Telepon</div>
-                                                <div class="col-md-7">: {{ $data->no_telepon }}</div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col-md-5 fw-bold">Alamat</div>
-                                                <div class="col-md-7">: {{ $data->alamat }}</div>
+                                            <div class="mt-3">
+                                                <strong class="text-dark">Email</strong>
+                                                <div class="text-muted">{{ $data->email }}</div>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
-                                            <h6 class="mb-3 text-primary">Informasi Pendaftaran</h6>
-                                            <div class="row mb-2">
-                                                <div class="col-md-5 fw-bold">Nama Bank</div>
-                                                <div class="col-md-7">: {{ $data->bank }}</div>
+                                            <div>
+                                                <strong class="text-dark">Tanggal Pendaftaran</strong>
+                                                <div class="text-muted">
+                                                    <i class="bx bx-calendar me-1"></i>
+                                                    {{ \Carbon\Carbon::parse($data->tanggal_pendaftaran)->translatedFormat('d F Y') }}
+                                                </div>
                                             </div>
-                                            <div class="row mb-2">
-                                                <div class="col-md-5 fw-bold">No. Rekening</div>
-                                                <div class="col-md-7">: {{ $data->no_rekening }}</div>
+                                            <div class="mt-3">
+                                                <strong class="text-dark">No Telepon</strong>
+                                                <div class="text-muted">{{ $data->no_telepon }}</div>
                                             </div>
-                                            <div class="row mb-2">
-                                                <div class="col-md-5 fw-bold">Nama Orang Tua</div>
-                                                <div class="col-md-7">: {{ $data->nama_orang_tua }}</div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col-md-5 fw-bold">Alamat Orang Tua</div>
-                                                <div class="col-md-7">: {{ $data->alamat_orang_tua }}</div>
-                                            </div>
-                                            <div class="row mb-2">
-                                                <div class="col-md-5 fw-bold">Tanggal Daftar</div>
-                                                <div class="col-md-7">: {{ \Carbon\Carbon::parse($data->tanggal_pendaftaran)->translatedFormat('d F Y') }}</div>
+                                            <div class="mt-3">
+                                                <strong class="text-dark">Alamat</strong>
+                                                <div class="text-muted">{{ $data->alamat }}</div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    @if($data->keterangan)
-                                    <div class="row mt-3">
-                                        <div class="col-12">
-                                            <h6 class="mb-2 text-primary">Keterangan</h6>
-                                            <div class="p-3 bg-light rounded">{{ $data->keterangan }}</div>
+                                    {{-- Data Orang Tua --}}
+                                    <h6 class="mb-3 text-primary border-bottom pb-1">Data Orang Tua / Wali</h6>
+                                    <div class="row g-4">
+                                        <div class="col-md-6">
+                                            <div>
+                                                <strong class="text-dark">Nama Orang Tua</strong>
+                                                <div class="text-muted">{{ $data->nama_orang_tua }}</div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <strong class="text-dark">No Telepon Orang Tua</strong>
+                                                <div class="text-muted">{{ $data->no_telepon_orang_tua }}</div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <strong class="text-dark">Alamat Orang Tua</strong>
+                                                <div class="text-muted">{{ $data->alamat_orang_tua }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div>
+                                                <strong class="text-dark">No Rekening</strong>
+                                                <div class="text-muted">{{ $data->no_rekening }}</div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <strong class="text-dark">Bank</strong>
+                                                <div class="text-muted">{{ $data->bank }}</div>
+                                            </div>
                                         </div>
                                     </div>
-                                    @endif
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                    <a href="https://wa.me/62{{ ltrim($data->no_telepon, '0') }}?text=Haloo Kita Dari Tim Victory, Apakah Anda Yakin Ingin Bergabung?"
-                                        class="btn btn-success" target="_blank">
-                                        <i class="bi bi-whatsapp me-1"></i> Hubungi WhatsApp
-                                    </a>
+
+                                {{-- FOOTER --}}
+                                <div class="modal-footer bg-light border-0 px-4 py-3">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                        <i class="bx bx-x me-1"></i> Tutup
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -135,38 +159,35 @@
         </div>
     </div>
 </div>
+@endsection
 
 @push('scripts')
 <script>
-    $(document).ready(function() {
-        $('#pendaftaranTable').DataTable({
+    $(document).ready(function () {
+        $('#dataTable').DataTable({
             responsive: true,
             scrollX: false,
-            autoWidth: false,
             language: {
                 search: "Cari:",
-                lengthMenu: "Tampilkan _MENU_ data per halaman",
+                lengthMenu: "Tampilkan _MENU_ data",
                 zeroRecords: "Data tidak ditemukan",
-                info: "Menampilkan halaman _PAGE_ dari _PAGES_",
-                infoEmpty: "Tidak ada data yang tersedia",
-                infoFiltered: "(difilter dari _MAX_ total data)",
+                info: "Menampilkan _PAGE_ dari _PAGES_",
+                infoEmpty: "Tidak ada data",
+                infoFiltered: "(difilter dari _MAX_ data)",
                 paginate: {
                     first: "Pertama",
                     last: "Terakhir",
-                    next: "Selanjutnya",
-                    previous: "Sebelumnya"
+                    next: "›",
+                    previous: "‹"
                 }
             },
-            dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>' +
-                '<"row"<"col-sm-12"tr>>' +
-                '<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
             columnDefs: [
                 { responsivePriority: 1, targets: 0 },
                 { responsivePriority: 2, targets: 1 },
-                { responsivePriority: 3, targets: -1 }
+                { responsivePriority: 3, targets: -1 },
+                { orderable: false, targets: [-1] }
             ]
         });
     });
 </script>
 @endpush
-@endsection
