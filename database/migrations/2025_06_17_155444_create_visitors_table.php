@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('testimonis', function (Blueprint $table) {
+        Schema::create('visitors', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->text('testimoni');
-            $table->string('rating');
-            $table->enum('status', ['approved', 'pending', 'archived'])->default('pending');
+            $table->string('ip_address');
+            $table->string('user_agent');
+            $table->string('url')->nullable();
+            $table->timestamp('visited_at')->useCurrent();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('testimonis');
+        Schema::dropIfExists('visitors');
     }
 };

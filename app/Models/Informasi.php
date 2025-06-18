@@ -19,7 +19,7 @@ class Informasi extends Model
         }
     }
 
-    public function komentars()
+    public function komentar()
     {
         return $this->hasMany(Komentar::class, 'informasi_id');
     }

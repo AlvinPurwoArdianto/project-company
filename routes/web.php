@@ -12,9 +12,12 @@ use App\Models\Program;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Exports\PendaftaranExport;
+use App\Exports\PengunjungExport;
 use App\Http\Controllers\InformasiController;
+use App\Http\Controllers\VisitorController;
 use App\Models\Informasi;
-use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Middleware\LogVisitor;
 
 
 Route::get('/', function () {
@@ -22,7 +25,7 @@ Route::get('/', function () {
     $informasi = Informasi::all();
     $fasilitas = Fasilitas::all();
     return view('coba', compact('informasi', 'fasilitas', 'program'));
-});
+})->middleware(LogVisitor::class);
 
 Route::get('/informasi/{id}', [Informasi::class, 'show'])->name('informasi');
 
@@ -51,11 +54,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('komentar', KomentarController::class);
     Route::resource('testimoni', TestimoniController::class);
 
+
     Route::group(['prefix' => 'laporan'], function () {
         Route::get('/pendaftaran', [LaporanController::class, 'pendaftaran'])->name('laporan.pendaftaran');
         Route::get('/pendaftaran/export', [LaporanController::class, 'pendaftaranPdf'])->name('laporan.pendaftaran.pdf');
         Route::get('/pendaftaran/excel', function() {
             return Excel::download(new PendaftaranExport, 'pendaftaran.xlsx');
         })->name('laporan.pendaftaran.excel');
+        Route::get('/pengunjung', [LaporanController::class, 'visitor'])->name('laporan.pengunjung');
+        Route::get('/pengunjung/export', [LaporanController::class, 'visitorPdf'])->name('laporan.pengunjung.pdf');
+        Route::get('/pengunjung/excel', function() {
+            return Excel::download(new PengunjungExport, 'pengunjung.xlsx');
+        })->name('laporan.pengunjung.excel');
     });
 });
