@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Excel;
 use App\Exports\PengunjungExport;
 use App\Http\Controllers\VisitorController;
-use App\Models\Informasi;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Middleware\LogVisitor;
 
