@@ -109,7 +109,7 @@ h6 {
 
 /* PHP Email Form Messages
 ------------------------------*/
-.php-email-form .error-message {
+.testimoni .error-message {
     display: none;
     background: #df1529;
     color: #ffffff;
@@ -119,17 +119,17 @@ h6 {
     font-weight: 600;
 }
 
-.php-email-form .sent-message {
+.testimoni .sent-message {
     display: none;
     color: #ffffff;
-    background: #059652;
+    background: #1a58b4;
     text-align: center;
     padding: 15px;
     margin-bottom: 24px;
     font-weight: 600;
 }
 
-.php-email-form .loading {
+.testimoni .loading {
     display: none;
     background: var(--surface-color);
     text-align: center;
@@ -137,7 +137,7 @@ h6 {
     margin-bottom: 24px;
 }
 
-.php-email-form .loading:before {
+.testimoni .loading:before {
     content: "";
     display: inline-block;
     border-radius: 50%;
@@ -754,7 +754,7 @@ h6 {
 }
 
 .scroll-top:hover {
-    background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+    background-color: color-mix(in srgb, #2e7bf0, transparent 20%);
     color: var(--contrast-color);
 }
 
@@ -1562,7 +1562,7 @@ section,
     color: var(--contrast-color);
 }
 
-.contact .php-email-form {
+.contact .testimoni {
     background-color: var(--surface-color);
     height: 100%;
     padding: 30px;
@@ -1570,14 +1570,14 @@ section,
 }
 
 @media (max-width: 575px) {
-    .contact .php-email-form {
+    .contact .testimoni {
         padding: 20px;
     }
 }
 
-.contact .php-email-form input[type=text],
-.contact .php-email-form input[type=email],
-.contact .php-email-form textarea {
+.contact .testimoni input[type=text],
+.contact .testimoni input[type=email],
+.contact .testimoni textarea {
     font-size: 14px;
     padding: 10px 15px;
     box-shadow: none;
@@ -1587,19 +1587,19 @@ section,
     border-color: color-mix(in srgb, var(--default-color), transparent 80%);
 }
 
-.contact .php-email-form input[type=text]:focus,
-.contact .php-email-form input[type=email]:focus,
-.contact .php-email-form textarea:focus {
-    border-color: var(--accent-color);
+.contact .testimoni input[type=text]:focus,
+.contact .testimoni input[type=email]:focus,
+.contact .testimoni textarea:focus {
+    border-color: #4872e4;
 }
 
-.contact .php-email-form input[type=text]::placeholder,
-.contact .php-email-form input[type=email]::placeholder,
-.contact .php-email-form textarea::placeholder {
+.contact .testimoni input[type=text]::placeholder,
+.contact .testimoni input[type=email]::placeholder,
+.contact .testimoni textarea::placeholder {
     color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
-.contact .php-email-form button[type=submit] {
+.contact .testimoni button[type=submit] {
     color: var(--contrast-color);
     background: var(--accent-color);
     border: 0;
@@ -1608,9 +1608,10 @@ section,
     border-radius: 50px;
 }
 
-.contact .php-email-form button[type=submit]:hover {
+.contact .testimoni button[type=submit]:hover {
     background: color-mix(in srgb, var(--accent-color), transparent 25%);
 }
+
 
 /*--------------------------------------------------------------
 # Portfolio Details Section
@@ -2192,6 +2193,95 @@ section,
     z-index: 1;
     opacity: 0.6;
     pointer-events: none;
+}
+
+.rating {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    display: inline-flex;
+}
+
+.rating input[type="radio"] {
+    display: none;
+}
+
+.rating label {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.rating input[type="radio"]:checked~label {
+    color: #ffc107;
+}
+
+.rating label:hover,
+.rating label:hover~label {
+    color: #ffc107;
+}
+
+.testimonial-item::-webkit-scrollbar {
+    width: 6px;
+}
+
+.testimonial-item::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* Modern Article Styles */
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.content-article {
+    color: #4a4a4a;
+    font-size: 1.1rem;
+}
+
+.content-article p {
+    margin-bottom: 1.5rem;
+}
+
+.btn-outline-purple {
+    color: #1c6ce4;
+    border: 2px solid #1c6ce4;
+    padding: 8px 24px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-purple:hover {
+    background: #1c6ce4;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(28, 108, 228, 0.15);
+}
+
+.form-control:focus {
+    border-color: #1c6ce4;
+    box-shadow: 0 0 0 0.2rem rgba(28, 108, 228, 0.15);
+}
+
+/* Comment Section Styles */
+.comment-avatar .bg-primary {
+    background: linear-gradient(135deg, #1c6ce4 0%, #4a90e2 100%) !important;
+}
+
+@media (max-width: 991.98px) {
+    .object-fit-cover {
+        min-height: 300px !important;
+    }
 }
 
 /*--------------------------------------------------------------

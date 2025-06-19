@@ -2,16 +2,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
+use App\Models\Informasi;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
-    public function artikel()
+    public function informasi()
     {
-        $artikel = Artikel::all();
+        $informasi = Informasi::all();
         // confirmDelete('Hapus Artikel!', 'Apakah Anda Yakin?');
-        return view('home', compact('artikel'));
+        return view('home', compact('informasi'));
     }
 
     public function store(Request $request)

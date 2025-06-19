@@ -250,32 +250,29 @@
 
             <div class="container position-relative" style="z-index: 2;">
                 <div class="row gy-4">
-                    @foreach ($artikel->sortByDesc('created_at')->take(4) as $data)
+                    @foreach ($informasi as $data)
                         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                            <div class="card shadow-sm border-0 h-100 artikel-item hover-lift">
-                                <div class="position-relative overflow-hidden">
-                                    <img src="{{ asset('/images/artikel/' . $data->cover) }}" class="card-img-top"
-                                        alt="Article Image"
-                                        style="height: 200px; object-fit: cover; transition: transform 0.3s ease;">
-                                    <a href="{{ route('artikel', $data->id) }}" class="stretched-link"></a>
+                            <div class="card shadow-sm border-0 h-100 artikel-item">
+                                <div class="position-relative">
+                                    <img src="{{ asset('/images/informasi/' . $data->gambar) }}" class="card-img-top"
+                                        alt="Article Image" style="height: 200px; object-fit: cover;">
+                                    <a href="{{ route('informasi_detail', $data->id) }}" class="stretched-link"></a>
                                     <div class="position-absolute top-0 end-0 m-2 badge bg-purple text-white">
                                         {{ \Carbon\Carbon::parse($data->created_at)->format('d M Y') }}
                                     </div>
                                 </div>
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title text-dark fw-bold mb-2">{{ $data->judul_artikel }}</h5>
-                                    <p class="card-text text-muted flex-grow-1">{!! Str::limit(strip_tags($data->deskripsi), 80) !!}</p>
-                                    <a href="{{ route('artikel', $data->id) }}"
-                                        class="btn btn-sm btn-outline-purple mt-2 align-self-start">
-                                        Baca Selengkapnya <i class="bi bi-arrow-right ms-1"></i>
-                                    </a>
+                                <div class="card-body">
+                                    <h5 class="card-title text-dark">{{ $data->nama_informasi }}</h5>
+                                    <p class="card-text text-muted">{!! Str::limit(strip_tags($data->deskripsi), 80) !!}</p>
+                                    <a href="{{ route('informasi_detail', $data->id) }}"
+                                        class="btn btn-sm btn-outline-purple mt-2">Baca Selengkapnya</a>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
 
-                @if ($artikel->count() > 4)
+                @if ($informasi->count() > 4)
                     <div class="text-center mt-4">
                         <a href="{{ route('informasi') }}" class="btn btn-outline-purple">
                             Lihat Semua Informasi <i class="bi bi-arrow-right"></i>
@@ -286,126 +283,71 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials section light-background">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <span>Testimoni</span>
-                <h2>Testimoni</h2>
-            </div><!-- End Section Title -->
-
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="swiper init-swiper" data-speed="600" data-delay="5000"
-                    data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
-                    <script type="application/json" class="swiper-config">
-                    {
-                        "loop": true,
-                        "speed": 600,
-                        "autoplay": {
-                            "delay": 5000
-                        },
-                        "slidesPerView": "auto",
-                        "pagination": {
-                            "el": ".swiper-pagination",
-                            "type": "bullets",
-                            "clickable": true
-                        },
-                        "breakpoints": {
-                            "320": {
-                            "slidesPerView": 1,
-                            "spaceBetween": 40
-                            },
-                            "1200": {
-                            "slidesPerView": 3,
-                            "spaceBetween": 20
-                            }
-                        }
-                    }
-                </script>
-                    <div class="swiper-wrapper" style="text-align: justify;">
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <p>
-                                    <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-                                        rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                                        risus at semper.</span>
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Saul Goodman</h3>
-                                <h4>Ceo &amp; Founder</h4>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <p>
-
-                                    <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum
-                                        quid malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet
-                                        legam anim culpa.</span>
-
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Sara Wilsson</h3>
-                                <h4>Designer</h4>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <p>
-                                    <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla
-                                        quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore
-                                        quis sint minim.</span>
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Jena Karlis</h3>
-                                <h4>Store Owner</h4>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <p>
-
-                                    <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
-                                        fugiat dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore
-                                        illum veniam.</span>
-
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Matt Brandon</h3>
-                                <h4>Freelancer</h4>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <p>
-
-                                    <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor
-                                        noster veniam sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore
-                                        nisi cillum quid.</span>
-
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>John Larson</h3>
-                                <h4>Entrepreneur</h4>
-                            </div>
-                        </div><!-- End testimonial item -->
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-
+        <section id="testimonials" class="testimonials section py-5 bg-light">
+            <div class="container section-title text-center mb-5" data-aos="fade-up">
+                <span class="fw-semibold" style="color: #0E1F5223">Apa Kata Mereka</span>
+                <h2 class="fw-bold">Testimoni</h2>
+                <p class="text-muted">Cerita mereka yang sudah merasakan pengalaman luar biasa selama belajar di Victory English School!!!</p>
             </div>
 
-        </section><!-- /Testimonials Section -->
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+                <div class="swiper init-swiper" data-speed="600" data-delay="5000"
+                    data-breakpoints='{"320": {"slidesPerView": 1, "spaceBetween": 20}, "1200": {"slidesPerView": 3, "spaceBetween": 20}}'>
+                    <script type="application/json" class="swiper-config">
+                        {
+                            "loop": true,
+                            "speed": 600,
+                            "autoplay": {
+                                "delay": 5000
+                            },
+                            "slidesPerView": "auto",
+                            "pagination": {
+                                "el": ".swiper-pagination",
+                                "type": "bullets",
+                                "clickable": true
+                            },
+                            "breakpoints": {
+                                "320": {
+                                "slidesPerView": 1,
+                                "spaceBetween": 40
+                                },
+                                "1200": {
+                                "slidesPerView": 3,
+                                "spaceBetween": 20
+                                }
+                            }
+                        }
+                    </script>
+
+                    <div class="swiper-wrapper">
+                        @foreach ($testimoni as $item)
+                            <div class="swiper-slide">
+                                    <div class="testimonial-item border rounded-4 p-4 h-100 shadow-sm bg-white d-flex flex-column justify-content-between"
+                                        style="min-height: 200px; max-height: 200px; overflow: hidden;">
+                                        <div class="flex-grow-1">
+                                            <div class="mb-2 text-muted">
+                                                "{{ \Illuminate\Support\Str::limit($item->testimoni, 200) }}"
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <h5 class="fw-bold mb-1">{{ $item->nama }}</h5>
+                                            <div>
+                                                @for ($i = 1; $i <= $item->rating; $i++)
+                                                    <span class="text-warning">&#9733;</span>
+                                                @endfor
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="swiper-pagination mt-3"></div>
+                </div>
+            </div>
+        </section>
+        <!-- /Testimonials Section -->
 
         <section id="contact" class="contact section py-5">
             <div class="container">
@@ -457,41 +399,70 @@
                             <h2>Kirim Testimoni Anda</h2>
                         </div>
 
-                        <form action="forms/contact.php" method="post" class="php-email-form">
+                        <form action="{{ route('testimoni.store') }}" method="POST" class="testimoni"
+                            enctype="multipart/form-data">
+                            @csrf
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
-                                    <label for="name-field" class="pb-2">Nama Anda</label>
-                                    <input type="text" name="name" id="name-field" class="form-control" required>
+                                    <label for="nama" class="pb-2">Nama Anda</label>
+                                    <input type="text" name="nama" id="nama"
+                                        class="form-control @error('nama') is-invalid @enderror"
+                                        value="{{ old('nama') }}" required>
+                                    @error('nama')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="email-field" class="pb-2">Email Anda</label>
-                                    <input type="email" class="form-control" name="email" id="email-field" required>
+                                    <label for="rating" class="pb-2 d-block">Rating</label>
+                                    <div class="rating">
+                                        @for ($i = 5; $i >= 1; $i--)
+                                            <input type="radio" name="rating" id="star{{ $i }}"
+                                                value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}>
+                                            <label for="star{{ $i }}">&#9733;</label>
+                                        @endfor
+                                    </div>
+                                    @error('rating')
+                                        <div class="text-danger small">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label for="subject-field" class="pb-2">Judul</label>
-                                    <input type="text" class="form-control" name="subject" id="subject-field"
-                                        required>
+                                    <label for="testimoni" class="pb-2">Pesan Testimoni</label>
+                                    <textarea name="testimoni" id="testimoni" rows="6"
+                                        class="form-control @error('testimoni') is-invalid @enderror" required>{{ old('testimoni') }}</textarea>
+                                    @error('testimoni')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label for="message-field" class="pb-2">Pesan</label>
-                                    <textarea class="form-control" name="message" rows="8" id="message-field" required></textarea>
+                                    <input type="hidden" name="status" value="pending">
                                 </div>
 
                                 <div class="col-md-12 text-center">
                                     <div class="loading">Loading</div>
                                     <div class="error-message"></div>
                                     <div class="sent-message">Testimoni Anda berhasil dikirim. Terima kasih!</div>
-
                                     <button type="submit" style="background-color: #1c6ce4">Kirim Testimoni</button>
                                 </div>
                             </div>
                         </form>
+                        @if (session('success'))
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    Swal.fire({
+                                        title: 'Berhasil!',
+                                        text: '{{ session('success') }}',
+                                        icon: 'success',
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: 'Oke'
+                                    });
+                                });
+                            </script>
+                        @endif
                     </div>
-
                 </div>
             </div>
         </section>

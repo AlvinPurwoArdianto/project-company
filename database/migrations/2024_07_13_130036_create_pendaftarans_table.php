@@ -23,6 +23,13 @@ return new class extends Migration
             $table->string('email');
             $table->string('no_telepon');
             $table->date('tanggal_pendaftaran');
+
+            $table->string('nama_orang_tua');
+            $table->string('no_telepon_orang_tua');
+            $table->string('alamat_orang_tua');
+
+            $table->string('no_rekening');
+            $table->string('bank');
             $table->timestamps();
         });
     }

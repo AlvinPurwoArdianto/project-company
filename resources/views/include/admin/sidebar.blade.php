@@ -38,10 +38,25 @@
             </a>
         </li>
 
-        <li class="menu-item mt-2 {{ Route::currentRouteName() == 'artikel.index' ? 'active' : '' }}">
-            <a href="{{ route('artikel.index') }}" class="menu-link">
+        <li class="menu-item mt-2 {{ Route::currentRouteName() == 'informasi.index' ? 'active' : '' }}">
+            <a href="{{ route('informasi.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-news"></i>
-                <div data-i18n="Tables">Artikel</div>
+                <div data-i18n="Tables">Informasi</div>
+            </a>
+        </li>
+
+
+        <li class="menu-item mt-2 {{ Route::currentRouteName() == 'komentar.index' ? 'active' : '' }}">
+            <a href="{{ route('komentar.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-comment-detail"></i>
+                <div data-i18n="Tables">Komentar</div>
+            </a>
+        </li>
+
+        <li class="menu-item mt-2 {{ Route::currentRouteName() == 'testimoni.index' ? 'active' : '' }}">
+            <a href="{{ route('testimoni.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-message-square-dots"></i>
+                <div data-i18n="Tables">Testimoni</div>
             </a>
         </li>
 
@@ -51,8 +66,30 @@
                 <div data-i18n="Tables">Pendaftaran</div>
             </a>
         </li>
+
+        <!-- Add Reports Section -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Laporan</span>
+        </li>
+
+        <!-- Registration Reports -->
+        <li class="menu-item mt-2 {{ Route::currentRouteName() == 'laporan.pendaftaran' ? 'active' : '' }}">
+            <a href="{{ route('laporan.pendaftaran') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-file"></i>
+                <div data-i18n="Reports">Laporan Pendaftaran</div>
+            </a>
+        </li>
+
+        <!-- Visitor Reports -->
+        <li class="menu-item mt-2 {{ Request::is('admin/laporan/pengunjung*') ? 'active' : '' }}">
+            <a href="javascript:void(0);" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-group"></i>
+                <div data-i18n="Reports">Laporan Pengunjung</div>
+            </a>
+        </li>
     </ul>
 </aside>
+
 @push('style')
 <style>
     /* Custom Purple Theme Colors */
@@ -107,6 +144,28 @@
 
     .menu-inner-shadow {
         background: linear-gradient(#696cff 0%, rgba(105, 108, 255, 0.7) 100%);
+    }
+
+    /* Submenu styles */
+    .menu-sub {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .menu-sub .menu-item .menu-link {
+        padding-left: 3rem !important;
+    }
+
+    .menu-sub .menu-link {
+        color: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    .menu-sub .menu-item.active > .menu-link {
+        color: #ffffff !important;
+        background-color: rgba(255, 255, 255, 0.16) !important;
+    }
+
+    .menu-toggle::after {
+        border-color: #ffffff !important;
     }
 </style>
 @endpush

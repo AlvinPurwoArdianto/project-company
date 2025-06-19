@@ -1,81 +1,135 @@
 @extends('layouts.user2.template')
 
-@section('title', $artikel->judul_artikel)
+@section('title', $informasi->nama_informasi)
 
 @section('content')
     <section class="py-5">
         <div class="container">
             <div class="mb-4">
-                <a href="{{ url('/') }}" class="btn btn-outline-purple">
-                    <i class="bi bi-arrow-left"></i> Kembali ke Beranda
+                <a href="{{ url('/') }}" class="btn btn-outline-purple" title="Kembali ke Beranda">
+                    <i class="bi bi-arrow-left"></i>
                 </a>
             </div>
 
-            <div class="row align-items-start">
-                {{-- Konten Kiri --}}
-                <div class="col-md-6">
-                    <p class="text-muted mb-4">
-                        <i class="bi bi-calendar-event"></i>
-                        {{ \Carbon\Carbon::parse($artikel->created_at)->format('d F Y') }}
-                    </p>
-                    <h1 class="mb-3 fw-bold">{{ $artikel->judul_artikel }}</h1>
-
-                    <div class="content-article" style="line-height: 1.8;">
-                        {!! $artikel->deskripsi !!}
+            <div class="card border-0 shadow-sm overflow-hidden">
+                <div class="row g-0">
+                    {{-- Gambar Kiri --}}
+                    <div class="col-lg-5 position-relative">
+                        <img src="{{ asset('/images/informasi/' . $informasi->gambar) }}" alt="Cover informasi"
+                            class="w-100 h-100 object-fit-cover" style="min-height: 500px;">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-3"
+                            style="background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);">
+                            <p class="text-white mb-0">
+                                <i class="bi bi-calendar-event me-2"></i>
+                                {{ \Carbon\Carbon::parse($informasi->created_at)->format('d F Y') }}
+                            </p>
+                        </div>
                     </div>
-                </div>
 
-                {{-- Gambar Kanan --}}
-                <div class="col-md-6 text-center">
-                    <img src="{{ asset('/images/artikel/' . $artikel->cover) }}" alt="Cover Artikel"
-                        class="img-fluid rounded shadow-sm" style="max-height: 400px; object-fit: cover;">
+                    {{-- Konten Kanan --}}
+                    <div class="col-lg-7">
+                        <div class="p-4 p-lg-5">
+                            <h1 class="display-5 fw-bold mb-4">{{ $informasi->nama_informasi }}</h1>
+                            <div class="content-article" style="line-height: 1.8;">
+                                {!! $informasi->deskripsi !!}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             {{-- Comment Section --}}
             <div class="row mt-5">
-                <div class="col-lg-8">
+                {{-- Kolom Form Komentar --}}
+                <div class="col-lg-6">
                     <div class="card shadow-sm border-0">
-                        <div class="card-body">
+                        <div class="card-body p-4">
                             <h4 class="card-title mb-4">Berikan Komentar</h4>
-                            <form action="" method="POST">
+                            <form action="{{ route('komentar.store') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    <label for="nama" class="form-label">Nama</label>
+                                    <input type="text" name="nama" id="nama"
+                                        class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}"
+                                        placeholder="Masukkan nama Anda">
+                                    @error('nama')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
+
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <input type="email" name="email" id="email"
+                                        class="form-control @error('email') is-invalid @enderror"
+                                        value="{{ old('email') }}" placeholder="Masukkan email Anda">
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
+
                                 <div class="mb-3">
-                                    <label for="comment" class="form-label">Komentar</label>
-                                    <textarea class="form-control" id="comment" name="comment" rows="4" required></textarea>
+                                    <label for="komentar" class="form-label">Komentar</label>
+                                    <textarea name="komentar" id="komentar" rows="4" class="form-control @error('komentar') is-invalid @enderror"
+                                        placeholder="Tulis komentar Anda...">{{ old('komentar') }}</textarea>
+                                    @error('komentar')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-send"></i> Kirim Komentar
+
+                                {{-- Hidden Informasi ID --}}
+                                <input type="hidden" name="informasi_id" value="{{ $informasi->id }}">
+
+                                <button type="submit" class="btn btn-primary px-4">
+                                    <i class="bi bi-send me-2"></i> Kirim Komentar
                                 </button>
                             </form>
                         </div>
                     </div>
+                </div>
 
-                    {{-- Display Comments --}}
-                    {{-- <div class="mt-4">
-                        <h4 class="mb-3">Komentar </h4>
-                        @forelse
-                            <div class="card mb-3 border-0 shadow-sm">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <h6 class="card-subtitle mb-2 fw-bold"></h6>
-                                        <small class="text-muted"></small>
+                {{-- Kolom Komentar Terbaru --}}
+                <div class="col-lg-6">
+                    <h4 class="mb-3">Komentar Terbaru</h4>
+                    @forelse($komentar as $comment)
+                        @php
+                            $colors = [
+                                '#0d6efd',
+                                '#198754',
+                                '#dc3545',
+                                '#fd7e14',
+                                '#6f42c1',
+                                '#20c997',
+                                '#ffc107',
+                                '#6610f2',
+                                '#e83e8c',
+                                '#6c757d',
+                            ];
+                            $index = crc32($comment->nama ?? '') % count($colors);
+                            $color = $colors[$index];
+                        @endphp
+                        <div class="card mb-3 border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="me-3">
+                                        <div class="rounded-circle text-white d-flex align-items-center justify-content-center"
+                                            style="width: 40px; height: 40px; background-color: {{ $color }};">
+                                            {{ strtoupper(substr($comment->nama ?? '', 0, 1)) }}
+                                        </div>
                                     </div>
-                                    <p class="card-text"></p>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">{{ $comment->nama }}</h6>
+                                        <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+                                    </div>
                                 </div>
+                                <p class="mb-0">{{ $comment->komentar }}</p>
                             </div>
-                        @empty
+                        </div>
+                    @empty
+                        <div class="text-center py-4">
+                            <i class="bi bi-chat-dots display-4 text-muted mb-3"></i>
                             <p class="text-muted">Belum ada komentar. Jadilah yang pertama berkomentar!</p>
-                        @endforelse
-                    </div> --}}
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </div>

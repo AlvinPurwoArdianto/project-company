@@ -30,22 +30,22 @@
 
             <!-- Article Cards -->
             <div class="row g-4">
-                @forelse ($artikels as $artikel)
+                @forelse ($informasi as $data)
                     <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <a href="{{ route('artikel', $artikel->id) }}" class="text-decoration-none text-dark">
+                        <a href="{{ route('informasi_detail', $data->id) }}" class="text-decoration-none text-dark">
                             <div class="card border-0 shadow-sm h-100 rounded-4 hover-shadow">
                                 <div class="position-relative rounded-top-4 overflow-hidden">
-                                    <img src="{{ asset('/images/artikel/' . $artikel->cover) }}" class="card-img-top"
-                                        alt="{{ $artikel->judul_artikel }}" style="height: 180px; object-fit: cover;">
+                                    <img src="{{ asset('/images/informasi/' . $data->gambar) }}" class="card-img-top"
+                                        alt="{{ $data->nama_informasi }}" style="height: 180px; object-fit: cover;">
                                     <span class="position-absolute top-0 end-0 m-2 badge bg-purple text-white small">
-                                        {{ \Carbon\Carbon::parse($artikel->created_at)->format('d M Y') }}
+                                        {{ \Carbon\Carbon::parse($data->created_at)->format('d M Y') }}
                                     </span>
                                 </div>
                                 <div class="card-body p-3">
-                                    <h6 class="fw-bold mb-2">{{ Str::limit($artikel->judul_artikel, 60) }}</h6>
+                                    <h6 class="fw-bold mb-2">{{ Str::limit($data->nama_informasi, 60) }}</h6>
                                     <p class="text-muted small mb-0"
                                         style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                        {!! strip_tags($artikel->deskripsi) !!}
+                                        {!! strip_tags($data->deskripsi) !!}
                                     </p>
                                 </div>
                             </div>
@@ -62,10 +62,10 @@
             </div>
 
             <!-- Pagination -->
-            @if ($artikels->total() > 8)
+            @if ($informasi->total() > 8)
                 <div class="mt-5 d-flex justify-content-center">
                     <nav>
-                        {{ $artikels->onEachSide(1)->links('vendor.pagination.bootstrap-5') }}
+                        {{ $informasi->onEachSide(1)->links('vendor.pagination.bootstrap-5') }}
                     </nav>
                 </div>
             @endif

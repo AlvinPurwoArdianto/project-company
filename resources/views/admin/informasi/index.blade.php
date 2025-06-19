@@ -1,18 +1,18 @@
 @extends('layouts.admin.template')
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tabel /</span> Tabel artikel</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tabel /</span> Tabel informasi</h4>
     <div class="card">
         <h5 class="card-header d-flex justify-content-between align-items-center">
-            <span>Table artikel</span>
-            <a href="{{ route('artikel.create') }}" class="btn btn-sm btn-primary">+ Tambah</a>
+            <span>Table informasi</span>
+            <a href="{{ route('informasi.create') }}" class="btn btn-sm btn-primary">+ Tambah</a>
         </h5>
         <div class="card-body">
-            <table id="artikelTable" class="table table-hover display nowrap w-100">
+            <table id="informasiTable" class="table table-hover display nowrap w-100">
                 <thead>
                     <tr>
                         <th width="5%">No</th>
-                        <th>Judul Artikel</th>
+                        <th>Judul</th>
                         <th>Deskripsi</th>
                         <th>Gambar</th>
                         <th>Tanggal</th>
@@ -20,26 +20,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($artikel as $data)
+                    @foreach ($informasi as $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $data->judul_artikel }}</td>
+                        <td>{{ $data->nama_informasi }}</td>
                         <td>
                             {!! Str::limit($data->deskripsi, 50,) !!}
                         </td>
                         <td>
-                            <img src="{{ asset('/images/artikel/' . $data->cover) }}" width="80" class="img-thumbnail">
+                            <img src="{{ asset('/images/informasi/' . $data->gambar) }}" width="80" class="img-thumbnail">
                         </td>
-                        <td>{{ $data->tanggal }}</td>
+                        <td>{{ \Carbon\Carbon::parse($data->tanggal)->format('d F Y') }}</td>
                         <td>
                             <div class="d-flex gap-2">
-                                <a href="{{ route('artikel.edit', $data->id) }}" class="btn btn-sm btn-warning">
+                                <a href="{{ route('informasi.edit', $data->id) }}" class="btn btn-sm btn-warning">
                                     <i class="bx bx-edit-alt me-1"></i> Edit
                                 </a>
-                                <a href="{{ route('artikel.show', $data->id) }}" class="btn btn-sm btn-info">
+                                <a href="{{ route('informasi.show', $data->id) }}" class="btn btn-sm btn-info">
                                     <i class="bx bx-search-alt me-1"></i> Lihat
                                 </a>
-                                <a href="{{ route('artikel.destroy', $data->id) }}" class="btn btn-sm btn-danger"
+                                <a href="{{ route('informasi.destroy', $data->id) }}" class="btn btn-sm btn-danger"
                                     data-confirm-delete="true">
                                     <i class="bx bx-trash-alt me-1"></i> Delete
                                 </a>
@@ -56,7 +56,7 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
-        $('#artikelTable').DataTable({
+        $('#informasiTable').DataTable({
             responsive: true,
             scrollX: false,
             autoWidth: false,
