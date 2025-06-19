@@ -17,7 +17,6 @@ use App\Models\Program;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Excel;
-use App\Exports\PendaftaranExport;
 use App\Exports\PengunjungExport;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\VisitorController;
