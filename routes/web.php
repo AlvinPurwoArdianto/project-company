@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Excel;
 use App\Exports\PengunjungExport;
 use App\Http\Controllers\VisitorController;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Middleware\LogVisitor;
 
 Route::get('/', function () {
