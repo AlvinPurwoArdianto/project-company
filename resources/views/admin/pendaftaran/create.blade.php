@@ -1,4 +1,39 @@
 @extends('layouts.admin.template')
+
+@push('style')
+<style>
+    .form-section {
+        background-color: #f9f9f9;
+        padding: 2rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-textarea {
+        min-height: 120px;
+    }
+
+    .invalid-feedback {
+        display: block;
+    }
+
+    .section-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 1.25rem;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: .5rem;
+    }
+</style>
+@endpush
+
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pendaftaran /</span> Tambah pendaftaran</h4>
@@ -113,12 +148,9 @@
                             @enderror
                         </div>
                     </div>
-                    <br>
+                </div>
 
-                    <hr>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-4">Data Orang Tua / Wali</h5>
-                    </div>
+                <hr>
 
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="nama_orang_tua">Nama Orang Tua</label>
@@ -206,14 +238,25 @@
                         </div>
                     </div>
 
-                    <div class="row justify-content-end">
-                        <div class="col-sm-10">
-                            <a href="{{ route('pendaftaran.index') }}" class="btn btn-danger">Kembali</a>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label">Bank</label>
+                        <select name="bank" class="form-select @error('bank') is-invalid @enderror">
+                            <option value="" selected disabled>Pilih Bank</option>
+                            @foreach(['BCA', 'BNI', 'BRI', 'Mandiri', 'BSI', 'CIMB', 'Permata', 'BTN'] as $bank)
+                            <option value="{{ $bank }}" {{ old('bank')==$bank ? 'selected' : '' }}>{{ $bank }}</option>
+                            @endforeach
+                        </select>
+                        @error('bank') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
-                </form>
-            </div>
+                </div>
+
+                {{-- SUBMIT --}}
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bx bx-send me-1"></i> Simpan Pendaftaran
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 @endsection

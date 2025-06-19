@@ -1,54 +1,53 @@
 @extends('layouts.admin.template')
+
 @section('content')
-    <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tabel /</span> Tabel Fasilitas</h4>
-        <div class="card mb-4">
-            <div class="card-header d-flex align-items-center justify-content-between">
-                <h5 class="mb-0">Tambah Fasilitas</h5>
-            </div>
-            <div class="card-body">
-                <form action="{{ route('fasilitas.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="nama_fasilitas">Nama Fasilitas</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-group-merge">
-                                <input type="text"
-                                    class="form-control @error('nama_fasilitas') is-invalid @enderror"
-                                    id="nama_fasilitas"
-                                    placeholder="Nama fasilitas"
-                                    name="nama_fasilitas"
-                                    value="{{ old('nama_fasilitas') }}" />
-                            </div>
-                            @error('nama_fasilitas')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="cover">Cover</label>
-                        <div class="col-sm-10">
-                            <div class="input-group input-group-merge">
-                                <input type="file"
-                                    class="form-control @error('cover') is-invalid @enderror"
-                                    id="cover"
-                                    name="cover"
-                                    accept="image/*" />
-                            </div>
-                            @error('cover')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                            <div class="form-text">Format yang diperbolehkan: PNG, JPG, JPEG. Maksimal 2MB</div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-end">
-                        <div class="col-sm-10">
-                            <a href="{{ route('fasilitas.index') }}" class="btn btn-danger">Kembali</a>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h4 class="fw-bold mb-1">Tambah Fasilitas</h4>
+            <small class="text-muted">Masukkan data fasilitas baru ke sistem</small>
+        </div>
+        <a href="{{ route('fasilitas.index') }}" class="btn btn-sm btn-secondary">
+            <i class="bx bx-arrow-back me-1"></i> Kembali
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form action="{{ route('fasilitas.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <div class="mb-3">
+                    <label for="nama_fasilitas" class="form-label">Nama Fasilitas</label>
+                    <input type="text"
+                        class="form-control @error('nama_fasilitas') is-invalid @enderror"
+                        id="nama_fasilitas"
+                        name="nama_fasilitas"
+                        placeholder="Masukkan nama fasilitas"
+                        value="{{ old('nama_fasilitas') }}">
+                    @error('nama_fasilitas')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="cover" class="form-label">Cover</label>
+                    <input type="file"
+                        class="form-control @error('cover') is-invalid @enderror"
+                        id="cover"
+                        name="cover"
+                        accept="image/*">
+                    <div class="form-text">Format: PNG, JPG, JPEG. Maks: 2MB</div>
+                    @error('cover')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 @endsection

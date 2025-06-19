@@ -6,10 +6,21 @@ use Illuminate\Http\Request;
 
 class TestimoniController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $testimoni = Testimoni::all();
-        return view('admin.testimoni.index', compact('testimoni'));
+        $tab = $request->input('tab', 'all');
+
+        $query = Testimoni::query();
+
+        if ($tab === 'approved') {
+            $query->where('status', 'approved');
+        } elseif ($tab === 'archived') {
+            $query->where('status', 'archived');
+        }
+
+        $testimoni = $query->get();
+
+        return view('admin.testimoni.index', compact('testimoni', 'tab'));
     }
 
     public function create()
@@ -28,6 +39,7 @@ class TestimoniController extends Controller
         Testimoni::create($request->all());
         // return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil ditambahkan!');
         if ($request->source === 'admin') {
+            toast('Testimoni Berhasil Ditambahkan!', 'success')->position('top-end')->autoClose(1000);
             return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil ditambahkan!');
         } else {
             return redirect('/')->with('success', 'Terima Kasih telah memberikan testimoni anda!');
@@ -42,14 +54,25 @@ class TestimoniController extends Controller
 
     public function update(Request $request, $id)
     {
+        $testimoni = Testimoni::findOrFail($id);
+
+        // Jika hanya update status
+        if ($request->has('status')) {
+            $testimoni->status = $request->status;
+            $testimoni->save();
+            return redirect()->route('testimoni.index')->with('success', 'Status testimoni berhasil diubah!');
+        }
+        
+        // Jika update data lengkap
         $request->validate([
             'nama'      => 'required',
             'testimoni' => 'required',
             'rating'    => 'required|numeric|min:1|max:5',
             'status'    => 'required|in:approved,pending,rejected',
         ]);
-        $testimoni = Testimoni::findOrFail($id);
         $testimoni->update($request->all());
+
+        toast('Komentar Berhasil Diubah!', 'success')->position('top-end')->autoClose(1000);
         return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil diupdate!');
     }
 
