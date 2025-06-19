@@ -34,11 +34,16 @@ class TestimoniController extends Controller
             'nama'      => 'required',
             'testimoni' => 'required',
             'rating'    => 'required|numeric|min:1|max:5',
+            'status'    => 'required|in:approved,pending,rejected',
         ]);
         Testimoni::create($request->all());
-
-        toast('Komentar Berhasil Ditambahkan!', 'success')->position('top-end')->autoClose(1000);
-        return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil ditambahkan!');
+        // return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil ditambahkan!');
+        if ($request->source === 'admin') {
+            toast('Testimoni Berhasil Ditambahkan!', 'success')->position('top-end')->autoClose(1000);
+            return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil ditambahkan!');
+        } else {
+            return redirect('/')->with('success', 'Terima Kasih telah memberikan testimoni anda!');
+        }
     }
 
     public function edit($id)
@@ -63,6 +68,7 @@ class TestimoniController extends Controller
             'nama'      => 'required',
             'testimoni' => 'required',
             'rating'    => 'required|numeric|min:1|max:5',
+            'status'    => 'required|in:approved,pending,rejected',
         ]);
         $testimoni->update($request->all());
 
@@ -75,5 +81,11 @@ class TestimoniController extends Controller
         $testimoni = Testimoni::findOrFail($id);
         $testimoni->delete();
         return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil dihapus!');
+    }
+
+    public function showTestimoni()
+    {
+        $testimoni = Testimoni::where('status', 'approved')->latest()->get();
+        return view('coba', compact('testimoni'));
     }
 }

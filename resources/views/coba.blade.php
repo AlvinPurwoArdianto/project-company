@@ -18,7 +18,7 @@
                             ENGLISH SCHOOL
                         </h2>
 
-                        <p style="color: #FFA000; font-weight: 700; font-size: 1.6rem; margin-bottom: 0.8rem;">
+                        <p style="color: #8B0000; font-weight: 700; font-size: 1.6rem; margin-bottom: 0.8rem;">
                             MUCH BETTER THAN OTHERS
                         </p>
 
@@ -94,26 +94,23 @@
             <div class="container section-title" data-aos="fade-up">
                 <span>Program<br></span>
                 <h2>Program</h2>
-                {{-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> --}}
             </div><!-- End Section Title -->
 
             <div class="container">
-
                 <div class="row gy-4">
                     @foreach ($program as $data)
-                        <div class="col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="100">
-                            <div class="service-item position-relative">
-                                {{-- <div class="icon"><i class="bi bi-activity icon"></i></div> --}}
-                                <h4>{{ $data->nama_program }}</h4>
-                                <p>{{ $data->deskripsi }}</p>
+                        <div class="col-lg-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+                            <div class="service-item position-relative w-100">
+                                <h4 class="text-center">{{ $data->nama_program }}</h4>
+                                <p>{!! $data->deskripsi !!}</p>
                             </div>
                         </div><!-- End Service Item -->
                     @endforeach
                 </div>
-
             </div>
 
-        </section><!-- /Featured Services Section -->
+        </section>
+        <!-- /Featured Services Section -->
 
         <!-- Stats Section -->
         {{-- <section id="stats" class="stats section">
@@ -161,79 +158,97 @@
         </section><!-- /Stats Section --> --}}
 
         <!-- Services Section -->
-        <section id="fasilitas" class="services section light-background py-5" style="background-color: #E6F0FF;">
-            <div class="container section-title text-center mb-5" data-aos="fade-up">
+        <section id="fasilitas" class="services section py-5"
+            style="background: linear-gradient(135deg, #E6F0FF 0%, #ffffff 100%);">
+            <div class="container section-title" data-aos="fade-up">
                 <span>Fasilitas</span>
                 <h2>Fasilitas</h2>
+                <div class="title-underline mx-auto mt-3" style="width: 80px; height: 4px; background: #638afd;"></div>
             </div>
 
             <div class="container">
-                <div class="row justify-content-center gy-3">
-                    @foreach ($fasilitas as $data)
-                        <div class="col-lg-3 col-md-5" data-aos="fade-up" data-aos-delay="100">
-                            <button type="button"
-                                class="btn btn-outline-purple w-100 py-2 px-3 rounded-4 shadow-sm d-flex align-items-center gap-3 text-start"
-                                data-bs-toggle="modal" data-bs-target="#fasilitasModal{{ $data->id }}">
-
-                                <!-- Foto Kecil -->
-                                <img src="{{ asset('/images/fasilitas/' . $data->cover) }}"
-                                    alt="{{ $data->nama_fasilitas }}" class="img-thumbnail"
-                                    style="width: 45px; height: 45px; object-fit: cover; border-radius: 0.75rem;">
-
-                                <!-- Nama Fasilitas -->
-                                <span class="fw-semibold fs-6">{{ $data->nama_fasilitas }}</span>
-                            </button>
-                        </div>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="fasilitasModal{{ $data->id }}" tabindex="-1"
-                            aria-labelledby="modalLabel{{ $data->id }}" aria-hidden="true">
-                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                <div class="modal-content rounded-4 shadow">
-                                    <div class="modal-header bg-purple text-white rounded-top-4">
-                                        <h5 class="modal-title" id="modalLabel{{ $data->id }}"
-                                            style="color: white;">
-                                            Fasilitas</h5>
-                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row align-items-center">
-                                            <!-- Gambar -->
-                                            <div class="col-md-5 text-center mb-3 mb-md-0">
-                                                <img src="{{ asset('/images/fasilitas/' . $data->cover) }}"
-                                                    class="img-fluid rounded"
-                                                    style="max-height: 300px; object-fit: cover;"
-                                                    alt="{{ $data->nama_fasilitas }}">
-                                            </div>
-
-                                            <!-- Info Fasilitas -->
-                                            <div class="col-md-7">
-                                                <h5 class="fw-bold mb-2">Nama Fasilitas: {{ $data->nama_fasilitas }}</h5>
-                                                <p class="text-muted fs-6">Deskripsi:
-                                                    {{ $data->deskripsi ?? 'Deskripsi fasilitas ini belum tersedia.' }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                <div class="row justify-content-center g-4">
+                    @foreach ($fasilitas->take(6) as $data)
+                        <div class="col-lg-2 col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                            <div class="facility-card h-100 rounded-4 shadow-sm hover-lift"
+                                style="background: white; transition: all 0.3s ease;">
+                                <div class="facility-img-wrapper p-3">
+                                    <img src="{{ asset('/images/fasilitas/' . $data->cover) }}"
+                                        alt="{{ $data->nama_fasilitas }}" class="img-fluid rounded-3"
+                                        style="height: 120px; width: 100%; object-fit: cover;">
+                                </div>
+                                <div class="facility-content p-3">
+                                    <h5 class="facility-title fw-semibold text-center mb-0"
+                                        style="font-size: 0.9rem; color: #1a1a1a;">
+                                        {{ $data->nama_fasilitas }}
+                                    </h5>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
+
+                @if ($fasilitas->count() > 6)
+                    <div class="text-center mt-4">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                            data-bs-target="#fasilitasModal">
+                            Lihat Semua Fasilitas <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                @endif
             </div>
         </section>
 
+        <!-- Modal -->
+        <div class="modal fade" id="fasilitasModal" tabindex="-1" aria-labelledby="fasilitasModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="fasilitasModalLabel">Semua Fasilitas</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-4">
+                            @foreach ($fasilitas as $data)
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <div class="facility-card h-100 rounded-4 shadow-sm" style="background: white;">
+                                        <div class="facility-img-wrapper p-3">
+                                            <img src="{{ asset('/images/fasilitas/' . $data->cover) }}"
+                                                alt="{{ $data->nama_fasilitas }}" class="img-fluid rounded-3"
+                                                style="height: 160px; width: 100%; object-fit: cover;">
+                                        </div>
+                                        <div class="facility-content p-3">
+                                            <h5 class="facility-title fw-semibold text-center mb-0"
+                                                style="font-size: 1rem; color: #1a1a1a;">
+                                                {{ $data->nama_fasilitas }}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Artikel Section -->
-        <section id="artikel" class="artikel section py-5 bg-light">
-            <div class="container text-center mb-5" data-aos="fade-up">
-                <span class="text-purple fw-semibold">Artikel Terbaru</span>
-                <h2 class="fw-bold">Bacaan Menarik untuk Anda</h2>
-                <p class="text-muted">Jelajahi artikel informatif dan inspiratif yang kami sajikan setiap minggunya.</p>
+        <section id="artikel" class="artikel section py-5 position-relative overflow-hidden">
+            <!-- Gambar background dengan efek blur -->
+            <div class="artikel-bg-blur"></div>
+
+            <!-- Konten utama -->
+            <div class="container text-center mb-5 position-relative" style="z-index: 2;" data-aos="fade-up">
+                <span class="text-primary fw-semibold">Informasi Terbaru</span>
+                <h2 class="fw-bold">Informasi Menarik untuk Anda</h2>
+                <p class="text-muted">Jelajahi informasi terkini seputar Victory English School</p>
             </div>
 
-            <div class="container">
+            <div class="container position-relative" style="z-index: 2;">
                 <div class="row gy-4">
                     @foreach ($informasi as $data)
                         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
@@ -241,7 +256,7 @@
                                 <div class="position-relative">
                                     <img src="{{ asset('/images/informasi/' . $data->gambar) }}" class="card-img-top"
                                         alt="Article Image" style="height: 200px; object-fit: cover;">
-                                    <a href="{{ route('informasi', $data->id) }}" class="stretched-link"></a>
+                                    <a href="{{ route('informasi_detail', $data->id) }}" class="stretched-link"></a>
                                     <div class="position-absolute top-0 end-0 m-2 badge bg-purple text-white">
                                         {{ \Carbon\Carbon::parse($data->created_at)->format('d M Y') }}
                                     </div>
@@ -249,231 +264,209 @@
                                 <div class="card-body">
                                     <h5 class="card-title text-dark">{{ $data->nama_informasi }}</h5>
                                     <p class="card-text text-muted">{!! Str::limit(strip_tags($data->deskripsi), 80) !!}</p>
-                                    <a href="{{ route('informasi', $data->id) }}"
+                                    <a href="{{ route('informasi_detail', $data->id) }}"
                                         class="btn btn-sm btn-outline-purple mt-2">Baca Selengkapnya</a>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
+
+                @if ($informasi->count() > 4)
+                    <div class="text-center mt-4">
+                        <a href="{{ route('informasi') }}" class="btn btn-outline-purple">
+                            Lihat Semua Informasi <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                @endif
             </div>
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials section light-background">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <span>Testimoni</span>
-                <h2>Testimoni</h2>
-            </div><!-- End Section Title -->
-
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="swiper init-swiper" data-speed="600" data-delay="5000"
-                    data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
-                    <script type="application/json" class="swiper-config">
-                    {
-                        "loop": true,
-                        "speed": 600,
-                        "autoplay": {
-                            "delay": 5000
-                        },
-                        "slidesPerView": "auto",
-                        "pagination": {
-                            "el": ".swiper-pagination",
-                            "type": "bullets",
-                            "clickable": true
-                        },
-                        "breakpoints": {
-                            "320": {
-                            "slidesPerView": 1,
-                            "spaceBetween": 40
-                            },
-                            "1200": {
-                            "slidesPerView": 3,
-                            "spaceBetween": 20
-                            }
-                        }
-                    }
-                </script>
-                    <div class="swiper-wrapper" style="text-align: justify;">
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <p>
-                                    <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-                                        rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                                        risus at semper.</span>
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Saul Goodman</h3>
-                                <h4>Ceo &amp; Founder</h4>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <p>
-
-                                    <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum
-                                        quid malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet
-                                        legam anim culpa.</span>
-
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Sara Wilsson</h3>
-                                <h4>Designer</h4>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <p>
-                                    <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla
-                                        quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore
-                                        quis sint minim.</span>
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Jena Karlis</h3>
-                                <h4>Store Owner</h4>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <p>
-
-                                    <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
-                                        fugiat dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore
-                                        illum veniam.</span>
-
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Matt Brandon</h3>
-                                <h4>Freelancer</h4>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <p>
-
-                                    <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor
-                                        noster veniam sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore
-                                        nisi cillum quid.</span>
-
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>John Larson</h3>
-                                <h4>Entrepreneur</h4>
-                            </div>
-                        </div><!-- End testimonial item -->
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-
+        <section id="testimonials" class="testimonials section py-5 bg-light">
+            <div class="container section-title text-center mb-5" data-aos="fade-up">
+                <span class="fw-semibold" style="color: #0E1F5223">Apa Kata Mereka</span>
+                <h2 class="fw-bold">Testimoni</h2>
+                <p class="text-muted">Cerita mereka yang sudah merasakan pengalaman luar biasa selama belajar di Victory English School!!!</p>
             </div>
 
-        </section><!-- /Testimonials Section -->
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact section">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <span>Kontak</span>
-                <h2>Kontak</h2>
-            </div><!-- End Section Title -->
-
             <div class="container" data-aos="fade-up" data-aos-delay="100">
+                <div class="swiper init-swiper" data-speed="600" data-delay="5000"
+                    data-breakpoints='{"320": {"slidesPerView": 1, "spaceBetween": 20}, "1200": {"slidesPerView": 3, "spaceBetween": 20}}'>
+                    <script type="application/json" class="swiper-config">
+                        {
+                            "loop": true,
+                            "speed": 600,
+                            "autoplay": {
+                                "delay": 5000
+                            },
+                            "slidesPerView": "auto",
+                            "pagination": {
+                                "el": ".swiper-pagination",
+                                "type": "bullets",
+                                "clickable": true
+                            },
+                            "breakpoints": {
+                                "320": {
+                                "slidesPerView": 1,
+                                "spaceBetween": 40
+                                },
+                                "1200": {
+                                "slidesPerView": 3,
+                                "spaceBetween": 20
+                                }
+                            }
+                        }
+                    </script>
 
+                    <div class="swiper-wrapper">
+                        @foreach ($testimoni as $item)
+                            <div class="swiper-slide">
+                                    <div class="testimonial-item border rounded-4 p-4 h-100 shadow-sm bg-white d-flex flex-column justify-content-between"
+                                        style="min-height: 200px; max-height: 200px; overflow: hidden;">
+                                        <div class="flex-grow-1">
+                                            <div class="mb-2 text-muted">
+                                                "{{ \Illuminate\Support\Str::limit($item->testimoni, 200) }}"
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <h5 class="fw-bold mb-1">{{ $item->nama }}</h5>
+                                            <div>
+                                                @for ($i = 1; $i <= $item->rating; $i++)
+                                                    <span class="text-warning">&#9733;</span>
+                                                @endfor
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="swiper-pagination mt-3"></div>
+                </div>
+            </div>
+        </section>
+        <!-- /Testimonials Section -->
+
+        <section id="contact" class="contact section py-5">
+            <div class="container">
                 <div class="row gy-4">
 
-                    <div class="col-lg-5">
+                    <!-- Kolom Kontak -->
+                    <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+                        <div class="section-title mb-4">
+                            <span>Kontak</span>
+                            <h2>Kontak</h2>
+                        </div>
 
                         <div class="info-wrap">
-                            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                            <div class="info-item d-flex mb-3">
+                                <i class="bi bi-geo-alt flex-shrink-0 me-3"></i>
                                 <div>
                                     <h3>Alamat</h3>
                                     <p>Komp. Bumi Asri Mekarrahayu Blok 1 D 39 No. 104</p>
                                 </div>
-                            </div><!-- End Info Item -->
+                            </div>
 
-                            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                                <i class="bi bi-telephone flex-shrink-0"></i>
+                            <div class="info-item d-flex mb-3">
+                                <i class="bi bi-telephone flex-shrink-0 me-3"></i>
                                 <div>
                                     <h3>No. Telepon</h3>
                                     <p>+62 852-9494-0965</p>
                                 </div>
-                            </div><!-- End Info Item -->
+                            </div>
 
-                            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                                <i class="bi bi-envelope flex-shrink-0"></i>
+                            <div class="info-item d-flex mb-3">
+                                <i class="bi bi-envelope flex-shrink-0 me-3"></i>
                                 <div>
                                     <h3>Email</h3>
                                     <p>victory@gmail.com</p>
                                 </div>
-                            </div><!-- End Info Item -->
+                            </div>
 
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.2996492266175!2d107.54942231018717!3d-6.973930192997666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ef5b98950b6d%3A0x17575cdfbd8b8a73!2sVICTORY%20ENGLISH%20SCHOOL!5e0!3m2!1sid!2sid!4v1749649902485!5m2!1sid!2sid"
-                                frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen=""
+                                frameborder="0" style="border:0; width: 100%; height: 230px;" allowfullscreen=""
                                 loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
 
-                    <div class="col-lg-7">
-                        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-                            data-aos-delay="200">
+                    <!-- Kolom Testimoni -->
+                    <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
+                        <div class="section-title mb-4">
+                            <span>Testimoni</span>
+                            <h2>Kirim Testimoni Anda</h2>
+                        </div>
+
+                        <form action="{{ route('testimoni.store') }}" method="POST" class="testimoni"
+                            enctype="multipart/form-data">
+                            @csrf
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
-                                    <label for="name-field" class="pb-2">Nama Anda</label>
-                                    <input type="text" name="name" id="name-field" class="form-control"
-                                        required="">
+                                    <label for="nama" class="pb-2">Nama Anda</label>
+                                    <input type="text" name="nama" id="nama"
+                                        class="form-control @error('nama') is-invalid @enderror"
+                                        value="{{ old('nama') }}" required>
+                                    @error('nama')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="email-field" class="pb-2">Email Anda</label>
-                                    <input type="email" class="form-control" name="email" id="email-field"
-                                        required="">
+                                    <label for="rating" class="pb-2 d-block">Rating</label>
+                                    <div class="rating">
+                                        @for ($i = 5; $i >= 1; $i--)
+                                            <input type="radio" name="rating" id="star{{ $i }}"
+                                                value="{{ $i }}" {{ old('rating') == $i ? 'checked' : '' }}>
+                                            <label for="star{{ $i }}">&#9733;</label>
+                                        @endfor
+                                    </div>
+                                    @error('rating')
+                                        <div class="text-danger small">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label for="subject-field" class="pb-2">Judul</label>
-                                    <input type="text" class="form-control" name="subject" id="subject-field"
-                                        required="">
+                                    <label for="testimoni" class="pb-2">Pesan Testimoni</label>
+                                    <textarea name="testimoni" id="testimoni" rows="6"
+                                        class="form-control @error('testimoni') is-invalid @enderror" required>{{ old('testimoni') }}</textarea>
+                                    @error('testimoni')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label for="message-field" class="pb-2">Pesan</label>
-                                    <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
+                                    <input type="hidden" name="status" value="pending">
                                 </div>
 
                                 <div class="col-md-12 text-center">
                                     <div class="loading">Loading</div>
                                     <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                                    <button type="submit" style="background-color: #1c6ce4">Kirim Pesan</button>
-
+                                    <div class="sent-message">Testimoni Anda berhasil dikirim. Terima kasih!</div>
+                                    <button type="submit" style="background-color: #1c6ce4">Kirim Testimoni</button>
                                 </div>
-
                             </div>
                         </form>
-                    </div><!-- End Contact Form -->
-
+                        @if (session('success'))
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    Swal.fire({
+                                        title: 'Berhasil!',
+                                        text: '{{ session('success') }}',
+                                        icon: 'success',
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: 'Oke'
+                                    });
+                                });
+                            </script>
+                        @endif
+                    </div>
                 </div>
-
             </div>
+        </section>
 
-        </section><!-- /Contact Section -->
 
     </main>
 @endsection
