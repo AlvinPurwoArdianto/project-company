@@ -237,7 +237,7 @@
 
 
         <!-- Artikel Section -->
-        <section id="artikel" class="artikel section py-5 position-relative overflow-hidden">
+        <section id="informasi" class="informasi section py-5 position-relative overflow-hidden">
             <!-- Gambar background dengan efek blur -->
             <div class="artikel-bg-blur"></div>
 
@@ -325,8 +325,8 @@
                                     <div class="testimonial-item border rounded-4 p-4 h-100 shadow-sm bg-white d-flex flex-column justify-content-between"
                                         style="min-height: 200px; max-height: 200px; overflow: hidden;">
                                         <div class="flex-grow-1">
-                                            <div class="mb-2 text-muted">
-                                                "{{ \Illuminate\Support\Str::limit($item->testimoni, 200) }}"
+                                            <div class="mb-2 text-muted" style="text-align: justify;">
+                                                "{{ \Illuminate\Support\Str::limit($item->testimoni, 230) }}"
                                             </div>
                                         </div>
                                         <div class="mt-3">
@@ -399,7 +399,7 @@
                             <h2>Kirim Testimoni Anda</h2>
                         </div>
 
-                        <form action="{{ route('testimoni.store') }}" method="POST" class="testimoni"
+                        <form action="{{ route('front.store_testimoni') }}" method="POST" class="testimoni"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="row gy-4">

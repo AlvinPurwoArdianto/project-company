@@ -53,22 +53,30 @@
                     </div>
                 @empty
                     <div class="col-12 text-center">
-                        <div class="alert alert-info">
-                            <i class="bi bi-info-circle me-2"></i>
-                            Belum ada informasi yang tersedia.
-                        </div>
+                        @if (request()->has('search') && request('search') !== '')
+                            <div class="alert alert-warning">
+                                <i class="bi bi-exclamation-circle me-2"></i>
+                                Tidak ada hasil untuk pencarian: <strong>"{{ request('search') }}"</strong>
+                            </div>
+                        @else
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle me-2"></i>
+                                Belum ada informasi yang tersedia.
+                            </div>
+                        @endif
                     </div>
-                @endforelse
+                @endempty
             </div>
-
-            <!-- Pagination -->
-            @if ($informasi->total() > 8)
-                <div class="mt-5 d-flex justify-content-center">
-                    <nav>
-                        {{ $informasi->onEachSide(1)->links('vendor.pagination.bootstrap-5') }}
-                    </nav>
-                </div>
-            @endif
         </div>
-    </section>
+
+        <!-- Pagination -->
+        @if ($informasi->total() > 8)
+            <div class="mt-5 d-flex justify-content-center">
+                <nav>
+                    {{ $informasi->onEachSide(1)->links('vendor.pagination.bootstrap-5') }}
+                </nav>
+            </div>
+        @endif
+    </div>
+</section>
 @endsection

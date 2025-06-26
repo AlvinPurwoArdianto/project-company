@@ -78,13 +78,7 @@ class PendaftaranController extends Controller
 
         $pendaftaran->save();
         Alert::success('Success', 'Data Berhasil Ditambahkan')->autoClose(1000);
-
-        // Cek asal form dan redirect sesuai
-        if ($request->source === 'admin') {
-            return redirect()->route('pendaftaran.index');
-        } else {
-            return redirect('/'); // atau redirect()->route('home') jika ada
-        }
+        return redirect()->route('pendaftaran.index');
     }
 
     /**

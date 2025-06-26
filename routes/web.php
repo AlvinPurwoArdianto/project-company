@@ -1,6 +1,8 @@
 <?php
 
 use App\Exports\PendaftaranExport;
+use App\Exports\PengunjungExport;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\InformasiController;
@@ -9,41 +11,16 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TestimoniController;
-use App\Models\Komentar;
-use App\Models\Fasilitas;
-use App\Models\Testimoni;
-use App\Models\Informasi;
-use App\Models\Program;
+use App\Http\Middleware\LogVisitor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Maatwebsite\Excel\Excel;
-use App\Exports\PendaftaranExport;
-use App\Exports\PengunjungExport;
-use App\Http\Controllers\InformasiController;
-use App\Http\Controllers\VisitorController;
-use App\Models\Informasi;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Middleware\LogVisitor;
 
-Route::get('/', function () {
-    $program   = Program::all();
-    $informasi = Informasi::all();
-    $fasilitas = Fasilitas::all();
-    $testimoni = Testimoni::where('status', 'approved')->latest()->get();
-    return view('coba', compact('informasi','fasilitas', 'testimoni', 'program'));
-})->middleware(LogVisitor::class);
-
-Route::get('/informasi/{id}', function ($id) {
-    $informasi = Informasi::findOrFail($id);
-    $komentar = Komentar::where('informasi_id', $informasi->id)->get();
-    return view('artikel', compact('informasi', 'komentar'));
-})->name('informasi_detail');
+Route::get('/', [FrontController::class, 'index']);
+// ->middleware(LogVisitor::class);
+Route::get('/informasi/{id}', [FrontController::class, 'detail_informasi'])->name('informasi_detail');
 Route::get('/informasi_selengkapnya', [InformasiController::class, 'informasi'])->name('informasi');
-
-Route::get('/daftar', function () {
-    $program = Program::all();
-    return view('pendaftaran', compact('program'));
-})->name('daftar');
+Route::get('/daftar', [FrontController::class, 'pendaftaran'])->name('daftar');
 
 Auth::routes(
     ['register' => false],
@@ -51,12 +28,15 @@ Auth::routes(
 
 Route::get('/pendaftaran', [FrontController::class, 'form'])->name('front.form');
 Route::post('/pendaftaran', [FrontController::class, 'store'])->name('front.store');
+Route::post('/informasi/{id}', [FrontController::class, 'store_komentar'])->name('front.store_komentar');
+Route::post('/', [FrontController::class, 'store_testimoni'])->name('front.store_testimoni');
+
 
 // Route::get('/pendaftaran', [App\Http\Controllers\HomeController::class, 'daftar'])->name('pendaftaran');
 // Route::post('/', [FrontController::class, 'store'])->name('pendaftaran.store');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
-    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('program', ProgramController::class);
     Route::resource('fasilitas', FasilitasController::class);
@@ -74,7 +54,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         })->name('laporan.pendaftaran.excel');
         Route::get('/pengunjung', [LaporanController::class, 'visitor'])->name('laporan.pengunjung');
         Route::get('/pengunjung/export', [LaporanController::class, 'visitorPdf'])->name('laporan.pengunjung.pdf');
-        Route::get('/pengunjung/excel', function() {
+        Route::get('/pengunjung/excel', function () {
             return Excel::download(new PengunjungExport, 'pengunjung.xlsx');
         })->name('laporan.pengunjung.excel');
     });
