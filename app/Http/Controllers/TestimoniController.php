@@ -37,13 +37,7 @@ class TestimoniController extends Controller
             'status'    => 'required|in:approved,pending,rejected',
         ]);
         Testimoni::create($request->all());
-        // return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil ditambahkan!');
-        if ($request->source === 'admin') {
-            toast('Testimoni Berhasil Ditambahkan!', 'success')->position('top-end')->autoClose(1000);
-            return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil ditambahkan!');
-        } else {
-            return redirect('/')->with('success', 'Terima Kasih telah memberikan testimoni anda!');
-        }
+        return redirect()->route('testimoni.index')->with('success', 'Testimoni berhasil disimpan!');
     }
 
     public function edit($id)
@@ -62,7 +56,7 @@ class TestimoniController extends Controller
             $testimoni->save();
             return redirect()->route('testimoni.index')->with('success', 'Status testimoni berhasil diubah!');
         }
-        
+
         // Jika update data lengkap
         $request->validate([
             'nama'      => 'required',

@@ -112,11 +112,14 @@ class InformasiController extends Controller
 
     public function informasi(Request $request)
     {
-        $informasi = Informasi::all();
-        $query     = Informasi::query();
+        $request->validate([
+            'search' => 'nullable|string|max:100',
+        ]);
 
-        if ($request->has('search')) {
-            $query->where('judul_artikel', 'like', '%' . $request->search . '%');
+        $query = Informasi::query();
+
+        if ($request->filled('search')) {
+            $query->where('nama_informasi', 'like', '%' . $request->search . '%');
         }
 
         $informasi = $query->latest()->paginate(8);

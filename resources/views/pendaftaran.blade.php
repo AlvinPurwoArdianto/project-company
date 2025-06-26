@@ -11,9 +11,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="p-5 bg-white rounded-4 shadow-sm" data-aos="fade-up" data-aos-delay="100">
-                        <form action="{{ route('pendaftaran.store') }}" method="POST" class="registration-form">
+                        <form action="{{ route('front.store') }}" method="POST" class="registration-form">
                             @csrf
-                            <input type="hidden" name="source" value="user">
                             <div class="row gy-4">
                                 {{-- Data Pendaftar --}}
                                 <div class="col-md-12">
@@ -128,7 +127,9 @@
                                         <option value="BTN">BTN</option>
                                     </select>
                                 </div>
-
+                                <div class="col-md-12">
+                                    <input type="hidden" name="source" value="user">
+                                </div>
                                 {{-- Submit --}}
                                 <div class="col-md-12 text-center mt-4">
                                     <button type="button" id="btn-daftar" class="btn btn-primary px-5 py-2"

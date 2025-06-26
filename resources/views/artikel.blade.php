@@ -29,8 +29,8 @@
                     {{-- Konten Kanan --}}
                     <div class="col-lg-7">
                         <div class="p-4 p-lg-5">
-                            <h1 class="display-5 fw-bold mb-4">{{ $informasi->nama_informasi }}</h1>
-                            <div class="content-article" style="line-height: 1.8;">
+                            <h1 class="display-6 fw-bold mb-4">{{ $informasi->nama_informasi }}</h1>
+                            <div class="content-article" style="line-height: 1.8; text-align: justify;">
                                 {!! $informasi->deskripsi !!}
                             </div>
                         </div>
@@ -41,11 +41,11 @@
             {{-- Comment Section --}}
             <div class="row mt-5">
                 {{-- Kolom Form Komentar --}}
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <div class="card shadow-sm border-0">
                         <div class="card-body p-4">
                             <h4 class="card-title mb-4">Berikan Komentar</h4>
-                            <form action="{{ route('komentar.store') }}" method="POST">
+                            <form action="{{ route('front.store_komentar', $informasi->id) }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="nama" class="form-label">Nama</label>
@@ -88,48 +88,51 @@
                 </div>
 
                 {{-- Kolom Komentar Terbaru --}}
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <h4 class="mb-3">Komentar Terbaru</h4>
-                    @forelse($komentar as $comment)
-                        @php
-                            $colors = [
-                                '#0d6efd',
-                                '#198754',
-                                '#dc3545',
-                                '#fd7e14',
-                                '#6f42c1',
-                                '#20c997',
-                                '#ffc107',
-                                '#6610f2',
-                                '#e83e8c',
-                                '#6c757d',
-                            ];
-                            $index = crc32($comment->nama ?? '') % count($colors);
-                            $color = $colors[$index];
-                        @endphp
-                        <div class="card mb-3 border-0 shadow-sm">
-                            <div class="card-body p-4">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="me-3">
-                                        <div class="rounded-circle text-white d-flex align-items-center justify-content-center"
-                                            style="width: 40px; height: 40px; background-color: {{ $color }};">
-                                            {{ strtoupper(substr($comment->nama ?? '', 0, 1)) }}
+
+                    <div class="border rounded shadow-sm" style="max-height: 425px; overflow-y: auto;">
+                        @forelse($komentar as $comment)
+                            @php
+                                $colors = [
+                                    '#0d6efd',
+                                    '#198754',
+                                    '#dc3545',
+                                    '#fd7e14',
+                                    '#6f42c1',
+                                    '#20c997',
+                                    '#ffc107',
+                                    '#6610f2',
+                                    '#e83e8c',
+                                    '#6c757d',
+                                ];
+                                $index = crc32($comment->nama ?? '') % count($colors);
+                                $color = $colors[$index];
+                            @endphp
+                            <div class="card mb-3 border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="me-3">
+                                            <div class="rounded-circle text-white d-flex align-items-center justify-content-center"
+                                                style="width: 40px; height: 40px; background-color: {{ $color }};">
+                                                {{ strtoupper(substr($comment->nama ?? '', 0, 1)) }}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h6 class="fw-bold mb-1">{{ $comment->nama }}</h6>
+                                            <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
                                         </div>
                                     </div>
-                                    <div>
-                                        <h6 class="fw-bold mb-1">{{ $comment->nama }}</h6>
-                                        <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
-                                    </div>
+                                    <p class="mb-0 text-justify" style="text-align: justify;">{{ $comment->komentar }}</p>
                                 </div>
-                                <p class="mb-0">{{ $comment->komentar }}</p>
                             </div>
-                        </div>
-                    @empty
-                        <div class="text-center py-4">
-                            <i class="bi bi-chat-dots display-4 text-muted mb-3"></i>
-                            <p class="text-muted">Belum ada komentar. Jadilah yang pertama berkomentar!</p>
-                        </div>
-                    @endforelse
+                        @empty
+                            <div class="text-center py-4">
+                                <i class="bi bi-chat-dots display-4 text-muted mb-3"></i>
+                                <p class="text-muted">Belum ada komentar. Jadilah yang pertama berkomentar!</p>
+                            </div>
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </div>

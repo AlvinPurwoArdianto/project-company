@@ -35,12 +35,7 @@ class KomentarController extends Controller
         Komentar::create($request->all());
 
         toast('Komentar Berhasil Ditambahkan!', 'success')->position('top-end')->autoClose(1000);
-        // return redirect()->route('komentar.index');
-        if ($request->source === 'admin') {
-            return redirect()->route('komentar.index');
-        } else {
-            return redirect()->route('informasi_detail', ['id' => $request->informasi_id]);
-        }
+        return redirect()->route('komentar.index');
     }
 
     public function edit($id)
