@@ -41,14 +41,14 @@
                 <h1 class="sitename">Victory</h1>
             </a>
 
-            @include('include.user2.navbar')
+            @include('include.user.navbar')
         </div>
     </header>
 
     @yield('content')
     <!-- End Hero -->
 
-    @include('include.user2.footer')
+    @include('include.user.footer')
     <!-- End Footer -->
 
     <!-- Scroll Top -->

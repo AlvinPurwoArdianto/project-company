@@ -1,4 +1,4 @@
-@extends('layouts.user2.template')
+@extends('layouts.user.template')
 
 @section('content')
     <section id="pendaftaran" class="registration section" style="background-color: #E6F0FF; padding: 80px 0;">
@@ -203,6 +203,19 @@
                     }
                 });
             });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('success'))
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+            @endif
         });
     </script>
 @endsection
