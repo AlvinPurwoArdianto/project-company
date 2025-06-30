@@ -19,15 +19,34 @@ class FrontController extends Controller
         $fasilitas = Fasilitas::all();
         $testimoni = Testimoni::where('status', 'approved')->latest()->get();
 
-        return view('coba', compact('informasi', 'fasilitas', 'testimoni', 'program'));
+        return view('index', compact('informasi', 'fasilitas', 'testimoni', 'program'));
     }
+
+    // app/Http/Controllers/YourControllerName.php (misalnya InformasiController.php)
 
     public function detail_informasi($id)
     {
         $informasi = Informasi::findOrFail($id);
         $komentar  = Komentar::where('informasi_id', $informasi->id)->get();
 
-        return view('artikel', compact('informasi', 'komentar'));
+        // --- LOGIKA UNTUK MENYIMPAN REFERER ---
+        $previousUrl = url()->previous();
+
+        // Pastikan URL sebelumnya BUKAN dari proses submit komentar itu sendiri
+        // Asumsi route name untuk submit komentar Anda adalah 'komentar.store'
+        // url()->current() adalah URL halaman detail informasi saat ini
+        if ($previousUrl !== url()->current() && ! str_contains($previousUrl, route('komentar.store', [], false))) {
+            session(['last_visited_from_detail' => $previousUrl]);
+        } else {
+            // Jika user langsung akses detail, atau sebelumnya dari halaman POST komentar,
+            // kita bisa defaultkan ke halaman Beranda
+            if (! session()->has('last_visited_from_detail')) {
+                session(['last_visited_from_detail' => url('index')]); // Pastikan 'home' adalah nama route Beranda Anda
+            }
+        }
+        // --- AKHIR LOGIKA PENYIMPANAN REFERER ---
+
+        return view('detail_informasi', compact('informasi', 'komentar'));
     }
 
     // pendaftaran
@@ -79,7 +98,7 @@ class FrontController extends Controller
 
         $pendaftaran->save();
         // Alert::success('Success', 'Data Berhasil Ditambahkan')->autoClose(1000);
-        return redirect('/');
+        return redirect('/')->with('success', 'Pendaftaran berhasil! Silakan cek whatsapp untuk informasi selanjutnya.');
     }
     // penutup pendaftaran
 
@@ -89,7 +108,7 @@ class FrontController extends Controller
         $informasi = Informasi::all();
         $komentar  = Komentar::all();
 
-        return view('artikel', compact('informasi', 'komentar'));
+        return view('detail_informasi', compact('informasi', 'komentar'));
     }
 
     public function store_komentar(Request $request)
