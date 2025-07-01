@@ -44,7 +44,7 @@
                                     </span>
                                 </div>
                                 <div class="card-body p-3">
-                                    <h6 class="fw-bold mb-2">{{ Str::limit($data->nama_informasi, 60) }}</h6>
+                                    <h6 class="fw-bold mb-2">{{ Str::limit($data->nama_informasi, 55) }}</h6>
                                     <p class="text-muted small mb-0"
                                         style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
                                         {!! strip_tags($data->deskripsi) !!}

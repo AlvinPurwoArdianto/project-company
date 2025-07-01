@@ -28,7 +28,8 @@
                     {{-- Gambar Kiri --}}
                     <div class="col-lg-5 position-relative">
                         <img src="{{ asset('/images/informasi/' . $informasi->gambar) }}" alt="Cover informasi"
-                            class="w-100 h-100 object-fit-cover" style="min-height: 500px;">
+                            class="w-100 object-fit-cover"
+                            style="max-height: 350px; min-height: 250px; height: auto; border-radius: 10px;">
                         <div class="position-absolute bottom-0 start-0 w-100 p-3"
                             style="background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);">
                             <p class="text-white mb-0">
@@ -53,7 +54,7 @@
             {{-- Comment Section --}}
             <div class="row mt-5">
                 {{-- Kolom Form Komentar --}}
-                <div class="col-lg-7" style="max-height: 700px;">
+                <div class="col-lg-7">
                     <div class="card shadow-sm border-1">
                         <div class="card-body p-4">
                             <h4 class="card-title mb-4">Berikan Komentar</h4>

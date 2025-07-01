@@ -243,21 +243,26 @@
                 <div class="row gy-4">
                     @foreach ($informasi as $data)
                         <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-delay="100">
-                            <div class="card shadow-sm border-0 h-100 artikel-item">
+                            <div class="card shadow-sm border-0 w-100 artikel-item h-100">
                                 <div class="position-relative">
-                                    <img src="{{ asset('/images/informasi/' . $data->gambar) }}" class="card-img-top"
-                                        alt="Article Image" style="height: 200px; object-fit: cover;">
+                                    <img src="{{ asset('/images/informasi/' . $data->gambar) }}"
+                                        class="card-img-top img-fluid responsive-img" alt="Article Image">
                                     <a href="{{ route('informasi_detail', $data->id) }}" class="stretched-link"></a>
-                                    <div class="position-absolute top-0 end-0 m-2 badge bg-purple text-white">
+                                    <div class="position-absolute top-0 end-0 m-2 badge bg-purple text-white small">
                                         {{ \Carbon\Carbon::parse($data->created_at)->format('d M Y') }}
                                     </div>
                                 </div>
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title text-dark">{{ $data->nama_informasi }}</h5>
-                                    <p class="card-text text-muted">{!! Str::limit(strip_tags($data->deskripsi), 90) !!}</p>
-
+                                <div class="card-body d-flex flex-column p-3 p-md-3 p-sm-2">
+                                    <h5 class="card-title text-dark fs-6 fs-sm-6 fs-md-5">
+                                        <b>
+                                            {{ Str::limit($data->nama_informasi, 65) }}
+                                        </b>
+                                    </h5>
+                                    <p class="card-text text-muted small">
+                                        {!! Str::limit(strip_tags($data->deskripsi), 58) !!}
+                                    </p>
                                     <a href="{{ route('informasi_detail', $data->id) }}"
-                                       class="btn btn-sm btn-outline-purple mt-auto">
+                                        class="btn btn-sm btn-outline-purple mt-auto">
                                         Detail
                                     </a>
                                 </div>
@@ -266,7 +271,7 @@
                     @endforeach
                 </div>
 
-                @if ($informasi->count() > 4)
+                @if ($informasi->count() >= 4)
                     <div class="text-center mt-4">
                         <a href="{{ route('informasi') }}" class="btn btn-outline-purple">
                             Lihat Semua Informasi <i class="bi bi-arrow-right"></i>
