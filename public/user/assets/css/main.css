@@ -1997,6 +1997,35 @@ section,
     }
 }
 
+/* Responsive image height */
+.responsive-img {
+    height: 200px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .responsive-img {
+        height: 100px;
+    }
+
+    .card-body {
+        padding: 1rem !important;
+    }
+
+    .card-title {
+        font-size: 0.50rem;
+    }
+
+    .card-text {
+        font-size: 0.80rem;
+    }
+
+    .badge {
+        font-size: 0.7rem;
+        padding: 0.3em 0.6em;
+    }
+}
+
 .modal-content {
     border: none;
     border-radius: 1rem;
