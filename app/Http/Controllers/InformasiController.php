@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Informasi;
@@ -25,13 +24,13 @@ class InformasiController extends Controller
     {
         $request->validate([
             'nama_informasi' => 'required|unique:informasis',
-            'deskripsi'     => 'required',
+            'deskripsi'      => 'required',
             'gambar'         => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3084',
         ]);
 
-        $informasi                = new Informasi();
+        $informasi                 = new Informasi();
         $informasi->nama_informasi = $request->nama_informasi;
-        $informasi->deskripsi     = $request->deskripsi;
+        $informasi->deskripsi      = $request->deskripsi;
 
         if ($request->hasFile('gambar')) {
             $img  = $request->file('gambar');
@@ -72,14 +71,14 @@ class InformasiController extends Controller
     {
         $request->validate([
             'nama_informasi' => 'required',
-            'deskripsi'     => 'required',
+            'deskripsi'      => 'required',
             'gambar'         => 'image|mimes:jpeg,png,jpg,gif,svg|max:3084',
         ]);
 
-        $informasi                = Informasi::findOrFail($id);
+        $informasi                 = Informasi::findOrFail($id);
         $informasi->nama_informasi = $request->nama_informasi;
-        $informasi->deskripsi     = $request->deskripsi;
-        $informasi->tanggal       = $request->tanggal;
+        $informasi->deskripsi      = $request->deskripsi;
+        $informasi->tanggal        = $request->tanggal;
 
         if ($request->hasFile('gambar')) {
             $informasi->deleteImage();
@@ -103,5 +102,28 @@ class InformasiController extends Controller
 
         toast('Data Berhasil Dihapus!', 'success')->position('top-end')->autoClose(1000);
         return redirect()->route('informasi.index');
+    }
+
+    public function informasi_detail($id)
+    {
+        $informasi = Informasi::findOrFail($id);
+        return view('artikel', compact('informasi'));
+    }
+
+    public function informasi(Request $request)
+    {
+        $request->validate([
+            'search' => 'nullable|string|max:100',
+        ]);
+
+        $query = Informasi::query();
+
+        if ($request->filled('search')) {
+            $query->where('nama_informasi', 'like', '%' . $request->search . '%');
+        }
+
+        $informasi = $query->latest()->paginate(8);
+
+        return view('informasi', compact('informasi'));
     }
 }

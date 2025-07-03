@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Komentar;
 use App\Models\Informasi;
+use App\Models\Komentar;
 use Illuminate\Http\Request;
 
 class KomentarController extends Controller
@@ -11,7 +11,7 @@ class KomentarController extends Controller
     public function index()
     {
         $informasi = Informasi::all();
-        $komentar = Komentar::with('informasi')->get();
+        $komentar  = Komentar::with('informasi')->get();
 
         return view('admin.komentar.index', compact('komentar', 'informasi'));
     }
@@ -39,11 +39,6 @@ class KomentarController extends Controller
     //     toast('Komentar Berhasil Diupdate!', 'success')->position('top-end')->autoClose(1000);
     //     return redirect()->route('komentar.index');
     // }
-
-    public function show()
-    {
-    }
-
     public function destroy($id)
     {
         $komentar = Komentar::findOrFail($id);
