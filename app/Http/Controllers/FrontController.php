@@ -14,7 +14,7 @@ class FrontController extends Controller
 {
     public function index()
     {
-        $program   = Program::all();
+        $program = Program::all();
         $informasi = collect(DB::select('SELECT * FROM informasis ORDER BY id DESC LIMIT 4'));
         $fasilitas = Fasilitas::all();
         $testimoni = Testimoni::where('status', 'approved')->latest()->get();
@@ -59,19 +59,19 @@ class FrontController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama'                 => 'required',
-            'jenis_kelamin'        => 'required',
-            'tempat_lahir'         => 'required',
-            'tanggal_lahir'        => 'required',
-            'alamat'               => 'required',
-            'email'                => 'required',
-            'no_telepon'           => 'required|min:10',
-            'tanggal_pendaftaran'  => 'required',
-            'nama_orang_tua'       => 'required',
-            'no_telepon_orang_tua' => 'required|min:10',
-            'alamat_orang_tua'     => 'required',
-            'no_rekening'          => 'required',
-            'bank'                 => 'required|in:BCA,BNI,BRI,Mandiri,BSI,CIMB,Permata,BTN',
+            'nama'                => 'required',
+            'jenis_kelamin'       => 'required',
+            'tempat_lahir'        => 'required',
+            'tanggal_lahir'       => 'required',
+            'alamat'              => 'required',
+            'email'               => 'required',
+            'no_telepon'          => 'required|min:10',
+            'tanggal_pendaftaran' => 'required',
+            // 'nama_orang_tua'       => 'required',
+            // 'no_telepon_orang_tua' => 'min:10',
+            // 'alamat_orang_tua'     => 'required',
+            'no_rekening'         => 'required',
+            'bank'                => 'required|in:BCA,BNI,BRI,Mandiri,BSI,CIMB,Permata,BTN',
         ], [
             'bank.required'              => 'Bank wajib dipilih',
             'bank.in'                    => 'Bank yang dipilih tidak valid',

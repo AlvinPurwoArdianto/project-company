@@ -249,7 +249,7 @@
                                         class="card-img-top img-fluid responsive-img" alt="Article Image">
                                     <a href="{{ route('informasi_detail', $data->id) }}" class="stretched-link"></a>
                                     <div class="position-absolute top-0 end-0 m-2 badge bg-purple text-white small">
-                                        {{ \Carbon\Carbon::parse($data->created_at)->format('d M Y') }}
+                                        {{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('d F Y') }}
                                     </div>
                                 </div>
                                 <div class="card-body d-flex flex-column p-3 p-md-3 p-sm-2">
@@ -284,7 +284,7 @@
         <!-- Testimonials Section -->
         <section id="testimonials" class="testimonials section py-5"
             style="background: linear-gradient(135deg, #E6F0FF 0%, #ffffff 100%);">
-            <div class="container section-title text-center mb-5" data-aos="fade-up">
+            <div class="container section-title text-center mb-2" data-aos="fade-up">
                 <span class="fw-semibold" style="color: #0E1F5223">Testimoni</span>
                 <h2 class="fw-bold">Testimoni</h2>
                 <p class="text-muted" style="color: #0e1f5271;">

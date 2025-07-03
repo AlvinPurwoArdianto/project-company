@@ -170,9 +170,9 @@
 
                 if (usia >= 21) {
                     formWali.style.display = 'none';
-                    document.getElementById('nama_orang_tua').value = '';
-                    document.getElementById('no_telepon_orang_tua').value = '';
-                    document.getElementById('alamat_orang_tua').value = '';
+                    document.getElementById('nama_orang_tua').value = '-';
+                    document.getElementById('no_telepon_orang_tua').value = '-';
+                    document.getElementById('alamat_orang_tua').value = '-';
                 } else {
                     formWali.style.display = 'block';
                 }

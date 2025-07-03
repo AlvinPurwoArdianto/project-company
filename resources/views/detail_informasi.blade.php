@@ -107,8 +107,8 @@
 
                 {{-- Kolom Komentar Terbaru --}}
                 <div class="col-lg-5">
-                    <div class="border rounded shadow-sm" style="max-height: 347px; overflow-y: auto;">
-                        @forelse($komentar as $comment)
+                    <div class="border rounded shadow-sm" style="max-height: 362px; overflow-y: auto;">
+                        @forelse($komentar->sortByDesc('created_at') as $comment)
                             @php
                                 $colors = [
                                     '#0d6efd',
@@ -142,7 +142,22 @@
                                                 class="text-muted">{{ \Carbon\Carbon::parse($comment->created_at)->locale('id')->diffForHumans() }}</small>
                                         </div>
                                     </div>
-                                    <p class="mb-0 text-justify" style="text-align: justify;">{{ $comment->komentar }}</p>
+                                    @php
+                                        $words = str_word_count(strip_tags($comment->komentar), 1);
+                                        $wordCount = count($words);
+                                        $shortText = implode(' ', array_slice($words, 0, 25));
+                                    @endphp
+
+                                    <p class="mb-0 text-justify" style="text-align: justify;">
+                                        @if ($wordCount > 25)
+                                            <span class="komentar-short">{{ $shortText }}...</span>
+                                            <span class="komentar-full d-none">{{ $comment->komentar }}</span>
+                                            <a href="javascript:void(0);" class="text-primary selengkapnya-toggle"
+                                                style="font-size: 0.875rem;">Selengkapnya</a>
+                                        @else
+                                            {{ $comment->komentar }}
+                                        @endif
+                                    </p>
                                 </div>
                             </div>
                         @empty
@@ -207,3 +222,24 @@
         });
     </script>
 @endpush --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.selengkapnya-toggle').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const parent = btn.closest('p');
+                const shortText = parent.querySelector('.komentar-short');
+                const fullText = parent.querySelector('.komentar-full');
+
+                if (shortText.classList.contains('d-none')) {
+                    shortText.classList.remove('d-none');
+                    fullText.classList.add('d-none');
+                    btn.textContent = 'Selengkapnya';
+                } else {
+                    shortText.classList.add('d-none');
+                    fullText.classList.remove('d-none');
+                    btn.textContent = 'Tampilkan lebih sedikit';
+                }
+            });
+        });
+    });
+</script>

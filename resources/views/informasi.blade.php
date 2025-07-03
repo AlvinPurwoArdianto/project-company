@@ -40,7 +40,7 @@
                                     <img src="{{ asset('/images/informasi/' . $data->gambar) }}" class="card-img-top"
                                         alt="{{ $data->nama_informasi }}" style="height: 180px; object-fit: cover;">
                                     <span class="position-absolute top-0 end-0 m-2 badge bg-purple text-white small">
-                                        {{ \Carbon\Carbon::parse($data->created_at)->format('d M Y') }}
+                                        {{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('d F Y') }}
                                     </span>
                                 </div>
                                 <div class="card-body p-3">
