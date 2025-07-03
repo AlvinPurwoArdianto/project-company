@@ -98,6 +98,7 @@
                                                     <p><strong>Bank:</strong> {{ $data->bank }}</p>
                                                     <p><strong>No. Rekening:</strong> {{ $data->no_rekening }}</p>
                                                     <p><strong>Nama Orang Tua:</strong> {{ $data->nama_orang_tua }}</p>
+                                                    <p><strong>Nomor Telepon Orang Tua:</strong> {{ $data->no_telepon_orang_tua }}</p>
                                                     <p><strong>Alamat Orang Tua:</strong> {{ $data->alamat_orang_tua }}</p>
                                                     <p><strong>Tanggal Daftar:</strong> {{ \Carbon\Carbon::parse($data->tanggal_pendaftaran)->translatedFormat('d F Y') }}</p>
                                                 </div>

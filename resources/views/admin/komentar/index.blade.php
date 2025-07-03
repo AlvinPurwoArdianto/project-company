@@ -6,9 +6,6 @@
             <h4 class="fw-bold mb-1">Tabel Komentar</h4>
             <small class="text-muted">Manajemen komentar dari pengunjung</small>
         </div>
-        <a href="{{ route('komentar.create') }}" class="btn btn-primary">
-            <i class="bx bx-plus me-1"></i> Tambah Komentar
-        </a>
     </div>
 
     <div class="card shadow-sm">
@@ -48,11 +45,6 @@
                                         Aksi
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('komentar.edit', $data->id) }}">
-                                                <i class="bx bx-edit-alt me-1"></i> Edit
-                                            </a>
-                                        </li>
                                         <li>
                                             <form action="{{ route('komentar.destroy', $data->id) }}" method="POST" class="delete-form">
                                                 @csrf

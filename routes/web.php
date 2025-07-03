@@ -40,7 +40,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('program', ProgramController::class);
     Route::resource('fasilitas', FasilitasController::class);
     Route::resource('informasi', InformasiController::class);
-    Route::resource('pendaftaran', PendaftaranController::class);
     Route::resource('komentar', KomentarController::class);
     Route::resource('testimoni', TestimoniController::class);
 
