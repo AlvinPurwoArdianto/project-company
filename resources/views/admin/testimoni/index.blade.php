@@ -8,9 +8,6 @@
             <h4 class="fw-bold mb-1">Testimoni Pengguna</h4>
             <small class="text-muted">Manajemen data testimoni dari pengguna</small>
         </div>
-        <a href="{{ route('testimoni.create') }}" class="btn btn-primary">
-            <i class="bx bx-plus me-1"></i> Tambah Testimoni
-        </a>
     </div>
 
     <!-- Tab Filter -->

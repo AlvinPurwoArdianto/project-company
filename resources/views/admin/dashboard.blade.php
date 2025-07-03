@@ -129,7 +129,7 @@ color: #ffab00 !important;
                             <i class='bx bx-user-plus text-warning fs-3'></i>
                         </div>
                     </div>
-                    <a href="{{ route('pendaftaran.index') }}" class="btn btn-warning btn-sm mt-3 w-100">Lihat
+                    <a href="{{ route('laporan.pendaftaran') }}" class="btn btn-warning btn-sm mt-3 w-100">Lihat
                         Detail</a>
                 </div>
             </div>

@@ -60,13 +60,6 @@
             </a>
         </li>
 
-        <li class="menu-item mt-2 {{ Route::currentRouteName() == 'pendaftaran.index' ? 'active' : '' }}">
-            <a href="{{ route('pendaftaran.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-user-plus"></i>
-                <div data-i18n="Tables">Pendaftaran</div>
-            </a>
-        </li>
-
         <!-- Add Reports Section -->
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Laporan</span>
