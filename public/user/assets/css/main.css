@@ -969,6 +969,7 @@ section,
     .hero .btn-get-started,
     .hero .btn-watch-video {
         font-size: 13px;
+        padding: 10px 24px 11px 24px;
     }
 }
 
@@ -2329,6 +2330,38 @@ section,
 @media (max-width: 991.98px) {
     .object-fit-cover {
         min-height: 300px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    #hero h1 {
+        font-size: 4.5rem !important;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #hero h2 {
+        font-size: 1.9rem !important;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #hero p {
+        font-size: 1.4rem !important;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #hero a.btn-get-started {
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 

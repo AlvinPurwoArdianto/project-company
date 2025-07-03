@@ -18,32 +18,35 @@
                     }
                 @endphp
 
-                <a href="{{ $returnUrl }}" class="btn btn-outline-purple" title="Kembali">
+                <a href="{{ $returnUrl }}" class="btn btn-outline-purple" title="Kembali"
+                    onclick="window.location.replace('{{ $returnUrl }}'); return false;">
                     <i class="bi bi-arrow-left"></i> Kembali
                 </a>
             </div>
 
-            <div class="card border-0 shadow-sm overflow-hidden">
-                <div class="row g-0">
+            <div class="card border-0 shadow-sm overflow-hidden rounded-3">
+                <div class="row g-0 align-items-stretch">
                     {{-- Gambar Kiri --}}
-                    <div class="col-lg-5 position-relative">
-                        <img src="{{ asset('/images/informasi/' . $informasi->gambar) }}" alt="Cover informasi"
-                            class="w-100 object-fit-cover"
-                            style="max-height: 350px; min-height: 250px; height: auto; border-radius: 10px;">
-                        <div class="position-absolute bottom-0 start-0 w-100 p-3"
-                            style="background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);">
-                            <p class="text-white mb-0">
-                                <i class="bi bi-calendar-event me-2"></i>
-                                {{ \Carbon\Carbon::parse($informasi->created_at)->format('d F Y') }}
-                            </p>
+                    <div class="col-md-4 position-relative d-flex">
+                        <div class="flex-fill w-100"
+                            style="min-height: 220px; max-height: 300px; overflow: hidden; border-radius: 10px 0 0 10px;">
+                            <img src="{{ asset('/images/informasi/' . $informasi->gambar) }}" alt="Cover informasi"
+                                class="w-100 h-100" style="object-fit: cover; display: block;">
+                        </div>
+
+                        {{-- Tanggal di Atas Gambar (Kiri Atas) --}}
+                        <div
+                            class="position-absolute top-0 start-0 px-3 py-1 mt-2 ms-2 rounded-pill bg-primary bg-opacity-75 text-white small shadow-sm">
+                            <i class="bi bi-calendar-event me-1"></i>
+                            {{ \Carbon\Carbon::parse($informasi->created_at)->locale('id')->translatedFormat('d F Y') }}
                         </div>
                     </div>
 
                     {{-- Konten Kanan --}}
-                    <div class="col-lg-7">
-                        <div class="p-4 p-lg-5">
-                            <h1 class="display-6 fw-bold mb-4">{{ $informasi->nama_informasi }}</h1>
-                            <div class="content-article" style="line-height: 1.8; text-align: justify;">
+                    <div class="col-md-8">
+                        <div class="p-4">
+                            <h3 class="fw-bold mb-3">{{ $informasi->nama_informasi }}</h3>
+                            <div class="content-article" style="line-height: 1.7; text-align: justify;">
                                 {!! $informasi->deskripsi !!}
                             </div>
                         </div>
@@ -52,7 +55,7 @@
             </div>
 
             {{-- Comment Section --}}
-            <div class="row mt-5">
+            <div class="row mt-5 gy-4">
                 {{-- Kolom Form Komentar --}}
                 <div class="col-lg-7">
                     <div class="card shadow-sm border-1">
@@ -104,9 +107,7 @@
 
                 {{-- Kolom Komentar Terbaru --}}
                 <div class="col-lg-5">
-                    <h4 class="mb-3">Komentar Terbaru</h4>
-
-                    <div class="border rounded shadow-sm" style="max-height: 425px; overflow-y: auto;">
+                    <div class="border rounded shadow-sm" style="max-height: 347px; overflow-y: auto;">
                         @forelse($komentar as $comment)
                             @php
                                 $colors = [
@@ -126,7 +127,7 @@
                                 $index = crc32($hashSource) % count($colors);
                                 $color = $colors[$index];
                             @endphp
-                            <div class="card mb-3 border-0 shadow-sm">
+                            <div class="card mb-0 shadow-sm hr">
                                 <div class="card-body p-4">
                                     <div class="d-flex align-items-center mb-3">
                                         <div class="me-3">
@@ -137,7 +138,8 @@
                                         </div>
                                         <div>
                                             <h6 class="fw-bold mb-1">{{ $comment->nama }}</h6>
-                                            <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+                                            <small
+                                                class="text-muted">{{ \Carbon\Carbon::parse($comment->created_at)->locale('id')->diffForHumans() }}</small>
                                         </div>
                                     </div>
                                     <p class="mb-0 text-justify" style="text-align: justify;">{{ $comment->komentar }}</p>
@@ -155,3 +157,53 @@
         </div>
     </section>
 @endsection
+{{-- @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('komentarForm');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Hindari reload
+
+                const formData = new FormData(form);
+                const url = form.getAttribute('action');
+
+                fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Accept': 'application/json'
+                        },
+                        body: formData
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(err => {
+                                throw err;
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // ✅ Komentar berhasil disimpan
+                        alert('Komentar berhasil dikirim!');
+                        form.reset(); // kosongkan form
+
+                        // Optional: reload komentar atau tambahkan komentar baru ke DOM
+                        // location.reload(); // atau: muat ulang komentar via AJAX
+                    })
+                    .catch(error => {
+                        console.error('Gagal mengirim komentar:', error);
+                        alert('Terjadi kesalahan. Coba lagi nanti.');
+
+                        // Optional: tampilkan error validasi
+                        if (error.errors) {
+                            if (error.errors.komentar) {
+                                alert(error.errors.komentar[0]);
+                            }
+                        }
+                    });
+            });
+        });
+    </script>
+@endpush --}}
