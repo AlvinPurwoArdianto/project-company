@@ -10,7 +10,6 @@ class Pendaftaran extends Model
 
     protected $fillable = ['id', 'nama', 'jenis_kelamin', 'tanggal_lahir', 'alamat',
                            'email', 'no_telepon', 'tanggal_pendaftaran', "nama_orang_tua",
-                           "no_telepon_orang_tua", "alamat_orang_tua", "no_rekening", "bank",
-                            "no_rekening", "bank"];
+                           "no_telepon_orang_tua", "alamat_orang_tua"];
     public $timestamp   = true;
 }

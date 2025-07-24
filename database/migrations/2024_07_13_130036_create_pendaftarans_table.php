@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('no_telepon_orang_tua');
             $table->string('alamat_orang_tua');
 
-            $table->string('no_rekening');
-            $table->string('bank');
+            // $table->string('no_rekening');
+            // $table->string('bank');
             $table->timestamps();
         });
     }

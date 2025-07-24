@@ -87,7 +87,7 @@
                                 <i class="bx bx-user-detail"></i>
                                 Detail Pendaftaran – {{ $data->nama }}
                             </h5>
-                            {{-- <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button> --}}
+                            {{-- <button type="button" class="b9tn-close btn-close-white" data-bs-dismiss="modal"></button> --}}
                         </div>
 
                         {{-- Body modal --}}
@@ -151,7 +151,7 @@
                                     </div>
 
                                     {{-- Informasi Bank --}}
-                                    <div class="bg-light p-3 border rounded">
+                                    {{-- <div class="bg-light p-3 border rounded">
                                         <h6 class="text-primary fw-bold mb-3">
                                             <i class="bx bx-credit-card"></i> Informasi Bank
                                         </h6>
@@ -164,7 +164,7 @@
                                                 <td class="fw-semibold">No. Rekening</td><td class="text-center">:</td><td>{{ $data->no_rekening }}</td>
                                             </tr>
                                         </table>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                                 @if($data->keterangan)
