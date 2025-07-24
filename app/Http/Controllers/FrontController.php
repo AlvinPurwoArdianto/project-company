@@ -70,14 +70,8 @@ class FrontController extends Controller
             // 'nama_orang_tua'       => 'required',
             // 'no_telepon_orang_tua' => 'min:10',
             // 'alamat_orang_tua'     => 'required',
-            'no_rekening'         => 'required',
-            'bank'                => 'required|in:BCA,BNI,BRI,Mandiri,BSI,CIMB,Permata,BTN',
-        ], [
-            'bank.required'              => 'Bank wajib dipilih',
-            'bank.in'                    => 'Bank yang dipilih tidak valid',
-            'no_rekening.required'       => 'Nomor rekening wajib diisi',
-            'no_rekening.numeric'        => 'Nomor rekening harus berupa angka',
-            'no_rekening.digits_between' => 'Nomor rekening harus antara 10-30 digit',
+            // 'no_rekening'         => 'required',
+            // 'bank'                => 'required|in:BCA,BNI,BRI,Mandiri,BSI,CIMB,Permata,BTN',
         ]);
 
         $pendaftaran = new Pendaftaran();
@@ -93,8 +87,8 @@ class FrontController extends Controller
         $pendaftaran->nama_orang_tua       = $request->nama_orang_tua;
         $pendaftaran->no_telepon_orang_tua = $request->no_telepon_orang_tua;
         $pendaftaran->alamat_orang_tua     = $request->alamat_orang_tua;
-        $pendaftaran->no_rekening          = $request->no_rekening;
-        $pendaftaran->bank                 = $request->bank;
+        // $pendaftaran->no_rekening          = $request->no_rekening;
+        // $pendaftaran->bank                 = $request->bank;
 
         $pendaftaran->save();
         // Alert::success('Success', 'Data Berhasil Ditambahkan')->autoClose(1000);

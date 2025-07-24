@@ -83,11 +83,11 @@
                         {{-- Header modal --}}
                         <div class="modal-header py-3 px-4 border-0"
                              style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;">
-                            <h5 class="modal-title d-flex align-items-center gap-2">
+                            <h5 class="modal-title d-flex align-items-center gap-2 text-white">
                                 <i class="bx bx-user-detail"></i>
                                 Detail Pendaftaran – {{ $data->nama }}
                             </h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                            {{-- <button type="button" class="b9tn-close btn-close-white" data-bs-dismiss="modal"></button> --}}
                         </div>
 
                         {{-- Body modal --}}
@@ -151,7 +151,7 @@
                                     </div>
 
                                     {{-- Informasi Bank --}}
-                                    <div class="bg-light p-3 border rounded">
+                                    {{-- <div class="bg-light p-3 border rounded">
                                         <h6 class="text-primary fw-bold mb-3">
                                             <i class="bx bx-credit-card"></i> Informasi Bank
                                         </h6>
@@ -164,7 +164,7 @@
                                                 <td class="fw-semibold">No. Rekening</td><td class="text-center">:</td><td>{{ $data->no_rekening }}</td>
                                             </tr>
                                         </table>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                                 @if($data->keterangan)

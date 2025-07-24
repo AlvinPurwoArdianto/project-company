@@ -65,7 +65,7 @@
                                 @csrf
                                 <input type="hidden" name="nama" value="Anonymous">
                                 <input type="hidden" name="email" value="anonymous@example.com">
-                                {{-- <div class="mb-3">
+                                <div class="mb-3">
                                     <label for="nama" class="form-label">Nama</label>
                                     <input type="text" name="nama" id="nama"
                                         class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}"
@@ -83,7 +83,7 @@
                                     @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                </div> --}}
+                                </div>
 
                                 <div class="mb-3">
                                     <label for="komentar" class="form-label">Komentar</label>
