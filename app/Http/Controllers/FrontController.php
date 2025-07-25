@@ -14,7 +14,7 @@ class FrontController extends Controller
 {
     public function index()
     {
-        $program = Program::all();
+        $program   = Program::all();
         $informasi = collect(DB::select('SELECT * FROM informasis ORDER BY id DESC LIMIT 4'));
         $fasilitas = Fasilitas::all();
         $testimoni = Testimoni::where('status', 'approved')->latest()->get();
@@ -24,24 +24,19 @@ class FrontController extends Controller
 
     // app/Http/Controllers/YourControllerName.php (misalnya InformasiController.php)
 
-    public function detail_informasi($id)
+    public function detail_informasi($slug)
     {
-        $informasi = Informasi::findOrFail($id);
+        $informasi = Informasi::where('slug', $slug)->firstOrFail();
         $komentar  = Komentar::where('informasi_id', $informasi->id)->get();
 
         // --- LOGIKA UNTUK MENYIMPAN REFERER ---
         $previousUrl = url()->previous();
 
-        // Pastikan URL sebelumnya BUKAN dari proses submit komentar itu sendiri
-        // Asumsi route name untuk submit komentar Anda adalah 'komentar.store'
-        // url()->current() adalah URL halaman detail informasi saat ini
         if ($previousUrl !== url()->current() && ! str_contains($previousUrl, route('komentar.store', [], false))) {
             session(['last_visited_from_detail' => $previousUrl]);
         } else {
-            // Jika user langsung akses detail, atau sebelumnya dari halaman POST komentar,
-            // kita bisa defaultkan ke halaman Beranda
             if (! session()->has('last_visited_from_detail')) {
-                session(['last_visited_from_detail' => url('index')]); // Pastikan 'home' adalah nama route Beranda Anda
+                session(['last_visited_from_detail' => url('index')]); // Ganti ke route beranda jika perlu
             }
         }
         // --- AKHIR LOGIKA PENYIMPANAN REFERER ---

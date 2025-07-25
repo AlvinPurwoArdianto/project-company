@@ -33,7 +33,7 @@
 
 <body class="index-page">
 
-    <header id="header" class="header d-flex align-items-center sticky-top">
+    <header id="header" class="header d-flex align-items-center sticky-top" style="background: linear-gradient(to left, #c58df5, #f3e8ff);">
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
             <a href="{{ url('/')}}" class="me-auto" class="header-logo">

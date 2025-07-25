@@ -34,7 +34,7 @@
             <div class="row g-4">
                 @forelse ($informasi as $data)
                     <div class="col-xl-3 col-lg-4 col-6" data-aos="fade-up" data-aos-delay="100">
-                        <a href="{{ route('informasi_detail', $data->id) }}" class="text-decoration-none text-dark">
+                        <a href="{{ route('informasi_detail', $data->slug) }}" class="text-decoration-none text-dark">
                             <div class="card border-0 shadow-sm h-100 rounded-4 hover-shadow">
                                 <div class="position-relative rounded-top-4 overflow-hidden">
                                     <img src="{{ asset('/images/informasi/' . $data->gambar) }}" class="card-img-top"

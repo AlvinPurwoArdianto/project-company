@@ -35,9 +35,10 @@
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-    --nav-color: #5f687b;
+    --nav-color: #ffffff;
     /* The default color of the main navmenu links */
-    --nav-hover-color: #5d9af7;
+    --nav-hover-color: #ffffff;
+    --nav-hover-shadow: 0 0 10px #ffffff;
     /* Applied to main navmenu links when they are hovered over or active */
     --nav-mobile-background-color: #ffffff;
     /* Used as the background color for mobile navigation menu */
@@ -280,6 +281,18 @@ h6 {
 .header .btn-getstarted:focus:hover {
     color: var(--contrast-color);
     background: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+.navmenu ul li a:hover {
+    color: var(--nav-hover-color);
+    text-shadow: var(--nav-hover-shadow);
+    transition: 0.3s ease-in-out;
+}
+
+.navmenu ul li a.active {
+    color: var(--nav-hover-color);
+    text-shadow: var(--nav-hover-shadow);
+    transition: 0.3s ease-in-out;
 }
 
 @media (max-width: 1200px) {
@@ -904,26 +917,6 @@ section,
     margin: 5px 0 30px 0;
     font-size: 20px;
     font-weight: 400;
-}
-
-.hero .btn-get-started {
-    color: var(--contrast-color);
-    background: var(--accent-color);
-    font-family: var(--heading-font);
-    font-weight: 400;
-    font-size: 15px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 10px 28px 12px 28px;
-    border-radius: 50px;
-    transition: 0.5s;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
-}
-
-.hero .btn-get-started:hover {
-    color: var(--contrast-color);
-    background: color-mix(in srgb, var(--accent-color), transparent 15%);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
 }
 
 .hero .btn-watch-video {
@@ -2087,23 +2080,6 @@ section,
 }
 
 /* informasi bg blur */
-.artikel-bg-blur {
-    background-image: url('/user/assets/img/victory2.png');
-    background-repeat: no-repeat;
-    background-size: 1000px auto;
-    /* Gambar diperkecil */
-    background-position: center 150px;
-    /* Posisi diturunkan 60px dari atas */
-    filter: blur(6px) brightness(0.7);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0.6;
-    pointer-events: none;
-}
 
 /* Article Cards */
 .informasi-item {
@@ -2436,4 +2412,99 @@ section,
 .registration .primay-btn.loading {
     pointer-events: none;
     opacity: 0.8;
+}
+
+
+.perubahan-pertama {
+    .hero {
+        padding: 80px 0;
+        background: linear-gradient(to left, #c58df5, #f3e8ff);
+    }
+
+    .hero h1 {
+        font-family: 'Bona Nova SC', serif;
+        color: #8B0000;
+        font-weight: 700;
+        font-size: 5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero h2 {
+        font-family: Arial Black, sans-serif;
+        color: #0033CC;
+        font-weight: 700;
+        font-size: 2.2rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .hero p {
+        color: #0c0606;
+        font-weight: 700;
+        font-size: 1.6rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero a {
+        background-color: #0033CC;
+        color: white;
+        padding: 12px 130px;
+        border-radius: 50px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .profil {
+        background: linear-gradient(135deg, #E6F0FF 0%, #ffffff 100%);
+    }
+
+    .profil img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .victory {
+        color: #8B0000;
+        font-family: 'Bona Nova SC', serif
+    }
+
+    .english {
+        color: #0033CC;
+    }
+
+    .fasilitas {
+        background: linear-gradient(135deg, #E6F0FF 0%, #ffffff 100%);
+    }
+
+    .judul {
+        width: 80px;
+        height: 4px;
+        background: #638afd;
+    }
+
+    .artikel-bg-blur {
+        background-image: url('/user/assets/img/victory2.png');
+        background-repeat: no-repeat;
+        background-size: 1000px auto;
+        /* Gambar diperkecil */
+        background-position: center 150px;
+        /* Posisi diturunkan 60px dari atas */
+        filter: blur(6px) brightness(0.7);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    .testimonials {
+        background: linear-gradient(135deg, #E6F0FF 0%, #ffffff 100%);
+    }
+
+    .testimonials p {
+        color: #0e1f5271;
+    }
 }

@@ -18,7 +18,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', [FrontController::class, 'index'])
 ->middleware(LogVisitor::class);
-Route::get('/informasi/{id}', [FrontController::class, 'detail_informasi'])->name('informasi_detail');
+Route::get('/informasi/{slug}', [FrontController::class, 'detail_informasi'])->name('informasi_detail');
 Route::get('/informasi_selengkapnya', [InformasiController::class, 'informasi'])->name('informasi');
 Route::get('/daftar', [FrontController::class, 'pendaftaran'])->name('daftar');
 
