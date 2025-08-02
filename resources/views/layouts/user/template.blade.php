@@ -9,7 +9,7 @@
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="{{ asset('user/assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('user/assets/img/logo_evs.png') }}" rel="icon">
     <link href="{{ asset('user/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Fonts -->
@@ -33,17 +33,7 @@
 
 <body class="index-page">
 
-    <header id="header" class="header d-flex align-items-center sticky-top" style="background: linear-gradient(to left, #c58df5, #f3e8ff);">
-        <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
-            <a href="{{ url('/')}}" class="me-auto" class="header-logo">
-                <img src="{{ asset('admin/assets/img/avatars/logo.png') }}" height="50px" width="150px"
-                    alt="logo-img">
-            </a>
-
-            @include('include.user.header')
-        </div>
-    </header>
+    @include('include.user.header')
 
     @yield('content')
     <!-- End Hero -->

@@ -1,7 +1,13 @@
 @extends('layouts.user.template')
 
 @section('content')
-    <section id="pendaftaran" class="registration section" style="background-color: #E6F0FF; padding: 80px 0;">
+    <section id="pendaftaran" class="registration section" style="background: #ead9fd; position: relative; overflow: hidden;">
+        <div
+            style="position: absolute; top: -50px; left: -50px; width: 300px; height: 300px; background: #ffffff; border-radius: 50%; opacity: 0.3;">
+        </div>
+        <div
+            style="position: absolute; bottom: -60px; right: -60px; width: 300px; height: 300px; background: #ffffff; border-radius: 50%; opacity: 0.2;">
+        </div>
         <div class="container" data-aos="fade-up">
             <div class="text-center mb-5">
                 <span class="text-muted">Pendaftaran</span>
@@ -16,8 +22,8 @@
                             <div class="row gy-4">
                                 {{-- Data Pendaftar --}}
                                 <div class="col-md-12">
-                                    <a href="{{ url('/') }}"
-                                        class="btn btn-outline-purple btn-sm rounded-pill float-end">
+                                    <a href="{{ url('/') }}" class="btn-daftar btn-sm rounded-pill float-end"
+                                        style="border: 2px solid #862fe9">
                                         <i class="bi bi-house-door-fill"></i> Beranda
                                     </a>
                                     <h5 class="mt-2 fw-bold">Data Pendaftar</h5>
@@ -127,14 +133,13 @@
                                         <option value="BTN">BTN</option>
                                     </select>
                                 </div> --}}
-                                
+
                                 <div class="col-md-12">
                                     <input type="hidden" name="source" value="user">
                                 </div>
                                 {{-- Submit --}}
                                 <div class="col-md-12 text-center mt-4">
-                                    <button type="button" id="btn-daftar" class="btn btn-primary px-5 py-2"
-                                        style="background-color: #0D6EFD; border: none; border-radius: 8px; transition: 0.3s;">
+                                    <button type="button" id="btn-daftar" class="btn btn-purple px-5 py-2">
                                         Daftar Sekarang
                                     </button>
                                 </div>

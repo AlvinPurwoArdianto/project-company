@@ -17,7 +17,7 @@ class FrontController extends Controller
         $program   = Program::all();
         $informasi = collect(DB::select('SELECT * FROM informasis ORDER BY id DESC LIMIT 4'));
         $fasilitas = Fasilitas::all();
-        $testimoni = Testimoni::where('status', 'approved')->latest()->get();
+        $testimoni = Testimoni::where('status', 'approved')->orderByDesc('id')->take(5)->get();
 
         return view('index', compact('informasi', 'fasilitas', 'testimoni', 'program'));
     }
@@ -111,8 +111,11 @@ class FrontController extends Controller
 
         Komentar::create($request->all());
 
-        // toast('Komentar Berhasil Ditambahkan!', 'success')->position('top-end')->autoClose(1000);
-        return redirect()->route('informasi_detail', ['id' => $request->informasi_id]);
+        // Ambil slug dari informasi
+        $informasi = Informasi::findOrFail($request->informasi_id);
+
+        // Redirect ke halaman detail berdasarkan slug
+        return redirect()->route('informasi_detail', ['slug' => $informasi->slug]);
     }
     // penutup komentar
 
