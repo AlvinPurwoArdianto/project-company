@@ -1,78 +1,82 @@
 @extends('layouts.user.template')
 @section('content')
-    <main class="main">
+    <main class="main perubahan-pertama">
         <!-- Hero Section -->
-        <section id="hero" class="hero section" style="padding: 80px 0;">
+        <section id="hero" class="hero section position-relative overflow-hidden">
+            <!-- Gambar kecil di pojok kanan atas -->
+            <div class="hero-corner-img">
+                <img src="{{ asset('user/assets/img/logo mini.png') }}" alt="Logo Mini" class="img-fluid">
+            </div>
+
             <div class="container">
                 <div class="row gy-4 align-items-center">
                     <!-- Teks -->
                     <div class="col-12 col-md-6 text-start d-flex flex-column justify-content-center" data-aos="fade-up">
-                        <h1
-                            style="font-family: 'Bona Nova SC', serif; color: #8B0000; font-weight: 700; font-size: 5rem; margin-bottom: 0.8rem;">
-                            VICTORY
-                        </h1>
-
-                        <h2
-                            style="font-family: Arial Black, sans-serif; color: #0033CC; font-weight: 700; font-size: 2.2rem; margin-bottom: 0.4rem;">
-                            ENGLISH SCHOOL
-                        </h2>
-
-                        <p style="color: #8B0000; font-weight: 700; font-size: 1.6rem; margin-bottom: 0.8rem;">
-                            MUCH BETTER THAN OTHERS
-                        </p>
-
-                        <a href="{{ route('daftar') }}" class="btn-get-started align-self-start"
-                            style="background-color: #0033CC; color: white; padding: 12px 130px; border-radius: 50px; font-weight: 500; text-decoration: none; transition: 0.3s;">
-                            Daftar Disini
-                        </a>
+                        <h2 class="hero-title">Bersiap Jadi Fasih Berbahasa Inggris!</h1>
+                            <h3 class="hero-subtitle">
+                                Bersama <span class="highlighted">Victory English School</span>
+                            </h3>
+                            <p class="hero-description">
+                                Metode belajar interaktif, menyenangkan, dan terbukti efektif sejak 1998. Belajar lebih
+                                mudah
+                                bersama guru yang peduli dan berpengalaman. <br>
+                                Daftar sekarang untuk mendapatkan pengalaman belajar terbaik dari pengajar profesional!
+                            </p>
+                            <a href="{{ route('daftar') }}" class="btn-daftar">Daftar Sekarang</a>
                     </div>
-                    <!-- Gambar -->
+
+                    <!-- Gambar anak besar -->
                     <div class="col-lg-6 order-1 order-lg-2 hero-img text-center" data-aos="zoom-out" data-aos-delay="100">
-                        <img src="{{ asset('user/assets/img/hero-img.png') }}" class="img-fluid animated" alt="Ilustrasi"
-                            style="max-height: 400px;">
+                        <img src="{{ asset('user/assets/img/anak3.png') }}" class="img-fluid hero-main-img"
+                            alt="Ilustrasi Anak">
                     </div>
                 </div>
             </div>
         </section>
+
         <!-- /Hero Section -->
 
         <!-- About Section -->
-        <section id="profil" class="about section mb-5"
-            style="background: linear-gradient(135deg, #E6F0FF 0%, #ffffff 100%);">
+        <section id="profil" class="profil section">
+            <div class="background-decor">
+                <div class="rotating-arrow"></div>
+                <div class="bubble bubble-1"></div>
+                <div class="bubble bubble-2"></div>
+                <div class="bubble bubble-3"></div>
+            </div>
             <!-- Section Title -->
             <div class="container section-title text-center" data-aos="fade-up">
-                <span style="color: #0E1F52; opacity: 0.2;">Profil</span>
-                <h2>Profil</h2>
+                <h2 class="stylish-title">Profil</h2>
+                <div class="underline-decor"></div>
             </div>
 
             <div class="container">
                 <div class="row gy-4 align-items-center">
-                    <!-- Gambar -->
                     <div class="col-12 col-lg-6 order-1 order-lg-1 text-center" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{ asset('user/assets/img/victory2.png') }}" class="img-fluid"
-                            style="max-width: 100%; height: auto;" alt="Victory English School">
+                        <div class="photo-frame">
+                            <img src="{{ asset('user/assets/img/logo mini.png') }}" class="img-fluid"
+                                alt="Victory English School">
+                        </div>
                     </div>
-
                     <!-- Teks -->
                     <div class="col-12 col-lg-6 order-2 order-lg-2 content" data-aos="fade-up" data-aos-delay="200"
                         style="font-size: 1rem; line-height: 1.8; text-align: justify;">
                         <p class="mb-4">
-                            Sejak tahun 1998, <b style="color: #8B0000; font-family: 'Bona Nova SC', serif;">VICTORY</b> <b
-                                style="color: #0033CC;">ENGLISH SCHOOL</b> telah melayani masyarakat Bandung dan sekitarnya
-                            dengan program-program bahasa Inggris yang efektif dan ekonomis. <b
-                                style="color: #8B0000; font-family: 'Bona Nova SC', serif;">VICTORY</b> <b
-                                style="color: #0033CC;">ENGLISH SCHOOL</b> memberikan dukungan komprehensif agar siswa dapat
+                            Sejak tahun 1998, <b class="victory">VICTORY</b> <b class="english">ENGLISH SCHOOL</b> telah
+                            melayani masyarakat Bandung dan sekitarnya
+                            dengan program-program bahasa Inggris yang efektif dan ekonomis. <b class="victory">VICTORY</b>
+                            <b class="english">ENGLISH SCHOOL</b> memberikan dukungan komprehensif agar siswa dapat
                             mengambil manfaat praktis secara maksimal dari belajar bahasa Inggris.
                         </p>
 
                         <p>
-                            <b style="color: #8B0000; font-family: 'Bona Nova SC', serif;">VICTORY</b> <b
-                                style="color: #0033CC;">ENGLISH SCHOOL</b> memiliki metode pengajaran yang sangat berbeda
+                            <b class="victory">VICTORY</b> <b class="english">ENGLISH SCHOOL</b> memiliki metode pengajaran
+                            yang sangat berbeda
                             dengan lembaga-lembaga bahasa Inggris lainnya, sehingga semua siswa — baik dewasa, remaja, atau
                             anak-anak (TK, SD, SMP, SMA/SMK, Mahasiswa, Karyawan, atau Guru) — dapat belajar bahasa Inggris
-                            lisan dan tulisan dengan baik. <b
-                                style="color: #8B0000; font-family: 'Bona Nova SC', serif;">VICTORY</b> <b
-                                style="color: #0033CC;">ENGLISH SCHOOL</b> memiliki tenaga pengajar yang profesional dan
+                            lisan dan tulisan dengan baik. <b class="victory">VICTORY</b> <b class="english">ENGLISH
+                                SCHOOL</b> memiliki tenaga pengajar
+                            yang profesional dan
                             berpengalaman dalam mengajar bahasa Inggris serta memahami dan memperhatikan kebutuhan belajar
                             setiap siswa.
                         </p>
@@ -83,17 +87,26 @@
         <!-- /About Section -->
 
         <!-- Featured Services Section -->
-        <section id="program" class="featured-services section">
+        <section id="program" class="featured-services section"
+            style="background: #e6cfff; position: relative; overflow: hidden;">
+            <!-- Elemen dekoratif putih -->
+            <div
+                style="position: absolute; top: -50px; left: -50px; width: 150px; height: 150px; background: #ffffff; border-radius: 50%; opacity: 0.3;">
+            </div>
+            <div
+                style="position: absolute; bottom: -60px; right: -60px; width: 200px; height: 200px; background: #ffffff; border-radius: 50%; opacity: 0.2;">
+            </div>
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <span style="color: #0E1F5223">Program<br></span>
-                <h2>Program</h2>
+                {{-- <span style="color: #0E1F5223">Program<br></span> --}}
+                <h2 class="stylish-title">Program</h2>
+                <div class="underline-decor"></div>
             </div><!-- End Section Title -->
 
             <div class="container">
                 <div class="row gy-4">
                     @foreach ($program as $data)
-                        <div class="col-12 col-md-6 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="100">
+                        <div class="col-12 col-md-6 col-lg-3 d-flex" data-aos="zoom-in" data-aos-delay="100">
                             <div class="service-item position-relative w-100">
                                 <h4 class="text-center">{{ $data->nama_program }}</h4>
                                 <p>{!! $data->deskripsi !!}</p>
@@ -102,62 +115,15 @@
                     @endforeach
                 </div>
             </div>
-
         </section>
         <!-- /Featured Services Section -->
 
-        <!-- Stats Section -->
-        {{-- <section id="stats" class="stats section">
-
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="row gy-4">
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Clients</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Projects</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Hours Of Support</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="stats-item text-center w-100 h-100">
-                            <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1"
-                                class="purecounter"></span>
-                            <p>Workers</p>
-                        </div>
-                    </div><!-- End Stats Item -->
-
-                </div>
-
-            </div>
-
-        </section><!-- /Stats Section --> --}}
-
         <!-- Services Section -->
-        <section id="fasilitas" class="services section py-5"
-            style="background: linear-gradient(135deg, #E6F0FF 0%, #ffffff 100%);">
+        <section id="fasilitas" class="fasilitas section py-5">
             <div class="container section-title text-center mb-5" data-aos="fade-up">
-                <span style="color: #0E1F52; opacity: 0.2;">Fasilitas</span>
-                <h2>Fasilitas</h2>
-                <div class="title-underline mx-auto mt-3" style="width: 80px; height: 4px; background: #638afd;"></div>
+                {{-- <span style="color: #0E1F52; opacity: 0.2;">Fasilitas</span> --}}
+                <h2 class="stylish-title">Fasilitas</h2>
+                <div class="underline-decor"></div>
             </div>
 
             <div class="container">
@@ -181,19 +147,43 @@
                     @endforeach
                 </div>
 
-                @if ($fasilitas->count() > 6)
+                @if ($fasilitas->count() >= 6)
                     <div class="text-center mt-4">
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                        <button type="button" class="btn-daftar" style="border: none" data-bs-toggle="modal"
                             data-bs-target="#fasilitasModal">
                             Lihat Semua Fasilitas <i class="bi bi-arrow-right"></i>
                         </button>
                     </div>
                 @endif
             </div>
+
+            <!-- SVG Wave Ornamen Layered Tinggi -->
+            <div class="wave-bottom position-absolute w-100" style="bottom: 0; left: 0; z-index: -1;">
+                <svg viewBox="0 0 1440 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+                    style="display: block;">
+                    <defs>
+                        <linearGradient id="gradUngu" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#D2B3F3; stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ffffff; stop-opacity:0" />
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Wave Layer 1 - Ungu Solid -->
+                    <path fill="#D2B3F3" fill-opacity="1"
+                        d="M0,320L48,298.7C96,277,192,235,288,218.7C384,203,480,213,576,218.7C672,224,768,224,864,234.7C960,245,1056,267,1152,277.3C1248,288,1344,288,1392,282.7L1440,277L1440,400L1392,400C1344,400,1248,400,1152,400C1056,400,960,400,864,400C768,400,672,400,576,400C480,400,384,400,288,400C192,400,96,400,48,400L0,400Z">
+                    </path>
+
+                    <!-- Wave Layer 2 - Gradasi -->
+                    <path fill="url(#gradUngu)" fill-opacity="1"
+                        d="M0,240L48,229.3C96,219,192,197,288,186.7C384,176,480,176,576,165.3C672,155,768,133,864,128C960,123,1056,133,1152,138.7C1248,144,1344,144,1392,144L1440,144L1440,400L1392,400C1344,400,1248,400,1152,400C1056,400,960,400,864,400C768,400,672,400,576,400C480,400,384,400,288,400C192,400,96,400,48,400L0,400Z">
+                    </path>
+                </svg>
+            </div>
         </section>
 
         <!-- Modal -->
-        <div class="modal fade" id="fasilitasModal" tabindex="-1" aria-labelledby="fasilitasModalLabel" aria-hidden="true">
+        <div class="modal fade" id="fasilitasModal" tabindex="-1" aria-labelledby="fasilitasModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -221,7 +211,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn-daftar" data-bs-dismiss="modal">Tutup</button>
                     </div>
                 </div>
             </div>
@@ -234,9 +224,9 @@
 
             <!-- Konten utama -->
             <div class="container text-center mb-5 position-relative" style="z-index: 2;" data-aos="fade-up">
-                <span class="text-primary fw-semibold">Informasi Terbaru</span>
-                <h2 class="fw-bold">Informasi Menarik untuk Anda</h2>
-                <p class="text-muted">Jelajahi informasi terkini seputar <b>Victory English School</b></p>
+                <span class="text-purple fw-semibold">Informasi Terbaru</span>
+                <h2 class="stylish-title">Informasi Menarik untuk Anda</h2>
+                <div class="underline-decor"></div>
             </div>
 
             <div class="container position-relative" style="z-index: 2;">
@@ -247,8 +237,9 @@
                                 <div class="position-relative">
                                     <img src="{{ asset('/images/informasi/' . $data->gambar) }}"
                                         class="card-img-top img-fluid responsive-img" alt="Article Image">
-                                    <a href="{{ route('informasi_detail', $data->id) }}" class="stretched-link"></a>
-                                    <div class="position-absolute top-0 end-0 m-2 badge bg-purple text-white small">
+                                    <a href="{{ route('informasi_detail', $data->slug) }}" class="stretched-link"></a>
+                                    <div class="position-absolute top-0 end-0 m-2 badge text-white small"
+                                        style="background-color: #b036f7">
                                         {{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('d F Y') }}
                                     </div>
                                 </div>
@@ -261,8 +252,8 @@
                                     <p class="card-text text-muted small">
                                         {!! Str::limit(strip_tags($data->deskripsi), 58) !!}
                                     </p>
-                                    <a href="{{ route('informasi_detail', $data->id) }}"
-                                        class="btn btn-sm btn-outline-purple mt-auto">
+                                    <a href="{{ route('informasi_detail', $data->slug) }}" class="btn-daftar mt-auto"
+                                        style="text-align: center; border: 2px solid #b036f7">
                                         Detail
                                     </a>
                                 </div>
@@ -273,7 +264,7 @@
 
                 @if ($informasi->count() >= 4)
                     <div class="text-center mt-4">
-                        <a href="{{ route('informasi') }}" class="btn btn-outline-purple">
+                        <a href="{{ route('informasi') }}" class="btn-daftar" style="border: 2px solid #b036f7">
                             Lihat Semua Informasi <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -282,15 +273,22 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials section py-5"
-            style="background: linear-gradient(135deg, #E6F0FF 0%, #ffffff 100%);">
+        <section id="testimonials" class="testimonials section py-5">
+            <!-- Elemen bintang dekoratif -->
+            <div class="star-decor star-top-left"></div>
+            <div class="star-decor star-top-right"></div>
+            <div class="star-decor star-bottom-left"></div>
+            <div class="star-decor star-bottom-right"></div>
+            <div class="star-decor star-middle-left"></div>
+            <div class="star-decor star-middle-right"></div>
             <div class="container section-title text-center mb-2" data-aos="fade-up">
-                <span class="fw-semibold" style="color: #0E1F5223">Testimoni</span>
-                <h2 class="fw-bold">Testimoni</h2>
-                <p class="text-muted" style="color: #0e1f5271;">
+                {{-- <span class="fw-semibold" style="color: #0E1F5223">Testimoni</span> --}}
+                <h2 class="stylish-title">Testimoni</h2>
+                {{-- <p class="text-muted mb-3">
                     Cerita mereka yang sudah merasakan pengalaman luar biasa selama belajar di
                     <b>Victory English School!!!</b>
-                </p>
+                </p> --}}
+                <div class="underline-decor"></div>
             </div>
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -334,7 +332,8 @@
                                         </div>
                                     </div>
                                     <div class="mt-3">
-                                        <h5 class="fw-bold mb-1">{{ $item->nama }}</h5>
+                                        <h5 class="fw-bold mb-1">{{ \Illuminate\Support\Str::limit($item->nama, 30) }}
+                                        </h5>
                                         <div>
                                             @for ($i = 1; $i <= $item->rating; $i++)
                                                 <span class="text-warning">&#9733;</span>
@@ -345,23 +344,30 @@
                             </div>
                         @endforeach
                     </div>
-
                     <div class="swiper-pagination mt-3"></div>
                 </div>
             </div>
         </section>
-
         <!-- /Testimonials Section -->
 
         <section id="contact" class="contact section py-5">
+            <div class="curve-layer curve-layer-1"></div>
+            <div class="curve-layer curve-layer-2"></div>
+            <div class="curve-layer curve-layer-3"></div>
+            <div class="curve-layer curve-layer-4"></div>
+            <div class="curve-layer curve-layer-5"></div>
+            <div class="curve-layer curve-layer-6"></div>
+            <div class="curve-layer curve-layer-7"></div>
+            <div class="curve-layer curve-layer-8"></div>
             <div class="container">
                 <div class="row gy-4">
 
                     <!-- Kolom Kontak -->
                     <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
                         <div class="section-title mb-4">
-                            <span style="color: #0e1f5218">Kontak</span>
-                            <h2>Kontak</h2>
+                            {{-- <span style="color: #0e1f5218">Kontak</span> --}}
+                            <h2 class="stylish-title">Kontak</h2>
+                            <div class="underline-decor"></div>
                         </div>
 
                         <div class="info-wrap">
@@ -399,8 +405,9 @@
                     <!-- Kolom Testimoni -->
                     <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
                         <div class="section-title mb-4">
-                            <span style="color: #0e1f5218">Testimoni</span>
-                            <h2>Testimoni</h2>
+                            {{-- <span style="color: #0e1f5218">Testimoni</span> --}}
+                            <h2 class="stylish-title">Testimoni</h2>
+                            <div class="underline-decor"></div>
                         </div>
 
                         <form action="{{ route('front.store_testimoni') }}" method="POST" class="testimoni"
@@ -449,7 +456,7 @@
                                     <div class="loading">Loading</div>
                                     <div class="error-message"></div>
                                     <div class="sent-message">Testimoni Anda berhasil dikirim. Terima kasih!</div>
-                                    <button type="submit" style="background-color: #1c6ce4">Kirim Testimoni</button>
+                                    <button type="submit" style="background-color: #b036f7">Kirim Testimoni</button>
                                 </div>
                             </div>
                         </form>
@@ -460,7 +467,7 @@
                                         title: 'Berhasil!',
                                         text: '{{ session('success') }}',
                                         icon: 'success',
-                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonColor: '#7030D6FF',
                                         confirmButtonText: 'Oke'
                                     });
                                 });

@@ -2,8 +2,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Informasi;
-use App\Models\Komentar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class InformasiController extends Controller
 {
@@ -31,6 +31,7 @@ class InformasiController extends Controller
         $informasi                 = new Informasi();
         $informasi->nama_informasi = $request->nama_informasi;
         $informasi->deskripsi      = $request->deskripsi;
+        $informasi->slug           = Str::slug($request->nama_informasi);
 
         if ($request->hasFile('gambar')) {
             $img  = $request->file('gambar');

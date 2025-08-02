@@ -1,10 +1,10 @@
-<footer id="footer" class="footer py-5" style="background-color: #f1f5ff;">
+<footer id="footer" class="footer py-5" style="background-color: #e8d4fa;">
     <div class="container">
         <div class="row gy-4">
             <!-- Footer Brand & Kontak -->
             <div class="col-lg-4 col-md-6">
                 <a href="/" class="d-flex align-items-center mb-3 text-decoration-none">
-                    <span class="fs-4 fw-bold text-primary">Victory</span>
+                    <span class="fs-4 fw-bold text-purple">Victory</span>
                 </a>
                 <div class="footer-contact text-muted">
                     <p class="mb-1">Komp. Bumi Asri Mekarrahayu Blok 1 D 39 No. 104</p>
@@ -21,16 +21,16 @@
                     <!-- Kolom 1 -->
                     <div class="col-6">
                         <ul class="list-unstyled">
-                            <li><i class="bi bi-chevron-right me-1 text-primary"></i>
+                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
                                 <a href="#" class="text-decoration-none text-muted">Beranda</a>
                             </li>
-                            <li><i class="bi bi-chevron-right me-1 text-primary"></i>
+                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
                                 <a href="#profil" class="text-decoration-none text-muted">Profil</a>
                             </li>
-                            <li><i class="bi bi-chevron-right me-1 text-primary"></i>
+                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
                                 <a href="#program" class="text-decoration-none text-muted">Program</a>
                             </li>
-                            <li><i class="bi bi-chevron-right me-1 text-primary"></i>
+                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
                                 <a href="#fasilitas" class="text-decoration-none text-muted">Fasilitas</a>
                             </li>
                         </ul>
@@ -39,13 +39,13 @@
                     <!-- Kolom 2 -->
                     <div class="col-6">
                         <ul class="list-unstyled">
-                            <li><i class="bi bi-chevron-right me-1 text-primary"></i>
+                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
                                 <a href="#informasi" class="text-decoration-none text-muted">Informasi</a>
                             </li>
-                            <li><i class="bi bi-chevron-right me-1 text-primary"></i>
+                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
                                 <a href="#testimonials" class="text-decoration-none text-muted">Testimoni</a>
                             </li>
-                            <li><i class="bi bi-chevron-right me-1 text-primary"></i>
+                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
                                 <a href="#contact" class="text-decoration-none text-muted">Kontak</a>
                             </li>
                         </ul>
@@ -59,11 +59,11 @@
                 <p class="text-muted mt-3">Ikuti kami untuk update terbaru seputar program dan informasi belajar bahasa
                     Inggris.</p>
                 <div class="social-links d-flex gap-3">
-                    <a href="#" class="text-primary fs-5"><i class="bi bi-twitter-x"></i></a>
-                    <a href="#" class="text-primary fs-5"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-secondary fs-5"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="text-secondary fs-5"><i class="bi bi-facebook"></i></a>
                     <a href="https://www.instagram.com/victory.englishschool/" target="_blank"
-                        class="text-danger fs-5"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="text-primary fs-5"><i class="bi bi-linkedin"></i></a>
+                        class="text-primary fs-5"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-secondary fs-5"><i class="bi bi-linkedin"></i></a>
                 </div>
             </div>
         </div>

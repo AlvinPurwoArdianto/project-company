@@ -18,7 +18,7 @@
                     }
                 @endphp
 
-                <a href="{{ $returnUrl }}" class="btn btn-outline-purple" title="Kembali"
+                <a href="{{ $returnUrl }}" class="btn-daftar" style="border: 2px solid #a03bff;" title="Kembali"
                     onclick="window.location.replace('{{ $returnUrl }}'); return false;">
                     <i class="bi bi-arrow-left"></i> Kembali
                 </a>
@@ -36,7 +36,7 @@
 
                         {{-- Tanggal di Atas Gambar (Kiri Atas) --}}
                         <div
-                            class="position-absolute top-0 start-0 px-3 py-1 mt-2 ms-2 rounded-pill bg-primary bg-opacity-75 text-white small shadow-sm">
+                            class="position-absolute top-0 start-0 px-3 py-1 mt-2 ms-2 rounded-pill bg-opacity-75 text-white small shadow-sm" style="background-color: #b036f7">
                             <i class="bi bi-calendar-event me-1"></i>
                             {{ \Carbon\Carbon::parse($informasi->created_at)->locale('id')->translatedFormat('d F Y') }}
                         </div>
@@ -45,7 +45,7 @@
                     {{-- Konten Kanan --}}
                     <div class="col-md-8">
                         <div class="p-4">
-                            <h3 class="fw-bold mb-3">{{ $informasi->nama_informasi }}</h3>
+                            <h3 class="fw-bold mb-3" style="color: #675875;">{{ $informasi->nama_informasi }}</h3>
                             <div class="content-article" style="line-height: 1.7; text-align: justify;">
                                 {!! $informasi->deskripsi !!}
                             </div>
@@ -97,7 +97,7 @@
                                 {{-- Hidden Informasi ID --}}
                                 <input type="hidden" name="informasi_id" value="{{ $informasi->id }}">
 
-                                <button type="submit" class="btn btn-primary px-4">
+                                <button type="submit" class="btn btn-purple px-4">
                                     <i class="bi bi-send me-2"></i> Kirim Komentar
                                 </button>
                             </form>
@@ -107,7 +107,7 @@
 
                 {{-- Kolom Komentar Terbaru --}}
                 <div class="col-lg-5">
-                    <div class="border rounded shadow-sm" style="max-height: 362px; overflow-y: auto;">
+                    <div class="border rounded shadow-sm" style="max-height: 537px; overflow-y: auto;">
                         @forelse($komentar->sortByDesc('created_at') as $comment)
                             @php
                                 $colors = [

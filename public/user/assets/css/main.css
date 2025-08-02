@@ -35,9 +35,10 @@
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-    --nav-color: #5f687b;
+    --nav-color: #ffffff;
     /* The default color of the main navmenu links */
-    --nav-hover-color: #5d9af7;
+    --nav-hover-color: #ffffff;
+    --nav-hover-shadow: 0 0 10px #ffffff;
     /* Applied to main navmenu links when they are hovered over or active */
     --nav-mobile-background-color: #ffffff;
     /* Used as the background color for mobile navigation menu */
@@ -280,6 +281,18 @@ h6 {
 .header .btn-getstarted:focus:hover {
     color: var(--contrast-color);
     background: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+.navmenu ul li a:hover {
+    color: var(--nav-hover-color);
+    text-shadow: var(--nav-hover-shadow);
+    transition: 0.3s ease-in-out;
+}
+
+.navmenu ul li a.active {
+    color: var(--nav-hover-color);
+    text-shadow: var(--nav-hover-shadow);
+    transition: 0.3s ease-in-out;
 }
 
 @media (max-width: 1200px) {
@@ -713,7 +726,7 @@ h6 {
     top: calc(50% - 30px);
     left: calc(50% - 30px);
     border: 6px solid #ffffff;
-    border-color: #5d9af7 transparent#5d9af7 transparent;
+    border-color: #ba5df7 transparent#ba5df7 transparent;
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -740,7 +753,7 @@ h6 {
     right: 15px;
     bottom: -15px;
     z-index: 99999;
-    background-color: #2e7bf0;
+    background-color: #7720da;
     width: 44px;
     height: 44px;
     border-radius: 50px;
@@ -754,7 +767,7 @@ h6 {
 }
 
 .scroll-top:hover {
-    background-color: color-mix(in srgb, #2e7bf0, transparent 20%);
+    background-color: color-mix(in srgb, #9135fa, transparent 20%);
     color: var(--contrast-color);
 }
 
@@ -904,26 +917,6 @@ section,
     margin: 5px 0 30px 0;
     font-size: 20px;
     font-weight: 400;
-}
-
-.hero .btn-get-started {
-    color: var(--contrast-color);
-    background: var(--accent-color);
-    font-family: var(--heading-font);
-    font-weight: 400;
-    font-size: 15px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 10px 28px 12px 28px;
-    border-radius: 50px;
-    transition: 0.5s;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
-}
-
-.hero .btn-get-started:hover {
-    color: var(--contrast-color);
-    background: color-mix(in srgb, var(--accent-color), transparent 15%);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
 }
 
 .hero .btn-watch-video {
@@ -1360,27 +1353,6 @@ section,
     z-index: 1;
 }
 
-.testimonials .swiper-wrapper {
-    height: auto;
-}
-
-.testimonials .swiper-pagination {
-    margin-top: 20px;
-    position: relative;
-}
-
-.testimonials .swiper-pagination .swiper-pagination-bullet {
-    width: 12px;
-    height: 12px;
-    background-color: white;
-    opacity: 1;
-    border: 1px solid #5d9af7;
-}
-
-.testimonials .swiper-pagination .swiper-pagination-bullet-active {
-    background-color: #5d9af7;
-}
-
 /*--------------------------------------------------------------
 # Call To Action Section
 --------------------------------------------------------------*/
@@ -1526,93 +1498,6 @@ section,
         padding: 20px;
     }
 }
-
-.contact .info-item {
-    margin-bottom: 40px;
-}
-
-.contact .info-item i {
-    font-size: 20px;
-    color: #1c6ce4;
-    background: #E6F0FF;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
-    transition: all 0.3s ease-in-out;
-    margin-right: 15px;
-}
-
-.contact .info-item h3 {
-    padding: 0;
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.contact .info-item p {
-    padding: 0;
-    margin-bottom: 0;
-    font-size: 14px;
-}
-
-.contact .info-item:hover i {
-    background: #98bffa;
-    color: var(--contrast-color);
-}
-
-.contact .testimoni {
-    background-color: var(--surface-color);
-    height: 77.5%;
-    padding: 30px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width: 575px) {
-    .contact .testimoni {
-        padding: 20px;
-    }
-}
-
-.contact .testimoni input[type=text],
-.contact .testimoni input[type=email],
-.contact .testimoni textarea {
-    font-size: 14px;
-    padding: 10px 15px;
-    box-shadow: none;
-    border-radius: 0;
-    color: var(--default-color);
-    background-color: var(--surface-color);
-    border-color: color-mix(in srgb, var(--default-color), transparent 80%);
-}
-
-.contact .testimoni input[type=text]:focus,
-.contact .testimoni input[type=email]:focus,
-.contact .testimoni textarea:focus {
-    border-color: #4872e4;
-}
-
-.contact .testimoni input[type=text]::placeholder,
-.contact .testimoni input[type=email]::placeholder,
-.contact .testimoni textarea::placeholder {
-    color: color-mix(in srgb, var(--default-color), transparent 70%);
-}
-
-.contact .testimoni button[type=submit] {
-    color: var(--contrast-color);
-    background: var(--accent-color);
-    border: 0;
-    padding: 10px 30px;
-    transition: 0.4s;
-    border-radius: 50px;
-}
-
-.contact .testimoni button[type=submit]:hover {
-    background: color-mix(in srgb, var(--accent-color), transparent 25%);
-}
-
 
 /*--------------------------------------------------------------
 # Portfolio Details Section
@@ -1813,16 +1698,17 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-
 .btn-outline-purple {
-    border: 2px solid #5d9af7;
-    color: #1c6ce4;
+    background-color: #ffffff;
+    /* pink ungu cerah */
+    color: #862fe9;
     background-color: #fff;
     transition: all 0.3s ease;
 }
 
 .btn-outline-purple:hover {
-    background-color: #5d9af7;
+    background-color: #9e57ee;
+    /* ungu fuchsia lebih gelap */
     color: #fff;
 }
 
@@ -1841,74 +1727,6 @@ section,
 .btn-primary:hover {
     background-color: #5d9af7 !important;
     box-shadow: 0 4px 12px #1c6ce4;
-}
-
-#program {
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
-
-#program .section-title {
-    margin-bottom: 30px;
-}
-
-#program .service-item {
-    background: #f4f9ff;
-    border: 2px solid #e0ecff;
-    border-radius: 20px;
-    padding: 60px 20px 20px;
-    /* ekstra padding atas untuk ruang judul */
-    position: relative;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow: hidden;
-}
-
-#program .service-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-}
-
-#program .service-item h4 {
-    background-color: #5d9af7;
-    color: white;
-    padding: 8px 16px;
-    font-size: 15px;
-    border-radius: 999px;
-    display: inline-block;
-    position: absolute;
-    top: 15px;
-    left: 20px;
-    max-width: 80%;
-    text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-#program .service-item p {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #333;
-    line-height: 1.6;
-    flex-grow: 1;
-}
-
-#program .service-item ul {
-    list-style-type: disc;
-    padding-left: 20px;
-    margin: 10px 0 0;
-}
-
-#program .service-item li {
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 6px;
 }
 
 /* Facility Cards with Blue Accents */
@@ -2027,30 +1845,6 @@ section,
     }
 }
 
-.modal-content {
-    border: none;
-    border-radius: 1rem;
-}
-
-.modal-header {
-    border-bottom: 2px solid rgba(0, 51, 204, 0.1);
-    padding: 1.5rem;
-}
-
-.modal-title {
-    color: #0033CC;
-    font-weight: 600;
-}
-
-.modal-body {
-    padding: 1.5rem;
-}
-
-.modal-footer {
-    border-top: none;
-    padding: 1.5rem;
-}
-
 /* Button Styles */
 .btn-outline-primary {
     color: #0033CC;
@@ -2068,42 +1862,8 @@ section,
 }
 
 /* Scrollbar Styles for Modal */
-.modal-dialog-scrollable .modal-body::-webkit-scrollbar {
-    width: 8px;
-}
-
-.modal-dialog-scrollable .modal-body::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-}
-
-.modal-dialog-scrollable .modal-body::-webkit-scrollbar-thumb {
-    background: #0033CC;
-    border-radius: 4px;
-}
-
-.modal-dialog-scrollable .modal-body::-webkit-scrollbar-thumb:hover {
-    background: #002299;
-}
 
 /* informasi bg blur */
-.artikel-bg-blur {
-    background-image: url('/user/assets/img/victory2.png');
-    background-repeat: no-repeat;
-    background-size: 1000px auto;
-    /* Gambar diperkecil */
-    background-position: center 150px;
-    /* Posisi diturunkan 60px dari atas */
-    filter: blur(6px) brightness(0.7);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0.6;
-    pointer-events: none;
-}
 
 /* Article Cards */
 .informasi-item {
@@ -2160,7 +1920,7 @@ section,
 
 /* Information Page Styles */
 .btn-purple {
-    background-color: #1c6ce4;
+    background-color: #862fe9;
     color: white;
     border: none;
     padding: 8px 24px;
@@ -2168,7 +1928,8 @@ section,
 }
 
 .btn-purple:hover {
-    background-color: #1557bf;
+    background-color: #9e57ee;
+    color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(28, 108, 228, 0.15);
 }
@@ -2436,4 +2197,966 @@ section,
 .registration .primay-btn.loading {
     pointer-events: none;
     opacity: 0.8;
+}
+
+.btn-daftar {
+    display: inline-block;
+    background-color: #ffffff;
+    /* pink ungu cerah */
+    color: #862fe9;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-daftar:hover {
+    background-color: #9e57ee;
+    /* ungu fuchsia lebih gelap */
+    color: #fff;
+}
+
+
+.perubahan-pertama {
+    .hero {
+        padding: 115px 0 0 0;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(to left, rgba(145, 80, 202, 0.705), rgb(137, 48, 233)),
+            url('../img/victory/kegiatan.jpg');
+        /* Ganti dengan path gambar kamu */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .hero-main-img {
+        width: 65%;
+        max-width: none;
+    }
+
+    /* Gambar kecil di pojok kanan atas */
+    .hero-corner-img {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: #fff;
+        padding: 6px 6px;
+        border-radius: 5px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+    }
+
+    .hero-corner-img img {
+        width: 150px;
+        height: auto;
+    }
+
+    /* Font elegan dan bersih */
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap');
+
+    .hero-title {
+        font-family: 'Raleway', sans-serif;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+        font-family: 'Raleway', sans-serif;
+        font-size: 1.5rem;
+        color: #f3e8ff;
+        margin-bottom: 1rem;
+    }
+
+    .hero-subtitle .highlighted {
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .hero-description {
+        font-family: 'Raleway', sans-serif;
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #f8f9fa;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Tombol daftar */
+    .btn-daftar {
+        display: inline-block;
+        background-color: #ffffff;
+        /* pink ungu cerah */
+        color: #862fe9;
+        padding: 12px 28px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-daftar:hover {
+        background-color: #9e57ee;
+        /* ungu fuchsia lebih gelap */
+        color: #fff;
+    }
+
+    .stylish-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #675875;
+        /* ungu elegan */
+        /* font-family: 'Playfair Display', serif; */
+        /* atau bisa Bona Nova, sesuai selera */
+        position: relative;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+    }
+
+    .underline-decor {
+        width: 90px;
+        height: 4px;
+        background: linear-gradient(to right, #a03bff);
+        margin: 0 auto;
+        border-radius: 4px;
+        animation: expand 1s ease forwards;
+    }
+
+    @keyframes expand {
+        from {
+            width: 0;
+            opacity: 0;
+        }
+
+        to {
+            width: 60px;
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero {
+            padding: 80px 0 0 0;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to left, rgba(145, 80, 202, 0.705), rgb(137, 48, 233)),
+                url('../img/victory/belajar.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-title {
+            text-align: center;
+            letter-spacing: 1.2px;
+            margin-top: 30px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .hero-description {
+            font-size: 0.95rem;
+            text-align: justify;
+            padding: 0 20px;
+        }
+
+        .btn-daftar {
+            display: block;
+            margin: 0 auto;
+            font-size: 0.95rem;
+            padding: 20px 80px;
+        }
+
+        .hero-main-img {
+            width: 90%;
+            margin: 30px auto 0;
+            display: block;
+        }
+
+        .hero-corner-img {
+            top: 10px;
+            right: 10px;
+            padding: 4px;
+            border-radius: 5px;
+        }
+
+        .hero-corner-img img {
+            width: 100px;
+        }
+
+        .stylish-title {
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        .underline-decor {
+            margin: 0 auto 20px;
+        }
+    }
+
+    .profil.section {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #f3e8ff, #fdfcff);
+        z-index: 1;
+    }
+
+    .background-decor {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* 🎯 Panah di sebelah kanan */
+    .rotating-arrow {
+        width: 400px;
+        height: 400px;
+        background: url('../img/panah2.png') no-repeat center;
+        background-size: contain;
+        position: absolute;
+        top: 10%;
+        right: -100px;
+        /* agar tidak terlalu masuk ke tengah */
+        animation: rotateArrow 12s linear infinite;
+        opacity: 0.2;
+    }
+
+    @keyframes rotateArrow {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* 💜 Bubble ungu di sebelah kiri */
+    .bubble {
+        position: absolute;
+        background-color: #c084fc;
+        /* ungu soft */
+        border-radius: 50%;
+        opacity: 0.15;
+        animation: floatBubble 12s ease-in-out infinite;
+    }
+
+    .bubble-1 {
+        width: 120px;
+        height: 120px;
+        top: 15%;
+        left: -40px;
+        animation-delay: 0s;
+    }
+
+    .bubble-2 {
+        width: 80px;
+        height: 80px;
+        top: 40%;
+        left: 10%;
+        animation-delay: 2s;
+    }
+
+    .bubble-3 {
+        width: 60px;
+        height: 60px;
+        top: 70%;
+        left: -20px;
+        animation-delay: 4s;
+    }
+
+    @keyframes floatBubble {
+
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-25px);
+        }
+    }
+
+    .profil img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .photo-frame {
+        background: white;
+        padding: 10px;
+        border: 2px solid #b756e4;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: inline-block;
+        transform: rotate(-1deg);
+        /* efek sedikit miring */
+    }
+
+    /* Untuk animasi saat hover (opsional) */
+    .photo-frame:hover {
+        transform: rotate(0deg) scale(1.02);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transition: 0.3s ease;
+    }
+
+
+    .victory {
+        color: #8B0000;
+        font-family: 'Bona Nova SC', serif
+    }
+
+    .english {
+        color: #0033CC;
+    }
+
+    #program {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    #program .section-title {
+        margin-bottom: 30px;
+    }
+
+    #program .service-item {
+        background: #faf4fcf3;
+        border: 3px solid #ba94da;
+        border-radius: 20px;
+        padding: 40px 20px 20px;
+        /* ekstra padding atas untuk ruang judul */
+        position: relative;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow: hidden;
+    }
+
+    #program .service-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    #program .service-item h4 {
+        background-color: #b036f7;
+        color: white;
+        padding: 8px 16px;
+        font-size: 15px;
+        border-radius: 999px;
+        display: inline-block;
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        max-width: 80%;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #program .service-item p {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #333;
+        line-height: 1.6;
+        flex-grow: 1;
+    }
+
+    #program .service-item ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        margin: 10px 0 0;
+    }
+
+    #program .service-item li {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 6px;
+    }
+
+    .fasilitas {
+        /* background: linear-gradient(135deg, #E6F0FF 0%, #ffffff 100%); */
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #f3e8ff, #fdfcff);
+        z-index: 1;
+    }
+
+    /* Facility Cards with Blue Accents */
+    .facility-card {
+        border: 2px solid rgba(187, 0, 204, 0.1);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .facility-card:hover {
+        border-color: #7b1fb1;
+    }
+
+    .facility-img-wrapper {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+    }
+
+    .facility-img-wrapper::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(0, 51, 204, 0) 0%, rgba(0, 51, 204, 0.05) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .facility-card:hover .facility-img-wrapper::after {
+        opacity: 1;
+    }
+
+    .facility-img-wrapper img {
+        transition: transform 0.5s ease;
+    }
+
+    .facility-card:hover .facility-img-wrapper img {
+        transform: scale(1.08);
+    }
+
+    .facility-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .facility-title {
+        position: relative;
+        padding-bottom: 8px;
+    }
+
+    .facility-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: #0033CC;
+        transition: width 0.3s ease;
+    }
+
+    .facility-card:hover .facility-title::after {
+        width: 40px;
+    }
+
+    .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 51, 204, 0.1) !important;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .facility-card {
+            margin-bottom: 1rem;
+        }
+
+        .facility-title {
+            font-size: 0.85rem;
+        }
+    }
+
+    .modal-content {
+        border: none;
+        border-radius: 1rem;
+    }
+
+    .modal-header {
+        border-bottom: 2px solid rgba(0, 51, 204, 0.1);
+        padding: 1.5rem;
+    }
+
+    .modal-title {
+        color: #675875;
+        font-weight: 600;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .modal-footer {
+        border-top: none;
+        padding: 1.5rem;
+    }
+
+    .modal-dialog-scrollable .modal-body::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .modal-dialog-scrollable .modal-body::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+
+    .modal-dialog-scrollable .modal-body::-webkit-scrollbar-thumb {
+        background: #7b1fb1;
+        border-radius: 4px;
+    }
+
+    .modal-dialog-scrollable .modal-body::-webkit-scrollbar-thumb:hover {
+        background: #461264;
+    }
+
+    .judul {
+        width: 80px;
+        height: 4px;
+        background: #638afd;
+    }
+
+    .informasi {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #f3e8ff, #fdfcff);
+        z-index: 1;
+    }
+
+    .artikel-bg-blur {
+        background-image: url('/user/assets/img/logo_evs.png');
+        background-repeat: no-repeat;
+        background-size: 360px auto;
+        /* Gambar diperkecil */
+        background-position: center 110px;
+        /* Posisi diturunkan 60px dari atas */
+        filter: blur(6px) brightness(0.7);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    .testimonials {
+        background: #e6cfff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .testimonials p {
+        color: #0e1f5271;
+    }
+
+    .star-decor {
+        position: absolute;
+        width: 90px;
+        height: 90px;
+        background-color: #2c056b;
+        clip-path: polygon(50% 0%,
+                61% 35%,
+                98% 35%,
+                68% 57%,
+                79% 91%,
+                50% 70%,
+                21% 91%,
+                32% 57%,
+                2% 35%,
+                39% 35%);
+        opacity: 0.12;
+        z-index: 0;
+    }
+
+    .star-top-left {
+        top: -40px;
+        left: -30px;
+        width: 250px;
+        height: 250px;
+        transform: rotate(15deg);
+    }
+
+    .star-top-right {
+        top: 10px;
+        right: -50px;
+        width: 150px;
+        height: 150px;
+        transform: rotate(-10deg);
+    }
+
+    .star-bottom-left {
+        bottom: -30px;
+        left: -20px;
+        width: 400px;
+        height: 400px;
+        transform: rotate(25deg);
+    }
+
+    .star-bottom-right {
+        bottom: -40px;
+        right: -30px;
+        width: 200px;
+        height: 200px;
+        transform: rotate(-10deg);
+    }
+
+    .star-middle-left {
+        top: 50%;
+        left: -45px;
+        transform: translateY(-50%) rotate(5deg);
+        width: 100px;
+        height: 100px;
+    }
+
+    .star-middle-right {
+        top: 45%;
+        right: -40px;
+        transform: translateY(-50%) rotate(-5deg);
+        width: 280px;
+        height: 280px;
+    }
+
+    #testimonials .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .testimonials .swiper-wrapper {
+        height: auto;
+    }
+
+    .testimonials .swiper-pagination {
+        margin-top: 20px;
+        position: relative;
+    }
+
+    .testimonials .swiper-pagination .swiper-pagination-bullet {
+        width: 12px;
+        height: 12px;
+        background-color: white;
+        opacity: 1;
+        border: 1px solid #9730ec;
+    }
+
+    .testimonials .swiper-pagination .swiper-pagination-bullet-active {
+        background-color: #9730ec;
+    }
+
+    .contact {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #f3e8ff, #fdfcff);
+        z-index: 1;
+    }
+
+    .contact .info-item {
+        margin-bottom: 40px;
+    }
+
+    .contact .info-item i {
+        font-size: 20px;
+        color: #731ce4;
+        background: #f2e6ff;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        transition: all 0.3s ease-in-out;
+        margin-right: 15px;
+    }
+
+    .contact .info-item h3 {
+        padding: 0;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .contact .info-item p {
+        padding: 0;
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+
+    .contact .info-item:hover i {
+        background: #a77afc;
+        color: var(--contrast-color);
+    }
+
+    .contact .testimoni {
+        background-color: var(--surface-color);
+        height: 77.5%;
+        padding: 30px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 575px) {
+        .contact .testimoni {
+            padding: 20px;
+        }
+    }
+
+    .contact .testimoni input[type=text],
+    .contact .testimoni input[type=email],
+    .contact .testimoni textarea {
+        font-size: 14px;
+        padding: 10px 15px;
+        box-shadow: none;
+        border-radius: 0;
+        color: var(--default-color);
+        background-color: var(--surface-color);
+        border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+    }
+
+    .contact .testimoni input[type=text]:focus,
+    .contact .testimoni input[type=email]:focus,
+    .contact .testimoni textarea:focus {
+        border-color: #7f48e4;
+    }
+
+    .contact .testimoni input[type=text]::placeholder,
+    .contact .testimoni input[type=email]::placeholder,
+    .contact .testimoni textarea::placeholder {
+        color: color-mix(in srgb, var(--default-color), transparent 70%);
+    }
+
+    .contact .testimoni button[type=submit] {
+        color: var(--contrast-color);
+        background: var(--accent-color);
+        border: 0;
+        padding: 10px 30px;
+        transition: 0.4s;
+        border-radius: 50px;
+    }
+
+    .contact .testimoni button[type=submit]:hover {
+        background: color-mix(in srgb, var(--accent-color), transparent 25%);
+    }
+
+    /* Layer 3 - Paling bawah */
+    #contact::before,
+    #contact::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 200px;
+        height: 100%;
+        background-color: #280346;
+        z-index: 0;
+        opacity: 0.3;
+    }
+
+    #contact::before {
+        left: -75px;
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 100px;
+    }
+
+    #contact::after {
+        right: -75px;
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
+    }
+
+    /* Layer 2 */
+    .curve-layer.curve-layer-1 {
+        position: absolute;
+        top: 0;
+        width: 300px;
+        height: 100%;
+        background-color: #a774d2;
+        z-index: 1;
+        opacity: 0.4;
+        border-radius: 0 100px 100px 0;
+        left: -60px;
+    }
+
+    .curve-layer.curve-layer-2 {
+        position: absolute;
+        top: 0;
+        width: 300px;
+        height: 100%;
+        background-color: #a774d2;
+        z-index: 1;
+        opacity: 0.4;
+        border-radius: 100px 0 0 100px;
+        right: -60px;
+    }
+
+    .curve-layer.curve-layer-3 {
+        position: absolute;
+        top: 0;
+        width: 400px;
+        height: 100%;
+        background-color: #b890d8;
+        z-index: 1;
+        opacity: 0.4;
+        border-radius: 0 100px 100px 0;
+        left: -60px;
+    }
+
+    .curve-layer.curve-layer-4 {
+        position: absolute;
+        top: 0;
+        width: 400px;
+        height: 100%;
+        background-color: #b890d8;
+        z-index: 1;
+        opacity: 0.4;
+        border-radius: 100px 0 0 100px;
+        right: -60px;
+    }
+
+    .curve-layer.curve-layer-5 {
+        position: absolute;
+        top: 0;
+        width: 500px;
+        height: 100%;
+        background-color: #ba99d4;
+        z-index: 1;
+        opacity: 0.4;
+        border-radius: 0 100px 100px 0;
+        left: -60px;
+    }
+
+    .curve-layer.curve-layer-6 {
+        position: absolute;
+        top: 0;
+        width: 500px;
+        height: 100%;
+        background-color: #ba99d4;
+        z-index: 1;
+        opacity: 0.4;
+        border-radius: 100px 0 0 100px;
+        right: -60px;
+    }
+
+    .curve-layer.curve-layer-7 {
+        position: absolute;
+        top: 0;
+        width: 600px;
+        height: 100%;
+        background-color: #c2add3;
+        z-index: 1;
+        opacity: 0.4;
+        border-radius: 0 100px 100px 0;
+        left: -60px;
+    }
+
+    .curve-layer.curve-layer-8 {
+        position: absolute;
+        top: 0;
+        width: 600px;
+        height: 100%;
+        background-color: #c2add3;
+        z-index: 1;
+        opacity: 0.4;
+        border-radius: 100px 0 0 100px;
+        right: -60px;
+    }
+
+    /* Konten tetap di atas */
+    #contact .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* navbar */
+    .navmenu a {
+        color: #fff;
+        text-decoration: none;
+        position: relative;
+        padding-bottom: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .navmenu a:hover,
+    .navmenu .active {
+        color: #ffffff;
+    }
+
+    .navmenu a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 0;
+        background-color: #fff;
+        transition: 0.3s ease;
+    }
+
+    .navmenu a:hover::after,
+    .navmenu .active::after {
+        width: 100%;
+    }
+
+    header {
+        box-shadow: 0 4px 10px rgba(149, 76, 212, 0.2);
+    }
+
+    .navmenu .bi-list {
+        color: white;
+        cursor: pointer;
+    }
+
+    @media (max-width: 991px) {
+        .navmenu ul {
+            flex-direction: column;
+            background: #954cd4;
+            padding: 1rem;
+            position: absolute;
+            top: 70px;
+            right: 10px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .navmenu.active ul {
+            display: flex;
+        }
+    }
+
+    .bg-bubble span {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(160, 59, 255, 0.1);
+        animation: float 12s ease-in-out infinite;
+        z-index: 0;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0) scale(1);
+            opacity: 0.5;
+        }
+
+        50% {
+            transform: translateY(-20px) scale(1.2);
+            opacity: 0.8;
+        }
+
+        100% {
+            transform: translateY(0) scale(1);
+            opacity: 0.5;
+        }
+    }
 }
