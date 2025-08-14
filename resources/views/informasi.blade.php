@@ -2,8 +2,8 @@
 
 @section('title', 'Informasi - Victory English School')
 
-@section('content')<section class="py-5 perubahan-pertama"
-        style="background: linear-gradient(135deg, #f3e8ff, #fdfcff);">
+@section('content')
+    <section class="py-5 perubahan-pertama" style="background: linear-gradient(135deg, #f3e8ff, #fdfcff);">
         <div class="bg-bubble">
             <span style="width: 150px; height: 150px; top: 20%; left: 5%;"></span>
             <span style="width: 150px; height: 150px; top: 60%; left: 10%;"></span>
@@ -22,7 +22,7 @@
         <div class="container">
             <!-- Header -->
             <div class="text-center mb-5" data-aos="fade-up">
-                <a href="{{ url('/') }}" class="btn-daftar btn-sm rounded-pill" style="border: 2px solid #a03bff;">
+                <a href="{{ url('/') }}" class="btn-daftar btn-sm rounded-pill tombol-beranda" style="border: 2px solid #862fe9;">
                     <i class="bi bi-house-door-fill"></i> Beranda
                 </a>
                 <h1 class="fw-bold mb-2" style="color: #675875;">Informasi Terkini</h1>
@@ -54,7 +54,7 @@
                                     <img src="{{ asset('/images/informasi/' . $data->gambar) }}" class="card-img-top"
                                         alt="{{ $data->nama_informasi }}" style="height: 180px; object-fit: cover;">
                                     <span class="position-absolute top-0 end-0 m-2 badge text-white small"
-                                        style="background-color: #b036f7">
+                                        style="background-color: #862fe9">
                                         {{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('d F Y') }}
                                     </span>
                                 </div>

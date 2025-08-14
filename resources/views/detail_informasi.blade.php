@@ -36,7 +36,7 @@
 
                         {{-- Tanggal di Atas Gambar (Kiri Atas) --}}
                         <div
-                            class="position-absolute top-0 start-0 px-3 py-1 mt-2 ms-2 rounded-pill bg-opacity-75 text-white small shadow-sm" style="background-color: #b036f7">
+                            class="position-absolute top-0 start-0 px-3 py-1 mt-2 ms-2 rounded-pill bg-opacity-75 text-white small shadow-sm" style="background-color: #862fe9">
                             <i class="bi bi-calendar-event me-1"></i>
                             {{ \Carbon\Carbon::parse($informasi->created_at)->locale('id')->translatedFormat('d F Y') }}
                         </div>
