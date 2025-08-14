@@ -1,7 +1,6 @@
 <header id="header" class="sticky-top shadow perubahan-pertama"
     style="background: linear-gradient(to left, #9a43e6, #fbf7ff); z-index: 999;">
     <div class="container-fluid container-xl d-flex justify-content-between align-items-center py-3">
-
         <!-- Logo -->
         <a href="{{ url('/') }}" class="header-logo d-flex align-items-center">
             <img src="{{ asset('user/assets/img/logo mini.png') }}" height="50" width="150" alt="logo-img"
@@ -25,3 +24,22 @@
         </nav>
     </div>
 </header>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const toggleBtn = document.querySelector(".mobile-nav-toggle");
+        const navMenu = document.querySelector(".navmenu");
+        const navLinks = document.querySelectorAll(".navmenu a");
+
+        // Toggle menu saat hamburger diklik
+        toggleBtn.addEventListener("click", function() {
+            navMenu.classList.toggle("menu-open");
+        });
+
+        // Tutup menu saat link diklik
+        navLinks.forEach(link => {
+            link.addEventListener("click", function() {
+                navMenu.classList.remove("menu-open");
+            });
+        });
+    });
+</script>

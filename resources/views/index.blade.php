@@ -184,7 +184,7 @@
         <!-- Modal -->
         <div class="modal fade" id="fasilitasModal" tabindex="-1" aria-labelledby="fasilitasModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable custom-modal">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="fasilitasModalLabel">Semua Fasilitas</h5>
@@ -197,8 +197,7 @@
                                     <div class="facility-card h-100 rounded-4 shadow-sm" style="background: white;">
                                         <div class="facility-img-wrapper p-2">
                                             <img src="{{ asset('/images/fasilitas/' . $data->cover) }}"
-                                                alt="{{ $data->nama_fasilitas }}" class="img-fluid rounded-3"
-                                                style="height: 160px; width: 100%; object-fit: cover;">
+                                                alt="{{ $data->nama_fasilitas }}" class="img-fluid rounded-3 img-modal">
                                         </div>
                                         <div class="facility-content px-2 pb-3 text-center">
                                             <h5 class="fw-semibold mb-0" style="font-size: 1rem; color: #1a1a1a;">
@@ -211,7 +210,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn-daftar" data-bs-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn-daftar2" data-bs-dismiss="modal">Tutup</button>
                     </div>
                 </div>
             </div>
@@ -239,21 +238,20 @@
                                         class="card-img-top img-fluid responsive-img" alt="Article Image">
                                     <a href="{{ route('informasi_detail', $data->slug) }}" class="stretched-link"></a>
                                     <div class="position-absolute top-0 end-0 m-2 badge text-white small"
-                                        style="background-color: #b036f7">
+                                        style="background-color: #862fe9">
                                         {{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('d F Y') }}
                                     </div>
                                 </div>
                                 <div class="card-body d-flex flex-column p-3 p-md-3 p-sm-2">
                                     <h5 class="card-title text-dark fs-6 fs-sm-6 fs-md-5">
                                         <b>
-                                            {{ Str::limit($data->nama_informasi, 65) }}
+                                            {{ Str::limit($data->nama_informasi, 45) }}
                                         </b>
                                     </h5>
                                     <p class="card-text text-muted small">
                                         {!! Str::limit(strip_tags($data->deskripsi), 58) !!}
                                     </p>
-                                    <a href="{{ route('informasi_detail', $data->slug) }}" class="btn-daftar mt-auto"
-                                        style="text-align: center; border: 2px solid #b036f7">
+                                    <a href="{{ route('informasi_detail', $data->slug) }}" class="btn-daftar2 mt-auto">
                                         Detail
                                     </a>
                                 </div>
@@ -264,7 +262,7 @@
 
                 @if ($informasi->count() >= 4)
                     <div class="text-center mt-4">
-                        <a href="{{ route('informasi') }}" class="btn-daftar" style="border: 2px solid #b036f7">
+                        <a href="{{ route('informasi') }}" class="btn-daftar" style="border: 1px solid #862fe9">
                             Lihat Semua Informasi <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -294,33 +292,33 @@
             <div class="container" data-aos="fade-up" data-aos-delay="100">
                 <div class="swiper init-swiper">
                     <script type="application/json" class="swiper-config">
-                {
-                    "loop": true,
-                    "speed": 600,
-                    "autoplay": {
-                        "delay": 5000
-                    },
-                    "pagination": {
-                        "el": ".swiper-pagination",
-                        "type": "bullets",
-                        "clickable": true
-                    },
-                    "breakpoints": {
-                        "320": {
-                            "slidesPerView": 1,
-                            "spaceBetween": 20
-                        },
-                        "768": {
-                            "slidesPerView": 2,
-                            "spaceBetween": 20
-                        },
-                        "1200": {
-                            "slidesPerView": 3,
-                            "spaceBetween": 20
+                        {
+                            "loop": true,
+                            "speed": 600,
+                            "autoplay": {
+                                "delay": 5000
+                            },
+                            "pagination": {
+                                "el": ".swiper-pagination",
+                                "type": "bullets",
+                                "clickable": true
+                            },
+                            "breakpoints": {
+                                "320": {
+                                    "slidesPerView": 1,
+                                    "spaceBetween": 20
+                                },
+                                "768": {
+                                    "slidesPerView": 2,
+                                    "spaceBetween": 20
+                                },
+                                "1200": {
+                                    "slidesPerView": 3,
+                                    "spaceBetween": 20
+                                }
+                            }
                         }
-                    }
-                }
-            </script>
+                    </script>
                     <div class="swiper-wrapper">
                         @foreach ($testimoni as $item)
                             <div class="swiper-slide">
@@ -456,7 +454,7 @@
                                     <div class="loading">Loading</div>
                                     <div class="error-message"></div>
                                     <div class="sent-message">Testimoni Anda berhasil dikirim. Terima kasih!</div>
-                                    <button type="submit" style="background-color: #b036f7">Kirim Testimoni</button>
+                                    <button type="submit" style="background-color: #862fe9">Kirim Testimoni</button>
                                 </div>
                             </div>
                         </form>
