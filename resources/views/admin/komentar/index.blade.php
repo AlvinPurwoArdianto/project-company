@@ -11,7 +11,7 @@
     <div class="card shadow-sm">
         <div class="card-body">
             <div class="table-responsive">
-                <table id="komentarTable" class="table table-striped table-hover align-middle">
+                <table id="komentarTable" class="table table-bordered table-striped w-100">
                     <thead class="table-light">
                         <tr>
                             <th>No</th>

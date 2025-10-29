@@ -35,7 +35,7 @@
     <div class="card shadow-sm">
         <div class="card-body">
             <div class="table-responsive">
-                <table id="fasilitasTable" class="table table-hover table-striped align-middle">
+                <table id="fasilitasTable" class="table table-bordered table-striped w-100">
                     <thead class="table-light">
                         <tr>
                             <th>No</th>

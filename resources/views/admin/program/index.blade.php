@@ -14,7 +14,7 @@
 
     <div class="card shadow-sm">
         <div class="card-body">
-            <table id="programTable" class="table table-hover table-striped align-middle">
+            <table id="programTable" class="table table-bordered table-striped w-100">
                 <thead class="table-light">
                     <tr>
                         <th>No</th>
