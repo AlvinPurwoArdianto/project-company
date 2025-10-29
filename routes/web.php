@@ -57,3 +57,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         })->name('laporan.pengunjung.excel');
     });
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
