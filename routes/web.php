@@ -16,24 +16,24 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
 
-Route::get('/', [FrontController::class, 'index'])
-->middleware(LogVisitor::class);
-Route::get('/informasi/{slug}', [FrontController::class, 'detail_informasi'])->name('informasi_detail');
-Route::get('/informasi_selengkapnya', [InformasiController::class, 'informasi'])->name('informasi');
-Route::get('/daftar', [FrontController::class, 'pendaftaran'])->name('daftar');
 
 Auth::routes(
     ['register' => false],
 );
 
+// User ROUTES
+Route::get('/', [FrontController::class, 'index'])->middleware(LogVisitor::class);
+Route::get('/informasi/{slug}', [FrontController::class, 'detail_informasi'])->name('informasi_detail');
+Route::get('/informasi_selengkapnya', [InformasiController::class, 'informasi'])->name('informasi');
+Route::post('/informasi/{id}', [FrontController::class, 'store_komentar'])->name('front.store_komentar');
+
+Route::get('/daftar', [FrontController::class, 'pendaftaran'])->name('daftar');
 Route::get('/pendaftaran', [FrontController::class, 'form'])->name('front.form');
 Route::post('/pendaftaran', [FrontController::class, 'store'])->name('front.store');
-Route::post('/informasi/{id}', [FrontController::class, 'store_komentar'])->name('front.store_komentar');
 Route::post('/', [FrontController::class, 'store_testimoni'])->name('front.store_testimoni');
 
-// Route::get('/pendaftaran', [App\Http\Controllers\HomeController::class, 'daftar'])->name('pendaftaran');
-// Route::post('/', [FrontController::class, 'store'])->name('pendaftaran.store');
 
+// Admin ROUTES
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

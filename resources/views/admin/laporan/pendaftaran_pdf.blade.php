@@ -85,11 +85,14 @@
 <body>
     <table class="header-table">
         <tr>
-            <td style="width:100px;">
-                <img src="{{ public_path('user2/assets/img/victory2.png') }}" class="logo-img" alt="Logo">
+            <td style="width: 15%; text-align: left;">
+                <img src="{{ public_path('user/assets/img/victory2.png') }}" class="logo-img" alt="Logo">
             </td>
+            <td style="width: 70%; text-align: center;">
+                <div class="report-title">Laporan Data Pendaftaran</div>
+            </td>
+            <td style="width: 15%;"></td>
         </tr>
-        <span class="report-title mb-3">Laporan Pendaftaran</span>
     </table>
 
     <table class="data-table">
@@ -118,7 +121,7 @@
     </table>
 
     <div class="footer-info">
-        <span class="print-date" id="printDate">Dicetak pada: 13 Juni 2025</span>
+        <span class="print-date">Dicetak pada: {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</span>
     </div>
 </body>
 </html>

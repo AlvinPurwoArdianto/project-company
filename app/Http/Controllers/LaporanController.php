@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
@@ -22,20 +23,32 @@ class LaporanController extends Controller
             'pendaftaran'   => $pendaftaran,
             'tanggal_cetak' => Carbon::now()->translatedFormat('d F Y'),
             'periode'       => $request->start_date && $request->end_date ?
-            'Periode ' . Carbon::parse($request->start_date)->translatedFormat('d F Y') .
-            ' - ' . Carbon::parse($request->end_date)->translatedFormat('d F Y') :
-            'Semua Periode',
+                'Periode ' . Carbon::parse($request->start_date)->translatedFormat('d F Y') .
+                ' - ' . Carbon::parse($request->end_date)->translatedFormat('d F Y') :
+                'Semua Periode',
         ];
 
         $pdf = PDF::loadView('admin.laporan.pendaftaran_pdf', $data);
         $pdf->setPaper('A4', 'potrait');
 
-        return $pdf->download('laporan_pendaftaran_' . Carbon::now()->format('d-m-Y') . '.pdf');
+        return $pdf->download('Laporan_Pendaftaran_' . Carbon::now()->format('d-m-Y') . '.pdf');
     }
 
-    public function visitor()
+    public function visitor(Request $request)
     {
-        $visitor = Visitor::orderBy('created_at', 'desc')->get();
+
+        $query = Visitor::query(); // Ganti dengan model Anda
+
+        if ($request->filled('start_date')) {
+            $query->whereDate('visited_at', '>=', $request->start_date);
+        }
+
+        if ($request->filled('end_date')) {
+            $query->whereDate('visited_at', '<=', $request->end_date);
+        }
+
+        $visitor = $query->orderBy('visited_at', 'desc')->paginate(20); // atau get() jika tidak pakai pagination
+
         return view('admin.laporan.pengunjung', compact('visitor'));
     }
 
@@ -46,6 +59,7 @@ class LaporanController extends Controller
         $pdf = Pdf::loadView('admin.laporan.pengunjung_pdf', compact('visitor'))
             ->setPaper('A4', 'portrait');
 
-        return $pdf->download('data_pengunjung_'. Carbon::now()->format('d F Y') . '.pdf');
+        return $pdf->download('Laporan_Pengunjung_' . Carbon::now()->format('d-m-Y') . '.pdf');
     }
+    
 }

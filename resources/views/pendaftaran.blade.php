@@ -113,27 +113,6 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="col-md-6">
-                                    <label for="no_rekening" class="form-label">Nomor Rekening</label>
-                                    <input type="text" name="no_rekening" id="no_rekening" class="form-control"
-                                        placeholder="Masukkan nomor rekening">
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="bank" class="form-label">Bank</label>
-                                    <select name="bank" id="bank" class="form-select">
-                                        <option value="" selected disabled>Pilih bank</option>
-                                        <option value="BCA">BCA</option>
-                                        <option value="BNI">BNI</option>
-                                        <option value="BRI">BRI</option>
-                                        <option value="Mandiri">Mandiri</option>
-                                        <option value="BSI">BSI</option>
-                                        <option value="CIMB">CIMB</option>
-                                        <option value="Permata">Permata</option>
-                                        <option value="BTN">BTN</option>
-                                    </select>
-                                </div> --}}
-
                                 <div class="col-md-12">
                                     <input type="hidden" name="source" value="user">
                                 </div>
