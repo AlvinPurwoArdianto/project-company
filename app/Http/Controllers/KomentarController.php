@@ -16,29 +16,6 @@ class KomentarController extends Controller
         return view('admin.komentar.index', compact('komentar', 'informasi'));
     }
 
-    // public function edit($id)
-    // {
-    //     $komentar = Komentar::findOrFail($id);
-    //     $informasi = Informasi::all();
-
-    //     return view('admin.komentar.edit', compact('komentar', 'informasi'));
-    // }
-
-    // public function update(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'nama' => 'required',
-    //         'email' => 'required|email',
-    //         'komentar' => 'required',
-    //         'informasi_id' => 'required|exists:informasis,id',
-    //     ]);
-
-    //     $komentar = Komentar::findOrFail($id);
-    //     $komentar->update($request->all());
-
-    //     toast('Komentar Berhasil Diupdate!', 'success')->position('top-end')->autoClose(1000);
-    //     return redirect()->route('komentar.index');
-    // }
     public function destroy($id)
     {
         $komentar = Komentar::findOrFail($id);

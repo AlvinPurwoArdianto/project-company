@@ -15,6 +15,7 @@
             width: 100%;
             border-bottom: 2px solid #000000;
             margin-bottom: 18px;
+            table-layout: fixed; /* Penting agar lebar kolom konsisten */
         }
 
         .header-table td {
@@ -24,6 +25,7 @@
 
         .logo-img {
             width: 100px;
+            display: block;
         }
 
         .report-title {
@@ -32,9 +34,7 @@
             color: #000000;
             text-align: center;
             letter-spacing: 1px;
-            display: block;
-            width: 100%;
-            margin-top: -60px;
+            margin: 0;
         }
 
         .data-table {
@@ -84,11 +84,14 @@
 <body>
     <table class="header-table">
         <tr>
-            <td style="width:100px;">
-                <img src="{{ public_path('user2/assets/img/victory2.png') }}" class="logo-img" alt="Logo">
+            <td style="width: 15%; text-align: left;">
+                <img src="{{ public_path('user/assets/img/victory2.png') }}" class="logo-img" alt="Logo">
             </td>
+            <td style="width: 70%; text-align: center;">
+                <div class="report-title">Laporan Data Pengunjung</div>
+            </td>
+            <td style="width: 15%;"></td>
         </tr>
-        <span class="report-title mb-3">Laporan Data Pengunjung</span>
     </table>
 
     <table class="data-table">
@@ -108,7 +111,7 @@
                 <td>{{ $data->ip_address }}</td>
                 <td>{{ $data->user_agent }}</td>
                 <td>{{ $data->url }}</td>
-                <td>{{ $data->visited_at }}</td>
+                <td>{{ $data->visited_at ? \Carbon\Carbon::parse($data->visited_at)->translatedFormat('d F Y H:i') : '-' }}</td>
             </tr>
             @endforeach
         </tbody>

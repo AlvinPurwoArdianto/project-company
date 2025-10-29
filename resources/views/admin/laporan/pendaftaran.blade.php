@@ -149,22 +149,6 @@
                                             </tr>
                                         </table>
                                     </div>
-
-                                    {{-- Informasi Bank --}}
-                                    {{-- <div class="bg-light p-3 border rounded">
-                                        <h6 class="text-primary fw-bold mb-3">
-                                            <i class="bx bx-credit-card"></i> Informasi Bank
-                                        </h6>
-                                        <hr>
-                                        <table class="table table-sm table-borderless align-middle mb-0">
-                                            <tr>
-                                                <td class="fw-semibold w-40">Bank</td><td class="text-center w-1">:</td><td>{{ $data->bank }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fw-semibold">No. Rekening</td><td class="text-center">:</td><td>{{ $data->no_rekening }}</td>
-                                            </tr>
-                                        </table>
-                                    </div> --}}
                                 </div>
 
                                 @if($data->keterangan)

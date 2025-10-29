@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Events\NewRegistrant;
 use App\Models\Fasilitas;
 use App\Models\Informasi;
 use App\Models\Komentar;
@@ -9,6 +10,7 @@ use App\Models\Program;
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class FrontController extends Controller
 {
@@ -22,14 +24,11 @@ class FrontController extends Controller
         return view('index', compact('informasi', 'fasilitas', 'testimoni', 'program'));
     }
 
-    // app/Http/Controllers/YourControllerName.php (misalnya InformasiController.php)
-
     public function detail_informasi($slug)
     {
         $informasi = Informasi::where('slug', $slug)->firstOrFail();
         $komentar  = Komentar::where('informasi_id', $informasi->id)->get();
 
-        // --- LOGIKA UNTUK MENYIMPAN REFERER ---
         $previousUrl = url()->previous();
 
         if ($previousUrl !== url()->current() && ! str_contains($previousUrl, route('komentar.store', [], false))) {
@@ -39,7 +38,6 @@ class FrontController extends Controller
                 session(['last_visited_from_detail' => url('index')]); // Ganti ke route beranda jika perlu
             }
         }
-        // --- AKHIR LOGIKA PENYIMPANAN REFERER ---
 
         return view('detail_informasi', compact('informasi', 'komentar'));
     }
@@ -62,11 +60,6 @@ class FrontController extends Controller
             'email'               => 'required',
             'no_telepon'          => 'required|min:10',
             'tanggal_pendaftaran' => 'required',
-            // 'nama_orang_tua'       => 'required',
-            // 'no_telepon_orang_tua' => 'min:10',
-            // 'alamat_orang_tua'     => 'required',
-            // 'no_rekening'         => 'required',
-            // 'bank'                => 'required|in:BCA,BNI,BRI,Mandiri,BSI,CIMB,Permata,BTN',
         ]);
 
         $pendaftaran = new Pendaftaran();
@@ -82,14 +75,32 @@ class FrontController extends Controller
         $pendaftaran->nama_orang_tua       = $request->nama_orang_tua;
         $pendaftaran->no_telepon_orang_tua = $request->no_telepon_orang_tua;
         $pendaftaran->alamat_orang_tua     = $request->alamat_orang_tua;
-        // $pendaftaran->no_rekening          = $request->no_rekening;
-        // $pendaftaran->bank                 = $request->bank;
 
         $pendaftaran->save();
-        // Alert::success('Success', 'Data Berhasil Ditambahkan')->autoClose(1000);
+
+        $this->sendWhatsappNotif($pendaftaran);
+
         return redirect('/')->with('success', 'Pendaftaran berhasil! Silakan cek whatsapp untuk informasi selanjutnya.');
     }
-    // penutup pendaftaran
+
+    private function sendWhatsappNotif($pendaftaran)
+    {
+        $token = env('FONNTE_TOKEN'); // ambil token dari .env
+
+        $pesan = "📢 *Pendaftaran Baru!*\n\n".
+                 "Nama: {$pendaftaran->nama}\n".
+                 "Email: {$pendaftaran->email}\n".
+                 "No HP: {$pendaftaran->no_hp}\n".
+                 "Waktu: ".now()->format('d-m-Y ')."\n\n".
+                 "Segera tindak lanjuti.";
+
+        Http::withHeaders([
+            'Authorization' => $token
+        ])->post('https://api.fonnte.com/send', [
+            'target' => '6288222334252', // nomor tujuan (misal admin)
+            'message' => $pesan,
+        ]);
+    }
 
     // komentar
     public function komentar()
@@ -111,15 +122,11 @@ class FrontController extends Controller
 
         Komentar::create($request->all());
 
-        // Ambil slug dari informasi
         $informasi = Informasi::findOrFail($request->informasi_id);
 
-        // Redirect ke halaman detail berdasarkan slug
         return redirect()->route('informasi_detail', ['slug' => $informasi->slug]);
     }
-    // penutup komentar
 
-    // testimoni
     public function store_testimoni(Request $request)
     {
         $request->validate([
@@ -131,7 +138,6 @@ class FrontController extends Controller
         Testimoni::create($request->all());
         return redirect('/')->with('success', 'Terima Kasih telah memberikan testimoni anda!');
     }
-    // penutup testimoni
 
     public function form()
     {
