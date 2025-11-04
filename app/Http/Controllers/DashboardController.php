@@ -15,6 +15,17 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
 
+    public function checkNewRegistrations()
+    {
+        $readCount = Pendaftaran::where('is_read', 'read')->count();
+        $unreadCount = Pendaftaran::where('is_read', 'unread')->count();
+        
+        return response()->json([
+            'readCount' => $readCount,
+            'unreadCount' => $unreadCount
+        ]);
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -25,7 +36,10 @@ class DashboardController extends Controller
         $program     = Program::count();
         $informasi     = Informasi::count();
         $fasilitas   = Fasilitas::count();
-        $pendaftaran = Pendaftaran::count();
+        // Count read entries
+        $pendaftaran = Pendaftaran::where('is_read', 'read')->count();
+        // Count unread entries specifically set to 'unread'
+        $unreadCount = Pendaftaran::where('is_read', 'unread')->count();
 
         // Get registration data for the last 7 days
         $chart_data  = [];
@@ -44,6 +58,7 @@ class DashboardController extends Controller
             'informasi',
             'fasilitas',
             'pendaftaran',
+            'unreadCount',
             'chart_data',
             'chart_dates'
         ));

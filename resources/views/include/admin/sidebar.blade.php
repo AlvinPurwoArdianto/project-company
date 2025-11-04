@@ -70,6 +70,9 @@
             <a href="{{ route('laporan.pendaftaran') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-file"></i>
                 <div data-i18n="Reports">Laporan Pendaftaran</div>
+                @if (isset($countPendaftaran) && $countPendaftaran->count() > 0)
+                    <span class="badge bg-danger">{{ $countPendaftaran->count() }}</span>
+                @endif
             </a>
         </li>
 
@@ -82,6 +85,7 @@
         </li>
     </ul>
 </aside>
+
 
 @push('style')
 <style>

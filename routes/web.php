@@ -12,6 +12,7 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Middleware\LogVisitor;
+use App\Models\Pendaftaran;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
@@ -36,6 +37,10 @@ Route::post('/', [FrontController::class, 'store_testimoni'])->name('front.store
 // Admin ROUTES
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/check-registrations', [DashboardController::class, 'checkNewRegistrations'])->name('check.registrations');
+    Route::get('/check-notif', [PendaftaranController::class, 'check'])->name('check.notif');
+    Route::get('/admin/check-new-pendaftaran', [PendaftaranController::class, 'checkNewPendaftaran'])
+    ->name('checkNewPendaftaran');
 
     Route::resource('program', ProgramController::class);
     Route::resource('fasilitas', FasilitasController::class);
@@ -43,13 +48,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('komentar', KomentarController::class);
     Route::resource('testimoni', TestimoniController::class);
 
-
     Route::group(['prefix' => 'laporan'], function () {
         Route::get('/pendaftaran', [LaporanController::class, 'pendaftaran'])->name('laporan.pendaftaran');
+        Route::get('/pendaftaran/data', [LaporanController::class, 'getPendaftaranData'])->name('laporan.pendaftaran.data');
+        Route::get('/pendaftaran/modal/{id}', [LaporanController::class, 'getPendaftaranModal'])->name('laporan.pendaftaran.modal');
         Route::get('/pendaftaran/export', [LaporanController::class, 'pendaftaranPdf'])->name('laporan.pendaftaran.pdf');
         Route::get('/pendaftaran/excel', function () {
             return Excel::download(new PendaftaranExport, 'pendaftaran.xlsx');
         })->name('laporan.pendaftaran.excel');
+        // Route::get('/pendaftaran/notification', [PendaftaranController::class, 'markAsRead'])->name('pendaftaran.notification');
+
         Route::get('/pengunjung', [LaporanController::class, 'visitor'])->name('laporan.pengunjung');
         Route::get('/pengunjung/export', [LaporanController::class, 'visitorPdf'])->name('laporan.pengunjung.pdf');
         Route::get('/pengunjung/excel', function () {
@@ -57,6 +65,3 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         })->name('laporan.pengunjung.excel');
     });
 });
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

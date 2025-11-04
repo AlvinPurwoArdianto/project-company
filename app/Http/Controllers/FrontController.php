@@ -90,14 +90,14 @@ class FrontController extends Controller
         $pesan = "📢 *Pendaftaran Baru!*\n\n".
                  "Nama: {$pendaftaran->nama}\n".
                  "Email: {$pendaftaran->email}\n".
-                 "No HP: {$pendaftaran->no_hp}\n".
+                 "No HP: {$pendaftaran->no_telepon}\n".
                  "Waktu: ".now()->format('d-m-Y ')."\n\n".
                  "Segera tindak lanjuti.";
 
         Http::withHeaders([
             'Authorization' => $token
         ])->post('https://api.fonnte.com/send', [
-            'target' => '6288222334252', // nomor tujuan (misal admin)
+            'target' => '628995757038', // nomor tujuan (misal admin)
             'message' => $pesan,
         ]);
     }
