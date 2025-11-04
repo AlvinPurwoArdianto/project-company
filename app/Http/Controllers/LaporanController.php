@@ -4,16 +4,60 @@ namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
 use App\Models\Visitor;
+use App\Models\Notification;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LaporanController extends Controller
 {
     public function pendaftaran()
     {
-        $pendaftaran = Pendaftaran::all();
+        // Ambil data untuk modal
+        $pendaftaran = Pendaftaran::orderBy('id', 'desc')->get();
+        
         return view('admin.laporan.pendaftaran', compact('pendaftaran'));
+    }
+
+    public function getPendaftaranData()
+    {
+        $lastCheck = session('last_check_time');
+        $pendaftaran = Pendaftaran::orderBy('id', 'desc')->get();
+        
+        // Cek data baru
+        $newData = collect();
+        if ($lastCheck) {
+            $newData = $pendaftaran->filter(function ($item) use ($lastCheck) {
+                return Carbon::parse($item->created_at)->gt(Carbon::parse($lastCheck));
+            });
+        }
+        
+        // Update waktu pengecekan terakhir
+        session(['last_check_time' => now()]);
+        
+        return response()->json([
+            'data' => $pendaftaran->map(function ($item) {
+                return [
+                    'id' => $item->id,
+                    'is_read' => $item->is_read,
+                    'nama' => $item->nama,
+                    'jenis_kelamin' => $item->jenis_kelamin,
+                    'email' => $item->email,
+                    'no_telepon' => $item->no_telepon,
+                    'tanggal_pendaftaran' => ['display' => Carbon::parse($item->created_at)->translatedFormat('d F Y')],
+                    'keterangan' => $item->keterangan,
+                    'created_at' => $item->created_at->toDateTimeString(),
+                ];
+            }),
+            'hasNewData' => $newData->isNotEmpty(),
+            'new_data' => $newData->map(function ($item) {
+                return [
+                    'id' => $item->id,
+                    'nama' => $item->nama
+                ];
+            })
+        ]);
     }
 
     public function pendaftaranPdf(Request $request)
@@ -36,8 +80,7 @@ class LaporanController extends Controller
 
     public function visitor(Request $request)
     {
-
-        $query = Visitor::query(); // Ganti dengan model Anda
+        $query = Visitor::query();
 
         if ($request->filled('start_date')) {
             $query->whereDate('visited_at', '>=', $request->start_date);
@@ -47,19 +90,30 @@ class LaporanController extends Controller
             $query->whereDate('visited_at', '<=', $request->end_date);
         }
 
-        $visitor = $query->orderBy('visited_at', 'desc')->paginate(20); // atau get() jika tidak pakai pagination
+        $visitor = $query->orderBy('visited_at', 'desc')->paginate(20);
 
         return view('admin.laporan.pengunjung', compact('visitor'));
     }
 
     public function visitorPdf()
     {
-        $visitor = Visitor::orderBy('created_at', 'desc')->get(); // sesuaikan dengan model yang digunakan
+        $visitor = Visitor::orderBy('created_at', 'desc')->get();
 
         $pdf = Pdf::loadView('admin.laporan.pengunjung_pdf', compact('visitor'))
             ->setPaper('A4', 'portrait');
 
         return $pdf->download('Laporan_Pengunjung_' . Carbon::now()->format('d-m-Y') . '.pdf');
     }
-    
+
+    public function getPendaftaranModal($id)
+    {
+        $data = Pendaftaran::findOrFail($id);
+        
+        // Update status menjadi read ketika modal dibuka
+        if ($data->is_read === 'unread' || $data->is_read === null) {
+            $data->update(['is_read' => 'read']);
+        }
+        
+        return view('admin.laporan.pendaftaran_modal', compact('data'))->render();
+    }
 }

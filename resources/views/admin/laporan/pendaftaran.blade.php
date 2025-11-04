@@ -3,6 +3,24 @@
 @push('style')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"/>
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"/>
+<style>
+    .notification-dot {
+        display: inline-block;
+        padding: 0.35em 0.65em;
+        font-size: 0.75em;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        background-color: #ff3e1d;
+        border-radius: 50rem;
+        margin-right: 5px;
+        min-width: 8px;
+        height: 8px;
+    }
+</style>
 @endpush
 
 @section('content')
@@ -43,34 +61,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pendaftaran as $data)
-                        <tr>
-                            <td>#{{ $loop->iteration }}</td>
-                            <td>{{ $data->nama }}</td>
-                            <td>{{ $data->email }}</td>
-                            <td>
-                                <span class="badge {{ $data->jenis_kelamin == 'Laki-laki' ? 'bg-info' : 'bg-warning' }}">
-                                    {{ $data->jenis_kelamin }}
-                                </span>
-                            </td>
-                            <td>{{ $data->no_telepon }}</td>
-                            <td>{{ \Carbon\Carbon::parse($data->tanggal_pendaftaran)->translatedFormat('d F Y') }}</td>
-                            <td>
-                                @if($data->keterangan)
-                                    <span class="badge bg-success">{{ Str::limit($data->keterangan, 20) }}</span>
-                                @else
-                                    <span class="badge bg-secondary">Tidak ada</span>
-                                @endif
-                            </td>
-                            <td>
-                                <button class="btn btn-sm btn-primary"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#detailModal{{ $data->id }}">
-                                    <i class="bx bx-show"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -87,7 +77,6 @@
                                 <i class="bx bx-user-detail"></i>
                                 Detail Pendaftaran – {{ $data->nama }}
                             </h5>
-                            {{-- <button type="button" class="b9tn-close btn-close-white" data-bs-dismiss="modal"></button> --}}
                         </div>
 
                         {{-- Body modal --}}
@@ -196,11 +185,109 @@
 @push('scripts')
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+{{-- Reset Notifikasi Toast --}}
 <script>
+    // Reset notifikasi agar polling tidak mendeteksi unread lama
+    localStorage.removeItem('lastShownId');
+</script>
+
+{{-- Update DataTable dan Polling AJAX --}}
+<script>
+    let table;
+    
+    function updateReadStatus(id) {
+        $.get(`/admin/laporan/pendaftaran/modal/${id}`, function() {
+            table.ajax.reload(null, false); // Reload table data setelah update status
+        });
+    }
+
     $(document).ready(function () {
-        $('#pendaftaranTable').DataTable({
+        table = $('#pendaftaranTable').DataTable({
+            processing: true,
+            serverSide: false,
+            ajax: {
+                url: '{{ route('laporan.pendaftaran.data') }}',
+                type: 'GET',
+                dataSrc: 'data'
+            },
+            columnDefs: [
+                {
+                    targets: 7,
+                    orderable: false,
+                    className: 'text-center'
+                }
+            ],
+            columns: [
+                { 
+                    data: 'id',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            return data;
+                        }
+                        return data;
+                    }
+                },
+                { 
+                    data: 'nama',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            return `${data} ${row.is_read === 'unread' ? '<span class="badge rounded-pill bg-danger notification-dot">new</span>' : ''}`;
+                        }
+                        return data;
+                    }
+                },
+                { data: 'email' },
+                { 
+                    data: 'jenis_kelamin',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            return `<span class="badge ${data == 'Laki-laki' ? 'bg-info' : 'bg-warning'}">${data}</span>`;
+                        }
+                        return data;
+                    }
+                },
+                { data: 'no_telepon' },
+                { 
+                    data: 'tanggal_pendaftaran',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            return data.display;
+                        }
+                        return data.display;
+                    }
+                },
+                { 
+                    data: 'keterangan',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            if (data) {
+                                return `<span class="badge bg-success">${data.length > 20 ? data.substring(0, 20) + '...' : data}</span>`;
+                            }
+                            return '<span class="badge bg-secondary">Tidak ada</span>';
+                        }
+                        return data;
+                    }
+                },
+                { 
+                    data: 'id',
+                    render: function(data, type, row) {
+                        if (type === 'display') {
+                            return `<button class="btn btn-sm btn-primary" 
+                                        onclick="updateReadStatus(${data})"
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#detailModal${data}">
+                                    <i class="bx bx-show"></i>
+                                </button>`;
+                        }
+                        return data;
+                    }
+                }
+            ],
             responsive: true,
             autoWidth: false,
+            order: [[0, 'desc']],
             language: {
                 search: "Cari:",
                 lengthMenu: "Tampilkan _MENU_ entri",
@@ -213,9 +300,15 @@
                     last: "Terakhir",
                     next: "Berikutnya",
                     previous: "Sebelumnya"
-                }
+                },
+                processing: "Memproses..."
             }
         });
+
+        // Refresh table data setiap 10 detik
+        setInterval(function () {
+            table.ajax.reload(null, false);
+        }, 10000);
     });
 </script>
 @endpush

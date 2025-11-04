@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="assets/"
-    data-template="vertical-menu-template-free">
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+    data-assets-path="assets/" data-template="vertical-menu-template-free">
 
 <head>
     <meta charset="utf-8" />
@@ -34,8 +34,8 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-
     <link rel="stylesheet" href="{{ asset('admin/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -57,6 +57,20 @@
     <style>
         .swal2-container {
             z-index: 9999 !important;
+        }
+
+        /* Notification Styles */
+        .toastify {
+            position: fixed;
+            min-width: 300px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .toastify:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
 
         .dataTables_wrapper .dataTables_scroll {
@@ -96,6 +110,45 @@
         .table .dropdown-menu {
             position: absolute;
             z-index: 1000;
+        }
+
+        .admin-toast {
+            background: #f8fafc !important;
+            /* Soft grey/white */
+            color: #1e293b !important;
+            /* Dark slate */
+            border-left: 4px solid #3b82f6 !important;
+            /* Blue accent */
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+            padding: 10px 15px !important;
+            font-size: 14px !important;
+            border-radius: 8px !important;
+        }
+
+        /* Title style */
+        .admin-toast .swal2-title {
+            font-size: 15px !important;
+            font-weight: 600 !important;
+            margin-bottom: 4px !important;
+            color: #0f172a !important;
+        }
+
+        /* Progress bar */
+        .swal2-timer-progress-bar {
+            background: #3b82f6 !important;
+        }
+
+        /* Hover effect */
+        .admin-toast:hover {
+            cursor: pointer;
+            border-left-color: #2563eb !important;
+            /* Slightly darker blue */
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.25) !important;
+        }
+
+        .toast-icon {
+            color: #3b82f6 !important;
+            font-size: 18px !important;
         }
     </style>
 
@@ -168,11 +221,118 @@
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- Notification Checking Script -->
+    <script>
+        let lastShownId = localStorage.getItem('lastShownId') ?? null;
+
+        function checkNewPendaftaran() {
+            $.ajax({
+                url: "{{ route('checkNewPendaftaran') }}",
+                type: "GET",
+                success: function(res) {
+                    if (res.data.length > 0) {
+                        let latestId = res.data[0].id;
+
+                        if (lastShownId === null || latestId > lastShownId) {
+
+                            if (res.data.length === 1) {
+                                let p = res.data[0];
+                                Swal.fire({
+                                    title: "Pendaftaran Baru",
+                                    html: `<b>${p.nama}</b> telah mendaftar.<br>Email: ${p.email}`,
+                                    icon: 'info',
+                                    toast: true,
+                                    position: "top-end",
+                                    timer: 6000,
+                                    timerProgressBar: true,
+                                    showConfirmButton: false,
+                                    iconHtml: '<i class="fa fa-user-plus"></i>',
+                                    customClass: {
+                                        icon: 'toast-icon'
+                                    },
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                                        toast.addEventListener('click', () => {
+                                            window.location.href =
+                                                "{{ route('laporan.pendaftaran') }}";
+                                        });
+                                    }
+                                });
+
+                            } else {
+                                Swal.fire({
+                                    title: "Pendaftaran Baru",
+                                    text: `Ada ${res.data.length} pendaftaran baru yang belum dibaca.`,
+                                    icon: 'info',
+                                    toast: true,
+                                    position: "top-end",
+                                    timer: 6000,
+                                    timerProgressBar: true,
+                                    showConfirmButton: false,
+                                    iconHtml: '<i class="fa fa-user-plus"></i>',
+                                    customClass: {
+                                        icon: 'toast-icon'
+                                    },
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                                        toast.addEventListener('click', () => {
+                                            window.location.href =
+                                                "{{ route('laporan.pendaftaran') }}";
+                                        });
+                                    }
+                                });
+                            }
+
+
+                            lastShownId = latestId;
+                            localStorage.setItem('lastShownId', latestId);
+                        }
+                    }
+                },
+                error: function() {
+                    console.warn("Gagal polling data pendaftaran...");
+                }
+            });
+        }
+
+        // Jalankan polling tiap 5 detik
+        setInterval(checkNewPendaftaran, 5000);
+        checkNewPendaftaran();
+    </script>
+
 
     <script>
         AOS.init();
     </script>
 
+    <style>
+        .toastify {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            padding: 12px 20px;
+            color: white;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        .toastify:hover {
+            transform: translateY(-3px);
+            transition: transform 0.2s ease;
+        }
+    </style>
+
+
+    <!-- Include Notifications Component -->
     @yield('js')
     @yield('script')
     @stack('scripts')
