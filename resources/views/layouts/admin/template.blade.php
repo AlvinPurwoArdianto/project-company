@@ -223,8 +223,9 @@
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
+
     <!-- Notification Checking Script -->
-    <script>
+    {{-- <script>
         let lastShownId = localStorage.getItem('lastShownId') ?? null;
 
         function checkNewPendaftaran() {
@@ -302,7 +303,102 @@
         // Jalankan polling tiap 5 detik
         setInterval(checkNewPendaftaran, 5000);
         checkNewPendaftaran();
+    </script> --}}
+
+    <script>
+        let lastShownId = localStorage.getItem('lastShownId') ?? null;
+
+        // Siapkan audio notif (preload)
+        const notifSound = new Audio("{{ asset('admin/sounds/ringtone toast.mp3') }}");
+        notifSound.volume = 1.0; // volume max, bisa disesuaikan
+        notifSound.preload = "auto";
+
+        function playNotifSound() {
+            notifSound.currentTime = 0; // reset agar bisa diputar berulang
+            notifSound.play().catch(err => {
+                console.warn("Audio belum bisa diputar (mungkin user belum interaksi):", err);
+            });
+        }
+
+        function checkNewPendaftaran() {
+            $.ajax({
+                url: "{{ route('checkNewPendaftaran') }}",
+                type: "GET",
+                success: function(res) {
+                    if (res.data.length > 0) {
+                        let latestId = res.data[0].id;
+
+                        if (lastShownId === null || latestId > lastShownId) {
+
+                            // 🔔 Putar ringtone sekali saat notif tampil
+                            playNotifSound();
+
+                            if (res.data.length === 1) {
+                                let p = res.data[0];
+
+                                Swal.fire({
+                                    title: "Pendaftaran Baru",
+                                    html: `<b>${p.nama}</b> telah mendaftar.<br>Email: ${p.email}`,
+                                    icon: 'info',
+                                    toast: true,
+                                    position: "top-end",
+                                    timer: 6000,
+                                    timerProgressBar: true,
+                                    showConfirmButton: false,
+                                    iconHtml: '<i class="fa fa-user-plus"></i>',
+                                    customClass: {
+                                        icon: 'toast-icon'
+                                    },
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                                        toast.addEventListener('click', () => {
+                                            window.location.href =
+                                                "{{ route('laporan.pendaftaran') }}";
+                                        });
+                                    }
+                                });
+
+                            } else {
+                                Swal.fire({
+                                    title: "Pendaftaran Baru",
+                                    text: `Ada ${res.data.length} pendaftaran baru yang belum dibaca.`,
+                                    icon: 'info',
+                                    toast: true,
+                                    position: "top-end",
+                                    timer: 6000,
+                                    timerProgressBar: true,
+                                    showConfirmButton: false,
+                                    iconHtml: '<i class="fa fa-user-plus"></i>',
+                                    customClass: {
+                                        icon: 'toast-icon'
+                                    },
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                                        toast.addEventListener('click', () => {
+                                            window.location.href =
+                                                "{{ route('laporan.pendaftaran') }}";
+                                        });
+                                    }
+                                });
+                            }
+
+                            lastShownId = latestId;
+                            localStorage.setItem('lastShownId', latestId);
+                        }
+                    }
+                },
+                error: function() {
+                    console.warn("Gagal polling data pendaftaran...");
+                }
+            });
+        }
+
+        setInterval(checkNewPendaftaran, 5000);
+        checkNewPendaftaran();
     </script>
+
 
 
     <script>
