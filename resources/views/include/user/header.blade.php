@@ -11,13 +11,11 @@
         <div class="d-flex align-items-center gap-3">
             <nav id="navmenu" class="navmenu d-flex align-items-center">
                 <ul class="d-flex mb-0" style="list-style: none;">
-                    <li><a href="{{ request()->is('/') ? '#hero' : url('/#hero') }}" class="active">Beranda</a></li>
+                    <li><a href="{{ request()->is('/') ? '#hero' : url('/#hero') }}" class="{{ request()->is('/') ? 'active' : '' }}">Beranda</a></li>
                     <li><a href="{{ request()->is('/') ? '#profil' : url('/#profil') }}">Profil</a></li>
                     <li><a href="{{ request()->is('/') ? '#program' : url('/#program') }}">Program</a></li>
                     <li><a href="{{ request()->is('/') ? '#fasilitas' : url('/#fasilitas') }}">Fasilitas</a></li>
                     <li><a href="{{ request()->is('/') ? '#informasi' : url('/#informasi') }}">Informasi</a></li>
-                    <li><a href="{{ request()->is('/') ? '#testimonials' : url('/#testimonials') }}">Testimoni</a></li>
-                    <li><a href="{{ request()->is('/') ? '#faq' : url('/#faq') }}">FAQ</a></li>
                     <li><a href="{{ request()->is('/') ? '#contact' : url('/#contact') }}">Kontak</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list ms-3 fs-3" role="button" aria-label="Toggle navigation"></i>
@@ -115,19 +113,35 @@
             });
         }
 
-        window.addEventListener('scroll', handleScrollSpy, { passive: true });
-        handleScrollSpy();
+        if (window.location.pathname === '/' || window.location.pathname === '') {
+            window.addEventListener('scroll', handleScrollSpy, { passive: true });
+            handleScrollSpy();
+        }
 
         // Mobile menu toggle
         if (toggleBtn && navMenu) {
-            toggleBtn.addEventListener("click", function() {
+            toggleBtn.addEventListener("click", function(e) {
+                e.stopPropagation();
                 navMenu.classList.toggle("menu-open");
+                if (navMenu.classList.contains("menu-open")) {
+                    toggleBtn.classList.replace("bi-list", "bi-x-lg");
+                } else {
+                    toggleBtn.classList.replace("bi-x-lg", "bi-list");
+                }
             });
 
             navLinks.forEach(link => {
                 link.addEventListener("click", function() {
                     navMenu.classList.remove("menu-open");
+                    toggleBtn.classList.replace("bi-x-lg", "bi-list");
                 });
+            });
+
+            document.addEventListener("click", function(e) {
+                if (!navMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+                    navMenu.classList.remove("menu-open");
+                    toggleBtn.classList.replace("bi-x-lg", "bi-list");
+                }
             });
         }
     });

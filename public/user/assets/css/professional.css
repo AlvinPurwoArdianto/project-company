@@ -522,6 +522,18 @@ a:hover {
         right: auto;
     }
 }
+
+@media (max-width: 576px) {
+    .hero-metric-pill {
+        padding: 8px 10px;
+    }
+    .hero-metric-pill .metric-val {
+        font-size: 1.15rem;
+    }
+    .hero-metric-pill .metric-lbl {
+        font-size: 0.72rem;
+    }
+}
 /* ==========================================================================
    Section Backgrounds & Typography Standards
    ========================================================================== */
@@ -716,4 +728,246 @@ a:hover {
 
 .custom-faq-accordion .accordion-item:hover {
     border-color: var(--purple-border) !important;
+}
+
+/* ==========================================================================
+   Responsive Mobile Navbar (< 1200px)
+   ========================================================================== */
+@media (max-width: 1199px) {
+    .navmenu ul {
+        display: none !important;
+        flex-direction: column !important;
+        position: absolute !important;
+        top: 68px !important;
+        right: 15px !important;
+        left: 15px !important;
+        background: #FFFFFF !important;
+        border-radius: 16px !important;
+        padding: 14px !important;
+        box-shadow: 0 15px 35px rgba(76, 29, 149, 0.2) !important;
+        border: 1px solid rgba(134, 47, 233, 0.2) !important;
+        z-index: 9999 !important;
+    }
+
+    .navmenu.menu-open ul {
+        display: flex !important;
+        animation: fadeInDown 0.25s ease-out;
+    }
+
+    .navmenu ul li {
+        width: 100%;
+        margin-bottom: 4px;
+    }
+
+    .navmenu ul li:last-child {
+        margin-bottom: 0;
+    }
+
+    .navmenu ul li a {
+        display: block !important;
+        width: 100% !important;
+        padding: 12px 18px !important;
+        color: #1E1B4B !important;
+        border-radius: 10px !important;
+        font-weight: 600 !important;
+        font-size: 0.95rem !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        text-align: left !important;
+    }
+
+    .navmenu ul li a:hover,
+    .navmenu ul li a.active {
+        background: var(--purple-soft) !important;
+        color: var(--purple-primary) !important;
+        font-weight: 700 !important;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* ==========================================================================
+   Modern Registration Page (/daftar)
+   ========================================================================== */
+.pendaftaran-page {
+    background: linear-gradient(180deg, #F8F5FE 0%, #FFFFFF 25%, #F8F5FE 100%);
+    min-height: calc(100vh - 80px);
+    padding: 120px 0 80px 0;
+}
+
+.pendaftaran-header-card {
+    background: var(--hero-gradient);
+    border-radius: 24px;
+    padding: 36px 30px;
+    color: #FFFFFF;
+    box-shadow: 0 15px 35px rgba(112, 48, 214, 0.25);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pendaftaran-form-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    border: 1px solid var(--purple-border);
+    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
+    padding: 36px;
+}
+
+@media (max-width: 576px) {
+    .pendaftaran-form-card {
+        padding: 24px 18px;
+        border-radius: 18px;
+    }
+    .pendaftaran-header-card {
+        padding: 28px 20px;
+        border-radius: 18px;
+    }
+}
+
+.form-section-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--purple-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--purple-border);
+}
+
+.form-section-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--purple-primary);
+    color: #FFFFFF;
+    border-radius: 50%;
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.pendaftaran-form-card .form-label {
+    font-weight: 700;
+    color: #334155;
+    font-size: 0.875rem;
+    margin-bottom: 6px;
+}
+
+.pendaftaran-form-card .form-control,
+.pendaftaran-form-card .form-select {
+    border-radius: 12px;
+    border: 1.5px solid #CBD5E1;
+    padding: 11px 16px;
+    font-size: 0.95rem;
+    color: #1E293B;
+    transition: all 0.2s ease;
+}
+
+.pendaftaran-form-card .form-control:focus,
+.pendaftaran-form-card .form-select:focus {
+    border-color: var(--purple-primary);
+    box-shadow: 0 0 0 4px rgba(112, 48, 214, 0.12);
+    outline: none;
+}
+
+/* Radio Button Pills */
+.gender-selector {
+    display: flex;
+    gap: 12px;
+}
+
+.gender-card {
+    flex: 1;
+    position: relative;
+}
+
+.gender-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.gender-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border: 1.5px solid #CBD5E1;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #475569;
+    background: #F8FAFC;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+.gender-card input[type="radio"]:checked + .gender-box {
+    border-color: var(--purple-primary);
+    background: var(--purple-soft);
+    color: var(--purple-primary);
+    box-shadow: 0 0 0 3px rgba(112, 48, 214, 0.15);
+}
+
+.info-alert-wali {
+    background: #F5EEFD;
+    border: 1px solid var(--purple-border);
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-size: 0.85rem;
+    color: #5B21B6;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* Sidebar Benefit Cards */
+.benefit-card-sidebar {
+    background: #FFFFFF;
+    border: 1px solid var(--purple-border);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+}
+
+.benefit-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.benefit-item:last-child {
+    margin-bottom: 0;
+}
+
+.benefit-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--purple-soft);
+    color: var(--purple-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
 }
