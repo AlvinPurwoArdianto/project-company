@@ -23,7 +23,7 @@ Auth::routes(
 );
 
 // User ROUTES
-Route::get('/', [FrontController::class, 'index'])->middleware(LogVisitor::class);
+Route::get('/', [FrontController::class, 'index'])->name('front.index')->middleware(LogVisitor::class);
 Route::get('/informasi/{slug}', [FrontController::class, 'detail_informasi'])->name('informasi_detail');
 Route::get('/informasi_selengkapnya', [InformasiController::class, 'informasi'])->name('informasi');
 Route::post('/informasi/{id}', [FrontController::class, 'store_komentar'])->name('front.store_komentar');

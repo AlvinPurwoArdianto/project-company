@@ -9,17 +9,23 @@ use App\Models\Pendaftaran;
 use App\Models\Program;
 use App\Models\Testimoni;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class FrontController extends Controller
 {
     public function index()
     {
-        $program   = Program::all();
-        $informasi = collect(DB::select('SELECT * FROM informasis ORDER BY id DESC LIMIT 4'));
-        $fasilitas = Fasilitas::all();
-        $testimoni = Testimoni::where('status', 'approved')->orderByDesc('id')->take(5)->get();
+        $program   = Program::select('id', 'nama_program', 'deskripsi')->get();
+        $informasi = Informasi::select('id', 'nama_informasi', 'slug', 'gambar', 'deskripsi', 'created_at')
+            ->latest('id')
+            ->take(4)
+            ->get();
+        $fasilitas = Fasilitas::select('id', 'nama_fasilitas', 'cover')->get();
+        $testimoni = Testimoni::select('id', 'nama', 'testimoni', 'rating')
+            ->where('status', 'approved')
+            ->latest('id')
+            ->take(6)
+            ->get();
 
         return view('index', compact('informasi', 'fasilitas', 'testimoni', 'program'));
     }
@@ -129,14 +135,17 @@ class FrontController extends Controller
 
     public function store_testimoni(Request $request)
     {
-        $request->validate([
-            'nama'      => 'required',
-            'testimoni' => 'required',
-            'rating'    => 'required|numeric|min:1|max:5',
-            'status'    => 'required|in:approved,pending,rejected',
+        $validated = $request->validate([
+            'nama'      => 'required|string|max:100',
+            'testimoni' => 'required|string|max:1000',
+            'rating'    => 'required|integer|min:1|max:5',
         ]);
-        Testimoni::create($request->all());
-        return redirect('/')->with('success', 'Terima Kasih telah memberikan testimoni anda!');
+
+        $validated['status'] = 'pending';
+
+        Testimoni::create($validated);
+
+        return redirect()->route('front.index')->with('success', 'Terima Kasih telah memberikan testimoni anda!');
     }
 
     public function form()

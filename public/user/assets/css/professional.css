@@ -1,0 +1,687 @@
+/* ==========================================================================
+   Victory English School - Signature Purple Theme (Ungu Edukatif & Elegan)
+   Tidak polos, kaya warna ungu khas Victory, tanpa ornamen aneh / kartun
+   ========================================================================== */
+
+:root {
+    /* Brand Purple Palette */
+    --accent-color: #862FE9 !important;
+    --purple-primary: #862FE9;
+    --purple-dark: #2E0854;
+    --purple-deep: #4A157A;
+    --purple-rich: #6D28D9;
+    --purple-hover: #7324D1;
+
+    /* Background Tints (Agar tidak polos putih) */
+    --purple-soft: #F5EEFD;
+    --purple-light: #FAF5FF;
+    --purple-tint: #EDE4F9;
+    --purple-border: #E9D5FF;
+    --purple-border-hover: #C084FC;
+
+    /* Text Colors */
+    --text-heading: #1E1B4B;
+    --text-body: #374151;
+    --text-muted: #6B7280;
+    --text-lavender: #E9D5FF;
+
+    /* Gradients */
+    --hero-gradient: linear-gradient(135deg, #7C3AED 0%, #6D28D9 45%, #4C1D95 100%);
+    --purple-btn-gradient: linear-gradient(135deg, #862FE9 0%, #7030D6 100%);
+    --card-gradient: linear-gradient(180deg, #FFFFFF 0%, #FAF5FF 100%);
+
+    --shadow-soft: 0 4px 20px -2px rgba(112, 48, 214, 0.08);
+    --shadow-card: 0 4px 16px -2px rgba(112, 48, 214, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 12px 28px -4px rgba(112, 48, 214, 0.16);
+}
+
+/* Global Reset & Typography */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: var(--text-body);
+    background-color: #FFFFFF;
+    line-height: 1.65;
+    overflow-x: hidden;
+}
+
+/* Exact scroll margin to align flush under the fixed header with ZERO gap */
+section, .section, #hero, #profil, #program, #fasilitas, #informasi, #testimonials, #contact {
+    scroll-margin-top: 72px !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: var(--text-heading);
+    font-weight: 700;
+}
+
+a {
+    color: var(--purple-primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    color: var(--purple-hover);
+}
+
+/* HARD DISABLE on legacy weird curve overlays & full-height decorations */
+#contact::before,
+#contact::after,
+.curve-layer,
+.background-decor,
+.rotating-arrow,
+.bubble,
+.hero-corner-img,
+.star-decor,
+.artikel-bg-blur,
+.wave-bottom,
+.perubahan-pertama::before,
+.perubahan-pertama::after {
+    display: none !important;
+    content: none !important;
+    visibility: hidden !important;
+}
+
+/* ==========================================================================
+   Header & Navbar
+/* Base Header: Fixed with smooth transitions */
+#header {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1030;
+    transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                border 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#header .header-logo img {
+    height: 46px;
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+/* Nav Links: Capsule Base */
+#navmenu a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 7px 16px !important;
+    border-radius: 50px !important;
+    font-size: 0.9375rem !important;
+    font-weight: 600 !important;
+    text-shadow: none !important;
+    text-decoration: none !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: 1.5px solid transparent !important;
+}
+/* Button CTA in Navbar (Proper Button Dimensions & Padding) */
+.btn-header-cta {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 9px 24px !important;
+    border-radius: 50px !important;
+    font-size: 0.9375rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* State 1: Completely Transparent on Top (Homepage) - NO LINE, NO BORDER */
+#header.header-transparent:not(.header-scrolled) {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+/* State 1 Links: Transparent at Top */
+#header.header-transparent:not(.header-scrolled) #navmenu a {
+    color: rgba(255, 255, 255, 0.88) !important;
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+#header.header-transparent:not(.header-scrolled) #navmenu a:hover {
+    color: #FFFFFF !important;
+    background: rgba(255, 255, 255, 0.14) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+#header.header-transparent:not(.header-scrolled) #navmenu a.active {
+    color: #FFFFFF !important;
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+    font-weight: 700 !important;
+}
+
+#header.header-transparent:not(.header-scrolled) .btn-header-cta {
+    background: #FFFFFF !important;
+    color: #6D28D9 !important;
+    border: 2px solid #FFFFFF !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16) !important;
+}
+
+#header.header-transparent:not(.header-scrolled) .btn-header-cta:hover {
+    background: #FAF5FF !important;
+    color: #5B21B6 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.24) !important;
+}
+
+#header.header-transparent:not(.header-scrolled) .mobile-nav-toggle {
+    color: #FFFFFF !important;
+}
+
+#header.header-transparent:not(.header-scrolled) .header-logo-badge {
+    background: #FFFFFF;
+    padding: 6px 14px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+}
+
+/* State 2: Scrolled State (Transparent Frosted Glassmorphism) */
+#header.header-scrolled,
+#header.header-solid {
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(233, 213, 255, 0.6) !important;
+    box-shadow: 0 8px 30px rgba(112, 48, 214, 0.08) !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+}
+
+/* State 2 Links: Scrolled Frosted Glass */
+#header.header-scrolled #navmenu a,
+#header.header-solid #navmenu a {
+    color: #4B5563 !important;
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+#header.header-scrolled #navmenu a:hover,
+#header.header-solid #navmenu a:hover {
+    color: var(--purple-primary) !important;
+    background: rgba(245, 238, 253, 0.6) !important;
+    border-color: var(--purple-border) !important;
+}
+
+#header.header-scrolled #navmenu a.active,
+#header.header-solid #navmenu a.active {
+    color: #6D28D9 !important;
+    background: #EDE4F9 !important;
+    border-color: rgba(134, 47, 233, 0.35) !important;
+    box-shadow: 0 2px 10px rgba(134, 47, 233, 0.15) !important;
+    font-weight: 700 !important;
+}
+
+#header.header-scrolled .btn-header-cta,
+#header.header-solid .btn-header-cta {
+    background: var(--purple-btn-gradient) !important;
+    color: #FFFFFF !important;
+    border: 2px solid transparent !important;
+    box-shadow: 0 4px 14px rgba(134, 47, 233, 0.35) !important;
+}
+
+#header.header-scrolled .btn-header-cta:hover,
+#header.header-solid .btn-header-cta:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(134, 47, 233, 0.45) !important;
+    color: #FFFFFF !important;
+}
+
+#header.header-scrolled .mobile-nav-toggle,
+#header.header-solid .mobile-nav-toggle {
+    color: #1E1B4B !important;
+}
+
+#header.header-scrolled .header-logo-badge {
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+}
+/* ==========================================================================
+   Hero Section (Ungu Kaya & Energik - Tidak Polos Putih)
+   ========================================================================== */
+.hero-purple {
+    background: var(--hero-gradient) !important;
+    padding: 135px 0 90px 0 !important;
+    position: relative;
+    overflow: hidden;
+    color: #FFFFFF;
+}
+
+.hero-purple .hero-badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #FAF5FF;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.45rem 1.15rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+}
+
+.hero-purple .hero-title-white {
+    font-size: clamp(2.3rem, 4.8vw, 3.4rem);
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+}
+
+.hero-purple .hero-subtitle-white {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #EDE9FE;
+    max-width: 580px;
+    margin-bottom: 2rem;
+}
+
+.btn-hero-white {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    color: #6D28D9 !important;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    border: none;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+    transition: all 0.2s ease;
+}
+
+.btn-hero-white:hover {
+    background-color: #FAF5FF;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    color: #5B21B6 !important;
+}
+
+.btn-hero-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    color: #FFFFFF !important;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-hero-outline:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #FFFFFF !important;
+}
+
+/* Hero Glass Metric Pills */
+.hero-metric-pill {
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #FFFFFF;
+}
+
+.hero-metric-pill .metric-val {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.2;
+}
+
+.hero-metric-pill .metric-lbl {
+    font-size: 0.8rem;
+    color: #E9D5FF;
+    font-weight: 500;
+}
+
+/* Navista-style Floating Hero Visuals */
+.hero-stage {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 580px;
+    padding: 20px 10px;
+}
+
+.hero-glow-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 380px;
+    height: 380px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(192, 132, 252, 0.45) 0%, rgba(134, 47, 233, 0.22) 50%, transparent 70%);
+    filter: blur(55px);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: auraPulse 6s ease-in-out infinite alternate;
+    z-index: 0;
+}
+
+.hero-3d-main {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 25px 35px rgba(30, 8, 55, 0.4));
+    animation: floatHeroMain 5.5s ease-in-out infinite;
+    transform-origin: center bottom;
+}
+
+/* Floating Glass Cards */
+.hero-glass-card {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 10px 18px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.08);
+    z-index: 2;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.hero-card-1 {
+    top: 6%;
+    left: -4%;
+    animation: floatBadge1 4.8s ease-in-out infinite;
+}
+
+.hero-card-2 {
+    top: 14%;
+    right: -6%;
+    animation: floatBadge2 5.6s ease-in-out infinite 0.6s;
+}
+
+.hero-card-3 {
+    bottom: 4%;
+    left: -2%;
+    animation: floatBadge3 5.2s ease-in-out infinite 1.2s;
+}
+
+.hero-card-title {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: #5B21B6;
+    line-height: 1.2;
+    margin-bottom: 2px;
+}
+
+.hero-card-sub {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748B;
+}
+
+/* Staggered Multi-Layer Floating Keyframes */
+@keyframes floatHeroMain {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-16px) rotate(1deg);
+    }
+}
+
+@keyframes floatBadge1 {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-13px) rotate(-1.5deg);
+    }
+}
+
+@keyframes floatBadge2 {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(1.5deg);
+    }
+}
+
+@keyframes floatBadge3 {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-11px) rotate(-1deg);
+    }
+}
+
+@keyframes auraPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 0.65;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.18);
+        opacity: 0.95;
+    }
+}
+
+@media (max-width: 991px) {
+    .hero-card-1 {
+        left: 0;
+        top: 0;
+    }
+    .hero-card-2 {
+        right: 0;
+        top: 10%;
+    }
+    .hero-card-3 {
+        left: 0;
+        bottom: 0;
+    }
+}
+/* ==========================================================================
+   Section Backgrounds & Typography Standards
+   ========================================================================== */
+.section-bg-purple-soft {
+    background-color: var(--purple-soft) !important;
+}
+
+.section-bg-purple-light {
+    background-color: var(--purple-light) !important;
+}
+
+.section-bg-white {
+    background-color: #FFFFFF !important;
+}
+
+.purple-kicker {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--purple-primary);
+    background-color: var(--purple-soft);
+    border: 1px solid var(--purple-border);
+    padding: 0.4rem 1.15rem;
+    border-radius: 50px;
+    margin-bottom: 0.75rem;
+}
+
+.purple-heading {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-heading);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+}
+
+.purple-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==========================================================================
+   Cards & Components (Sentuhan Ungu Khas)
+   ========================================================================== */
+.purple-card {
+    background: #FFFFFF;
+    border: 1px solid var(--purple-border);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.purple-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--purple-border-hover);
+}
+
+.purple-card-accent {
+    border-top: 4px solid var(--purple-primary) !important;
+}
+
+.btn-purple-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--purple-btn-gradient);
+    color: #FFFFFF !important;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    border: none;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(134, 47, 233, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-purple-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(134, 47, 233, 0.4);
+    color: #FFFFFF !important;
+}
+
+.btn-purple-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    color: var(--purple-primary) !important;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    border: 2px solid var(--purple-border);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-purple-outline:hover {
+    background: var(--purple-soft);
+    border-color: var(--purple-primary);
+    color: var(--purple-hover) !important;
+}
+
+/* Form Styles */
+.purple-input {
+    background: #FFFFFF;
+    border: 1.5px solid var(--purple-border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    color: var(--text-heading);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.purple-input:focus {
+    outline: none;
+    border-color: var(--purple-primary);
+    box-shadow: 0 0 0 4px rgba(134, 47, 233, 0.15);
+}
+
+/* ==========================================================================
+   Footer - Royal Deep Purple (#2E0854)
+   Solusi teks putih tidak terlihat dan link hijau yang aneh
+   ========================================================================== */
+#footer.royal-purple-footer {
+    background-color: var(--purple-dark) !important;
+    color: var(--text-lavender) !important;
+    border-top: 3px solid var(--purple-primary);
+}
+
+#footer.royal-purple-footer h5 {
+    color: #FFFFFF !important;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+}
+
+#footer.royal-purple-footer p,
+#footer.royal-purple-footer span {
+    color: #E9D5FF !important;
+    font-size: 0.95rem;
+}
+
+#footer.royal-purple-footer a {
+    color: #DDD6FE !important;
+    text-decoration: none !important;
+    font-weight: 500;
+    transition: color 0.15s ease;
+}
+
+#footer.royal-purple-footer a:hover {
+    color: #FFFFFF !important;
+    text-decoration: underline !important;
+}
+
+#footer.royal-purple-footer .border-top {
+    border-color: rgba(233, 213, 255, 0.2) !important;
+}

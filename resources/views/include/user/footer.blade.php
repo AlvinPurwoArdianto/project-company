@@ -1,69 +1,50 @@
-<footer id="footer" class="footer py-5" style="background-color: #e8d4fa;">
-    <div class="container">
+<footer id="footer" class="footer royal-purple-footer py-5">
+    <div class="container py-3">
         <div class="row gy-4">
             <!-- Footer Brand & Kontak -->
             <div class="col-lg-4 col-md-6">
-                <a href="/" class="d-flex align-items-center mb-3 text-decoration-none">
-                    <span class="fs-4 fw-bold text-purple">Victory</span>
+                <a href="{{ url('/') }}" class="d-flex align-items-center mb-3 text-decoration-none">
+                    <span class="fs-4 fw-bold text-white">Victory English School</span>
                 </a>
-                <div class="footer-contact text-muted">
-                    <p class="mb-1">Komp. Bumi Asri Mekarrahayu Blok 1 D 39 No. 104</p>
-                    <p class="mb-1">Kab. Bandung, Jawa Barat, Indonesia</p>
-                    <p class="mt-3 mb-1"><strong>No Telepon:</strong> <span>+62 852-9494-0965</span></p>
-                    <p><strong>Email:</strong> <span>victory@gmail.com</span></p>
+                <div class="footer-contact">
+                    <p class="mb-2">Komp. Bumi Asri Mekarrahayu Blok 1 D 39 No. 104</p>
+                    <p class="mb-2">Kab. Bandung, Jawa Barat, Indonesia</p>
+                    <p class="mt-3 mb-1"><strong>Telepon / WA:</strong> <span class="text-white">+62 852-9494-0965</span></p>
+                    <p class="mb-0"><strong>Email:</strong> <span class="text-white">victory@gmail.com</span></p>
                 </div>
             </div>
 
             <!-- Footer Links -->
             <div class="col-lg-4 col-md-6">
-                <h5 class="fw-bold">Halaman</h5>
+                <h5 class="fw-bold">Navigasi Halaman</h5>
                 <div class="row mt-3">
-                    <!-- Kolom 1 -->
                     <div class="col-6">
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
-                                <a href="#" class="text-decoration-none text-muted">Beranda</a>
-                            </li>
-                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
-                                <a href="#profil" class="text-decoration-none text-muted">Profil</a>
-                            </li>
-                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
-                                <a href="#program" class="text-decoration-none text-muted">Program</a>
-                            </li>
-                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
-                                <a href="#fasilitas" class="text-decoration-none text-muted">Fasilitas</a>
-                            </li>
+                        <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                            <li><a href="{{ url('/') }}">Beranda</a></li>
+                            <li><a href="{{ url('/#profil') }}">Profil Lembaga</a></li>
+                            <li><a href="{{ url('/#program') }}">Program Kursus</a></li>
+                            <li><a href="{{ url('/#fasilitas') }}">Fasilitas Belajar</a></li>
                         </ul>
                     </div>
-
-                    <!-- Kolom 2 -->
                     <div class="col-6">
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
-                                <a href="#informasi" class="text-decoration-none text-muted">Informasi</a>
-                            </li>
-                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
-                                <a href="#testimonials" class="text-decoration-none text-muted">Testimoni</a>
-                            </li>
-                            <li><i class="bi bi-chevron-right me-1 text-secondary"></i>
-                                <a href="#contact" class="text-decoration-none text-muted">Kontak</a>
-                            </li>
+                        <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                            <li><a href="{{ url('/#informasi') }}">Artikel & Berita</a></li>
+                            <li><a href="{{ url('/#testimonials') }}">Testimoni Siswa</a></li>
+                            <li><a href="{{ url('/#contact') }}">Kontak Lembaga</a></li>
+                            <li><a href="{{ route('daftar') }}">Pendaftaran Baru</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- Footer Sosial Media -->
+            <!-- Footer Info -->
             <div class="col-lg-4 col-md-12">
-                <h5 class="fw-bold">Follow Us</h5>
-                <p class="text-muted mt-3">Ikuti kami untuk update terbaru seputar program dan informasi belajar bahasa
-                    Inggris.</p>
-                <div class="social-links d-flex gap-3">
-                    <a href="#" class="text-secondary fs-5"><i class="bi bi-twitter-x"></i></a>
-                    <a href="#" class="text-secondary fs-5"><i class="bi bi-facebook"></i></a>
-                    <a href="https://www.instagram.com/victory.englishschool/" target="_blank"
-                        class="text-primary fs-5"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="text-secondary fs-5"><i class="bi bi-linkedin"></i></a>
+                <h5 class="fw-bold">Tentang Kami</h5>
+                <p class="mt-2" style="line-height: 1.7;">
+                    Lembaga kursus bahasa Inggris terpercaya sejak 1998 di Bandung. Berkomitmen menghadirkan metode belajar interaktif dan praktis untuk semua jenjang usia.
+                </p>
+                <div class="mt-4 pt-3 border-top small" style="opacity: 0.85;">
+                    &copy; {{ date('Y') }} Victory English School. All Rights Reserved.
                 </div>
             </div>
         </div>
