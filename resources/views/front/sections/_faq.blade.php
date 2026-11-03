@@ -120,16 +120,6 @@
 
                 </div>
 
-                <!-- Box Bantuan Tambahan -->
-                <div class="text-center mt-5 p-4 rounded-4" style="background-color: var(--purple-soft); border: 1px solid var(--purple-border);">
-                    <h5 class="fw-bold mb-2" style="color: var(--purple-primary);">Masih Memiliki Pertanyaan Lain?</h5>
-                    <p class="text-muted small mb-3">
-                        Tim konsultan pendidikan kami siap membantu menjawab pertanyaan Anda dan memberikan rekomendasi program terbaik.
-                    </p>
-                    <a href="{{ request()->is('/') ? '#contact' : url('/#contact') }}" class="btn-purple-primary py-2 px-4 small">
-                        Hubungi Kami Sekarang
-                    </a>
-                </div>
             </div>
         </div>
     </div>
