@@ -422,22 +422,16 @@ a:hover {
     white-space: nowrap;
 }
 
-.hero-card-1 {
-    top: 6%;
-    left: -4%;
+.hero-card-left {
+    bottom: -10px;
+    left: -15px;
     animation: floatBadge1 4.8s ease-in-out infinite;
 }
 
-.hero-card-2 {
-    top: 14%;
-    right: -6%;
-    animation: floatBadge2 5.6s ease-in-out infinite 0.6s;
-}
-
-.hero-card-3 {
-    bottom: 4%;
-    left: -2%;
-    animation: floatBadge3 5.2s ease-in-out infinite 1.2s;
+.hero-card-right {
+    bottom: -15px;
+    right: -15px;
+    animation: floatBadge2 5.4s ease-in-out infinite 0.8s;
 }
 
 .hero-card-title {
@@ -505,17 +499,18 @@ a:hover {
 }
 
 @media (max-width: 991px) {
-    .hero-card-1 {
-        left: 0;
-        top: 0;
+    .hero-glass-card {
+        position: static;
+        display: inline-block;
+        margin: 8px 6px;
+        white-space: normal;
     }
-    .hero-card-2 {
-        right: 0;
-        top: 10%;
-    }
-    .hero-card-3 {
-        left: 0;
-        bottom: 0;
+    .hero-card-left,
+    .hero-card-right {
+        animation: none;
+        bottom: auto;
+        left: auto;
+        right: auto;
     }
 }
 /* ==========================================================================
