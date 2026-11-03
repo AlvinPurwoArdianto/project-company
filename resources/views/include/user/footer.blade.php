@@ -30,6 +30,7 @@
                         <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
                             <li><a href="{{ url('/#informasi') }}">Artikel & Berita</a></li>
                             <li><a href="{{ url('/#testimonials') }}">Testimoni Siswa</a></li>
+                            <li><a href="{{ url('/#faq') }}">Tanya Jawab (FAQ)</a></li>
                             <li><a href="{{ url('/#contact') }}">Kontak Lembaga</a></li>
                             <li><a href="{{ route('daftar') }}">Pendaftaran Baru</a></li>
                         </ul>

@@ -10,8 +10,8 @@
         @include('front.sections._fasilitas')
         @include('front.sections._informasi')
         @include('front.sections._testimoni')
+        @include('front.sections._faq')
         @include('front.sections._kontak')
-    </main>
 @endsection
 
 @push('scripts')

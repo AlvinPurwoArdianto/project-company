@@ -1,9 +1,9 @@
 <header id="header" class="{{ request()->is('/') ? 'header-transparent' : 'header-solid' }}">
-    <div class="container-fluid container-xl d-flex justify-content-between align-items-center">
+    <div class="container d-flex justify-content-between align-items-center">
         <!-- Logo -->
         <a href="{{ request()->is('/') ? '#hero' : url('/') }}" class="header-logo d-flex align-items-center text-decoration-none">
             <span class="header-logo-badge d-inline-flex align-items-center">
-                <img src="{{ asset('user/assets/img/logo mini.png') }}" height="46" alt="Victory English School" style="object-fit: contain;">
+                <img src="{{ asset('user/assets/img/logo mini.png') }}" height="42" alt="Victory English School" style="object-fit: contain;">
             </span>
         </a>
 
@@ -17,6 +17,7 @@
                     <li><a href="{{ request()->is('/') ? '#fasilitas' : url('/#fasilitas') }}">Fasilitas</a></li>
                     <li><a href="{{ request()->is('/') ? '#informasi' : url('/#informasi') }}">Informasi</a></li>
                     <li><a href="{{ request()->is('/') ? '#testimonials' : url('/#testimonials') }}">Testimoni</a></li>
+                    <li><a href="{{ request()->is('/') ? '#faq' : url('/#faq') }}">FAQ</a></li>
                     <li><a href="{{ request()->is('/') ? '#contact' : url('/#contact') }}">Kontak</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list ms-3 fs-3" role="button" aria-label="Toggle navigation"></i>
