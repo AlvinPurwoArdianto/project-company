@@ -57,14 +57,20 @@
                         class="img-fluid hero-3d-main"
                         alt="Victory English School Belajar Bahasa Inggris Interaktif">
 
-                    <!-- Floating Glass Card (Bottom Left - Ruang Bersih Tanpa Menimpa Art) -->
-                    <div class="hero-glass-card hero-card-left">
+                    <!-- Floating Glass Card 1 (Top Left) -->
+                    <div class="hero-glass-card hero-card-1">
                         <div class="hero-card-title">Metode Praktik</div>
                         <div class="hero-card-sub">Speaking & Conversation</div>
                     </div>
 
-                    <!-- Floating Glass Card (Bottom Right - Ruang Bersih di Bawah Pengajar) -->
-                    <div class="hero-glass-card hero-card-right">
+                    <!-- Floating Glass Card 2 (Top Right - Digeser Lebih Luar Agar Balon 3D Terlihat) -->
+                    <div class="hero-glass-card hero-card-2">
+                        <div class="hero-card-title">Semua Jenjang Usia</div>
+                        <div class="hero-card-sub">TK, SD, SMP, SMA & Dewasa</div>
+                    </div>
+
+                    <!-- Floating Glass Card 3 (Bottom Left) -->
+                    <div class="hero-glass-card hero-card-3">
                         <div class="hero-card-title">Pengajar Profesional</div>
                         <div class="hero-card-sub">Bimbingan Ramah & Sabar</div>
                     </div>
