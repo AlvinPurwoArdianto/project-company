@@ -4,117 +4,76 @@ namespace App\Http\Controllers;
 
 use App\Models\Program;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class ProgramController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
-        $program = Program::all();
-        confirmDelete('Hapus Program!', 'Apakah Anda Yakin?');
+        $program = Program::latest()->get();
+        confirmDelete('Hapus Program!', 'Apakah Anda yakin ingin menghapus program ini?');
         return view('admin.program.index', compact('program'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $program = Program::all();
-        return view('admin.program.create', compact('program'));
-
+        return view('admin.program.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_program' => 'required|min:3|unique:programs',
-            'deskripsi' => 'required', 'max:255',
+        $validated = $request->validate([
+            'nama_program' => 'required|string|min:3|max:150|unique:programs,nama_program',
+            'deskripsi'    => 'required|string|max:1000',
         ]);
 
-        $program = new Program();
-        $program->nama_program = $request->nama_program;
-        $program->deskripsi = $request->deskripsi;
-        $program->save();
+        Program::create([
+            'nama_program' => $validated['nama_program'],
+            'deskripsi'    => $validated['deskripsi'],
+        ]);
 
-        return redirect()->route('program.index')->with('success', 'Data Berhasil Disimpan');
+        toast('Program Berhasil Ditambahkan!', 'success')->position('top-end')->autoClose(1500);
+        return redirect()->route('program.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Program  $program
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        return redirect()->route('program.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Program  $program
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $program = Program::findOrFail($id);
         return view('admin.program.edit', compact('program'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Program  $program
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama_program' => 'required|min:3',
-            'deskripsi' => 'required', 'max:255',
+        $validated = $request->validate([
+            'nama_program' => 'required|string|min:3|max:150|unique:programs,nama_program,' . $id,
+            'deskripsi'    => 'required|string|max:1000',
         ]);
 
         $program = Program::findOrFail($id);
-        $program->nama_program = $request->nama_program;
-        $program->deskripsi = $request->deskripsi;
-        $program->save();
+        $program->update([
+            'nama_program' => $validated['nama_program'],
+            'deskripsi'    => $validated['deskripsi'],
+        ]);
 
-        return redirect()->route('program.index')->with('success', 'Data Berhasil Diupdate');
+        toast('Program Berhasil Diperbarui!', 'success')->position('top-end')->autoClose(1500);
+        return redirect()->route('program.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Program  $program
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $program = Program::findOrFail($id);
         $program->delete();
 
-        Alert::success('Success', 'Data Berhasil Dihapus')->autoClose(1000);
+        toast('Program Berhasil Dihapus!', 'success')->position('top-end')->autoClose(1500);
         return redirect()->route('program.index');
     }
 }

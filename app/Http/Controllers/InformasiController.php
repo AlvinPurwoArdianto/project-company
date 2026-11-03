@@ -1,64 +1,71 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Informasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class InformasiController extends Controller
 {
     public function index()
     {
-        $informasi = Informasi::all();
-        confirmDelete('Hapus Informasi!', 'Apakah Anda Yakin?');
+        $informasi = Informasi::latest()->get();
+        confirmDelete('Hapus Informasi!', 'Apakah Anda yakin ingin menghapus data ini?');
         return view('admin.informasi.index', compact('informasi'));
     }
 
     public function create()
     {
-        $informasi = Informasi::all();
-        return view('admin.informasi.create', compact('informasi'));
+        return view('admin.informasi.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_informasi' => 'required|unique:informasis',
-            'deskripsi'      => 'required',
-            'gambar'         => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3084',
+        $validated = $request->validate([
+            'nama_informasi' => 'required|string|max:200|unique:informasis,nama_informasi',
+            'deskripsi'      => 'required|string',
+            'tanggal'        => 'required|date',
+            'gambar'         => 'required|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
         $informasi                 = new Informasi();
-        $informasi->nama_informasi = $request->nama_informasi;
-        $informasi->deskripsi      = $request->deskripsi;
-        $informasi->slug           = Str::slug($request->nama_informasi);
+        $informasi->nama_informasi = $validated['nama_informasi'];
+        $informasi->deskripsi      = $validated['deskripsi'];
+        $informasi->slug           = Str::slug($validated['nama_informasi']);
+        $informasi->tanggal        = $validated['tanggal'];
 
         if ($request->hasFile('gambar')) {
-            $img  = $request->file('gambar');
-            $name = rand(1000, 9999) . $img->getClientOriginalName();
-            $img->move('images/informasi', $name);
-            $informasi->gambar = $name;
-        }
+            $file = $request->file('gambar');
+            $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
 
-        $informasi->tanggal = $request->tanggal;
+            try {
+                // Upload to Cloudflare R2 CDN
+                $path = Storage::disk('r2')->putFileAs('informasi', $file, $filename);
+                $informasi->gambar = $path;
+            } catch (\Throwable $e) {
+                Log::error('R2 upload failed for informasi, fallback to local: ' . $e->getMessage());
+                $file->move(public_path('images/informasi'), $filename);
+                $informasi->gambar = $filename;
+            }
+        }
 
         $informasi->save();
 
-        toast('Data Berhasil Ditambahkan!', 'success')->position('top-end')->autoClose(1000);
+        toast('Informasi Berhasil Ditambahkan!', 'success')->position('top-end')->autoClose(1500);
         return redirect()->route('informasi.index');
-
     }
 
     public function show($id)
     {
         $informasi = Informasi::with('komentar')->findOrFail($id);
 
-        // Cek jika route saat ini route admin
         if (request()->is('admin/*')) {
             return view('admin.informasi.show', compact('informasi'));
         }
 
-        // Jika bukan admin (frontend)
         return view('informasi', compact('informasi'));
     }
 
@@ -70,28 +77,39 @@ class InformasiController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama_informasi' => 'required',
-            'deskripsi'      => 'required',
-            'gambar'         => 'image|mimes:jpeg,png,jpg,gif,svg|max:3084',
+        $validated = $request->validate([
+            'nama_informasi' => 'required|string|max:200|unique:informasis,nama_informasi,' . $id,
+            'deskripsi'      => 'required|string',
+            'tanggal'        => 'required|date',
+            'gambar'         => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
         $informasi                 = Informasi::findOrFail($id);
-        $informasi->nama_informasi = $request->nama_informasi;
-        $informasi->deskripsi      = $request->deskripsi;
-        $informasi->tanggal        = $request->tanggal;
+        $informasi->nama_informasi = $validated['nama_informasi'];
+        $informasi->slug           = Str::slug($validated['nama_informasi']);
+        $informasi->deskripsi      = $validated['deskripsi'];
+        $informasi->tanggal        = $validated['tanggal'];
 
         if ($request->hasFile('gambar')) {
             $informasi->deleteImage();
-            $img  = $request->file('gambar');
-            $name = rand(1000, 9999) . $img->getClientOriginalName();
-            $img->move('images/informasi', $name);
-            $informasi->gambar = $name;
+
+            $file = $request->file('gambar');
+            $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+
+            try {
+                // Upload to Cloudflare R2 CDN
+                $path = Storage::disk('r2')->putFileAs('informasi', $file, $filename);
+                $informasi->gambar = $path;
+            } catch (\Throwable $e) {
+                Log::error('R2 upload failed for informasi, fallback to local: ' . $e->getMessage());
+                $file->move(public_path('images/informasi'), $filename);
+                $informasi->gambar = $filename;
+            }
         }
 
-        $informasi->update();
+        $informasi->save();
 
-        toast('Data Berhasil Diubah!', 'success')->position('top-end')->autoClose(1000);
+        toast('Informasi Berhasil Diperbarui!', 'success')->position('top-end')->autoClose(1500);
         return redirect()->route('informasi.index');
     }
 
@@ -101,7 +119,7 @@ class InformasiController extends Controller
         $informasi->deleteImage();
         $informasi->delete();
 
-        toast('Data Berhasil Dihapus!', 'success')->position('top-end')->autoClose(1000);
+        toast('Informasi Berhasil Dihapus!', 'success')->position('top-end')->autoClose(1500);
         return redirect()->route('informasi.index');
     }
 
@@ -120,7 +138,7 @@ class InformasiController extends Controller
         $query = Informasi::query();
 
         if ($request->filled('search')) {
-            $query->where('nama_informasi', 'like', '%' . $request->search . '%');
+            $query->where('nama_informasi', 'ilike', '%' . $request->search . '%');
         }
 
         $informasi = $query->latest()->paginate(8);

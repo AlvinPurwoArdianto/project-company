@@ -75,10 +75,10 @@
                 <div class="mb-3">
                     <label for="gambar" class="form-label">Gambar</label>
                     <div class="mb-2">
-                        <img src="{{ asset('images/informasi/' . $informasi->gambar) }}"
+                        <img src="{{ $informasi->gambar_url }}"
                             alt="Current Gambar"
                             class="img-thumbnail"
-                            style="max-height: 200px;">
+                            style="max-height: 200px; object-fit: cover;">
                     </div>
                     <input type="file"
                         class="form-control @error('gambar') is-invalid @enderror"

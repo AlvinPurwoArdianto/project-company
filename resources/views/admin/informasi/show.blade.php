@@ -115,8 +115,8 @@
 
                 <div class="col-lg-6">
                     <label class="form-label">Gambar</label>
-                    <img src="{{ asset('images/informasi/' . $informasi->gambar) }}"
-                        alt="{{ $informasi->nama_informasi }}" width="100%" height="auto" class="img-preview">
+                    <img src="{{ $informasi->gambar_url }}"
+                        alt="{{ $informasi->nama_informasi }}" width="100%" height="auto" class="img-preview rounded shadow-sm">
                 </div>
             </div>
         </div>

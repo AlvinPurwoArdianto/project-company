@@ -15,7 +15,7 @@
                 <div class="col-6 col-md-4 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="100">
                     <div class="purple-card p-0 overflow-hidden w-100 d-flex flex-column text-center">
                         <div class="overflow-hidden bg-light" style="height: 170px;">
-                            <img src="{{ asset('/images/fasilitas/' . $data->cover) }}"
+                            <img src="{{ $data->cover_url }}"
                                 alt="{{ $data->nama_fasilitas }}" class="w-100 h-100"
                                 style="object-fit: cover;"
                                 onerror="this.src='{{ asset('user/assets/img/logo mini.png') }}'">
@@ -61,7 +61,7 @@
                         <div class="col-6 col-md-4 col-lg-3">
                             <div class="purple-card p-0 overflow-hidden text-center h-100">
                                 <div class="overflow-hidden bg-light" style="height: 160px;">
-                                    <img src="{{ asset('/images/fasilitas/' . $data->cover) }}"
+                                    <img src="{{ $data->cover_url }}"
                                         alt="{{ $data->nama_fasilitas }}" class="w-100 h-100" style="object-fit: cover;"
                                         onerror="this.src='{{ asset('user/assets/img/logo mini.png') }}'">
                                 </div>

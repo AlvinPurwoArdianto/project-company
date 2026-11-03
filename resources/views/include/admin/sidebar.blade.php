@@ -89,21 +89,23 @@
 
 @push('style')
 <style>
-    /* Custom Purple Theme Colors */
+    /* Royal Purple Theme Colors */
     .bg-menu-theme {
-        background-color: #696cff !important;
+        background: linear-gradient(180deg, #4C1D95 0%, #6D28D9 50%, #7030D6 100%) !important;
+        box-shadow: 0 4px 20px rgba(76, 29, 149, 0.25) !important;
     }
 
     .menu-vertical .menu-item.active > .menu-link {
-        background-color: rgba(255, 255, 255, 0.16) !important;
+        background-color: rgba(255, 255, 255, 0.22) !important;
         color: #ffffff !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+        font-weight: 700 !important;
     }
 
     .menu-vertical .menu-item .menu-link:hover {
         background-color: rgba(255, 255, 255, 0.16) !important;
         color: #ffffff !important;
     }
-
     .menu-vertical .menu-icon {
         color: #ffffff !important;
     }
@@ -140,7 +142,7 @@
     }
 
     .menu-inner-shadow {
-        background: linear-gradient(#696cff 0%, rgba(105, 108, 255, 0.7) 100%);
+        background: linear-gradient(#4C1D95 0%, rgba(109, 40, 217, 0.7) 100%);
     }
 
     /* Submenu styles */

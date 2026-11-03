@@ -50,8 +50,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td class="fw-semibold text-dark">{{ $data->nama_fasilitas }}</td>
                             <td>
-                                <img src="{{ asset('/images/fasilitas/' . $data->cover) }}" class="img-thumbnail image-preview" width="80" alt="fasilitas" data-bs-toggle="modal" data-bs-target="#imageModal{{ $data->id }}">
-
+                                <img src="{{ $data->cover_url }}" class="img-thumbnail image-preview" width="80" alt="fasilitas" data-bs-toggle="modal" data-bs-target="#imageModal{{ $data->id }}" style="height: 60px; object-fit: cover;">
                                 <!-- Modal Gambar -->
                                 <div class="modal fade" id="imageModal{{ $data->id }}" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -61,7 +60,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                             </div>
                                             <div class="modal-body text-center">
-                                                <img src="{{ asset('/images/fasilitas/' . $data->cover) }}" class="img-fluid rounded shadow" alt="{{ $data->nama_fasilitas }}">
+                                                <img src="{{ $data->cover_url }}" class="img-fluid rounded shadow" alt="{{ $data->nama_fasilitas }}">
                                             </div>
                                         </div>
                                     </div>

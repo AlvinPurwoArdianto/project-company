@@ -34,11 +34,11 @@
                 <div class="mb-3">
                     <label for="cover" class="form-label">Cover Fasilitas</label>
                     <div class="mb-3">
-                        <img src="{{ asset('images/fasilitas/' . $fasilitas->cover) }}"
+                        <img src="{{ $fasilitas->cover_url }}"
                             alt="Current Cover"
                             class="img-thumbnail"
                             id="coverPreview"
-                            style="max-height: 200px;">
+                            style="max-height: 200px; object-fit: cover;">
                     </div>
                     <input type="file"
                         class="form-control @error('cover') is-invalid @enderror"

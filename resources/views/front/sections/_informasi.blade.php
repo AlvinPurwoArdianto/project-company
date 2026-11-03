@@ -15,7 +15,7 @@
                 <div class="col-12 col-md-6 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="100">
                     <div class="purple-card p-0 overflow-hidden d-flex flex-column w-100">
                         <div class="position-relative bg-light" style="height: 180px;">
-                            <img src="{{ asset('/images/informasi/' . $data->gambar) }}"
+                            <img src="{{ $data->gambar_url }}"
                                 class="w-100 h-100" style="object-fit: cover;" alt="{{ $data->nama_informasi }}"
                                 onerror="this.src='{{ asset('user/assets/img/logo mini.png') }}'">
                             <div class="position-absolute top-0 end-0 m-3 badge text-white shadow-sm small py-1 px-2 fw-semibold" style="background-color: var(--purple-primary);">

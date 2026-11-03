@@ -34,8 +34,8 @@
                                     {!! Str::limit($data->deskripsi, 50) !!}
                                 </td>
                                 <td>
-                                    <img src="{{ asset('/images/informasi/' . $data->gambar) }}"
-                                        class="img-thumbnail rounded shadow-sm" width="80" alt="gambar informasi">
+                                    <img src="{{ $data->gambar_url }}"
+                                        class="img-thumbnail rounded shadow-sm" width="80" style="height: 55px; object-fit: cover;" alt="{{ $data->nama_informasi }}">
                                 </td>
                                 <td>
                                     <i class="bx bx-calendar"></i>

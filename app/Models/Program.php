@@ -9,6 +9,6 @@ class Program extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'nama_program', 'deskrisi'];
-    public $timestamp = true;
+    protected $fillable = ['nama_program', 'deskripsi'];
+    public $timestamps = true;
 }

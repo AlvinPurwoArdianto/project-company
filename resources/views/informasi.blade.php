@@ -51,8 +51,9 @@
                         <a href="{{ route('informasi_detail', $data->slug) }}" class="text-decoration-none text-dark">
                             <div class="card border-0 shadow-sm h-100 rounded-4 hover-shadow">
                                 <div class="position-relative rounded-top-4 overflow-hidden">
-                                    <img src="{{ asset('/images/informasi/' . $data->gambar) }}" class="card-img-top"
-                                        alt="{{ $data->nama_informasi }}" style="height: 180px; object-fit: cover;">
+                                    <img src="{{ $data->gambar_url }}" class="card-img-top"
+                                        alt="{{ $data->nama_informasi }}" style="height: 180px; object-fit: cover;"
+                                        onerror="this.src='{{ asset('user/assets/img/logo mini.png') }}'">
                                     <span class="position-absolute top-0 end-0 m-2 badge text-white small"
                                         style="background-color: #862fe9">
                                         {{ \Carbon\Carbon::parse($data->created_at)->locale('id')->translatedFormat('d F Y') }}

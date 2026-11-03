@@ -114,11 +114,8 @@
 
         .admin-toast {
             background: #f8fafc !important;
-            /* Soft grey/white */
             color: #1e293b !important;
-            /* Dark slate */
-            border-left: 4px solid #3b82f6 !important;
-            /* Blue accent */
+            border-left: 4px solid #7030d6 !important;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
             padding: 10px 15px !important;
             font-size: 14px !important;
@@ -135,20 +132,35 @@
 
         /* Progress bar */
         .swal2-timer-progress-bar {
-            background: #3b82f6 !important;
+            background: #7030d6 !important;
         }
 
         /* Hover effect */
         .admin-toast:hover {
             cursor: pointer;
-            border-left-color: #2563eb !important;
-            /* Slightly darker blue */
+            border-left-color: #5b21b6 !important;
             box-shadow: 0 6px 22px rgba(0, 0, 0, 0.25) !important;
         }
 
         .toast-icon {
-            color: #3b82f6 !important;
+            color: #7030d6 !important;
             font-size: 18px !important;
+        }
+
+        /* Admin Royal Purple Buttons & Components */
+        .btn-primary {
+            background-color: #7030D6 !important;
+            border-color: #7030D6 !important;
+            box-shadow: 0 4px 12px rgba(112, 48, 214, 0.25) !important;
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+            background-color: #5B21B6 !important;
+            border-color: #5B21B6 !important;
+            box-shadow: 0 6px 16px rgba(112, 48, 214, 0.35) !important;
+        }
+        .page-item.active .page-link {
+            background-color: #7030D6 !important;
+            border-color: #7030D6 !important;
         }
     </style>
 
@@ -215,8 +227,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    {{-- Datatable --}}
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    {{-- Datatable (uses main jQuery loaded above) --}}
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>

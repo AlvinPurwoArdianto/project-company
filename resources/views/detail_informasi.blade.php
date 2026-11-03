@@ -30,8 +30,9 @@
                     <div class="col-md-4 position-relative d-flex">
                         <div class="flex-fill w-100"
                             style="min-height: 220px; max-height: 300px; overflow: hidden; border-radius: 10px 0 0 10px;">
-                            <img src="{{ asset('/images/informasi/' . $informasi->gambar) }}" alt="Cover informasi"
-                                class="w-100 h-100" style="object-fit: cover; display: block;">
+                            <img src="{{ $informasi->gambar_url }}" alt="{{ $informasi->nama_informasi }}"
+                                class="w-100 h-100" style="object-fit: cover; display: block;"
+                                onerror="this.src='{{ asset('user/assets/img/logo mini.png') }}'">
                         </div>
 
                         {{-- Tanggal di Atas Gambar (Kiri Atas) --}}
