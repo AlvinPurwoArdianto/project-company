@@ -731,125 +731,193 @@ a:hover {
 }
 
 /* ==========================================================================
-   Responsive Mobile Navbar (< 1200px)
+   Responsive Mobile Navbar (< 1200px) & Right Drawer Offcanvas
    ========================================================================== */
 @media (max-width: 1199px) {
-    /* Hide navmenu dropdown by default */
+    /* Completely hide old desktop/mobile navmenu */
     #header .navmenu ul,
     .navmenu ul {
         display: none !important;
     }
 
-    /* Backdrop overlay when open */
-    body.mobile-nav-active .navmenu {
-        position: fixed !important;
-        inset: 0 !important;
-        background: rgba(30, 27, 75, 0.65) !important;
-        backdrop-filter: blur(5px) !important;
-        -webkit-backdrop-filter: blur(5px) !important;
-        z-index: 99990 !important;
-        display: block !important;
-        transition: 0.25s ease !important;
-    }
-
-    /* Modern white popup card for menu links */
-    body.mobile-nav-active #header .navmenu ul,
-    body.mobile-nav-active .navmenu ul,
-    body.mobile-nav-active .navmenu > ul,
-    #header .navmenu.menu-open ul,
-    .navmenu.menu-open ul {
-        display: flex !important;
-        flex-direction: column !important;
-        position: fixed !important;
-        top: 72px !important;
-        left: 16px !important;
-        right: 16px !important;
-        bottom: auto !important;
+    /* Suppress old template full-screen dark overlay */
+    body.mobile-nav-active .navmenu,
+    .navmenu {
+        position: static !important;
+        inset: auto !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
         width: auto !important;
         height: auto !important;
-        max-height: calc(100vh - 100px) !important;
-        background: #FFFFFF !important;
-        border-radius: 20px !important;
-        padding: 14px !important;
-        box-shadow: 0 25px 50px -12px rgba(30, 27, 75, 0.45) !important;
-        border: 1.5px solid rgba(134, 47, 233, 0.25) !important;
-        z-index: 99999 !important;
-        overflow-y: auto !important;
-        animation: fadeInDown 0.25s ease-out !important;
+        overflow: visible !important;
     }
 
-    .navmenu ul li {
-        width: 100% !important;
-        margin-bottom: 4px !important;
-    }
-
-    .navmenu ul li:last-child {
-        margin-bottom: 0 !important;
-    }
-
-    /* Maximum specificity to ensure text is dark and clearly visible */
-    #header #navmenu ul li a,
-    #header.header-transparent #navmenu ul li a,
-    #header.header-transparent:not(.header-scrolled) #navmenu ul li a,
-    #header.header-scrolled #navmenu ul li a,
-    #header.header-solid #navmenu ul li a,
-    .navmenu ul li a {
-        display: block !important;
-        width: 100% !important;
-        padding: 12px 18px !important;
-        color: #1E1B4B !important;
-        border-radius: 12px !important;
-        font-weight: 600 !important;
-        font-size: 0.95rem !important;
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        text-align: left !important;
-        transition: all 0.15s ease !important;
-    }
-
-    #header #navmenu ul li a:hover,
-    #header #navmenu ul li a.active,
-    #header.header-transparent #navmenu ul li a:hover,
-    #header.header-transparent #navmenu ul li a.active,
-    #header.header-transparent:not(.header-scrolled) #navmenu ul li a:hover,
-    #header.header-transparent:not(.header-scrolled) #navmenu ul li a.active,
-    #header.header-scrolled #navmenu ul li a:hover,
-    #header.header-scrolled #navmenu ul li a.active,
-    .navmenu ul li a:hover,
-    .navmenu ul li a.active {
-        background: var(--purple-soft) !important;
-        color: var(--purple-primary) !important;
-        font-weight: 700 !important;
-    }
-
-    /* Close button styling */
+    /* Mobile toggle icon in header */
     .mobile-nav-toggle {
         color: #FFFFFF !important;
         cursor: pointer !important;
-        z-index: 99999 !important;
+        font-size: 1.85rem !important;
         transition: transform 0.2s ease !important;
+        z-index: 1000 !important;
     }
 
-    body.mobile-nav-active .mobile-nav-toggle {
-        color: #FFFFFF !important;
-        position: fixed !important;
-        top: 18px !important;
-        right: 20px !important;
-        font-size: 2rem !important;
-        z-index: 99999 !important;
+    .header-scrolled .mobile-nav-toggle,
+    .header-solid .mobile-nav-toggle {
+        color: var(--purple-primary) !important;
     }
+}
 
-    @keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-8px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+/* ==========================================================================
+   Mobile Nav Sidebar (Right Drawer Offcanvas)
+   ========================================================================== */
+.mobile-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 999999 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    transition: visibility 0.3s ease !important;
+}
+
+.mobile-sidebar.open,
+body.mobile-nav-active .mobile-sidebar {
+    pointer-events: auto !important;
+    visibility: visible !important;
+}
+
+/* Semi-transparent Dark Blurred Backdrop */
+.mobile-sidebar-backdrop {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(15, 23, 42, 0.6) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    cursor: pointer !important;
+}
+
+.mobile-sidebar.open .mobile-sidebar-backdrop,
+body.mobile-nav-active .mobile-sidebar .mobile-sidebar-backdrop {
+    opacity: 1 !important;
+}
+
+/* Right Sliding Sidebar Panel */
+.mobile-sidebar-panel {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 310px !important;
+    max-width: 85vw !important;
+    height: 100% !important;
+    background: #FFFFFF !important;
+    box-shadow: -10px 0 45px rgba(30, 27, 75, 0.3) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transform: translateX(100%) !important;
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    z-index: 2 !important;
+}
+
+.mobile-sidebar.open .mobile-sidebar-panel,
+body.mobile-nav-active .mobile-sidebar .mobile-sidebar-panel {
+    transform: translateX(0) !important;
+}
+
+/* Header inside Sidebar */
+.mobile-sidebar-header {
+    padding: 16px 20px !important;
+    border-bottom: 1px solid #EDE9FE !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    background: #FAF5FF !important;
+}
+
+.mobile-sidebar-close {
+    width: 36px !important;
+    height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(109, 40, 217, 0.2) !important;
+    background: #FFFFFF !important;
+    color: #4C1D95 !important;
+    font-size: 1.1rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.mobile-sidebar-close:hover {
+    background: #EDE9FE !important;
+    color: #6D28D9 !important;
+    transform: scale(1.05) !important;
+}
+
+/* Body / Navigation Links inside Sidebar */
+.mobile-sidebar-body {
+    padding: 18px 16px !important;
+    flex-grow: 1 !important;
+    overflow-y: auto !important;
+}
+
+.mobile-sidebar-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+}
+
+.mobile-sidebar-body .mobile-nav-item {
+    display: flex !important;
+    align-items: center !important;
+    padding: 13px 16px !important;
+    color: #1E1B4B !important;
+    font-weight: 600 !important;
+    font-size: 0.98rem !important;
+    border-radius: 12px !important;
+    text-decoration: none !important;
+    transition: all 0.15s ease !important;
+}
+
+.mobile-sidebar-body .mobile-nav-item i {
+    font-size: 1.25rem !important;
+    margin-right: 14px !important;
+    color: #7C3AED !important;
+    transition: transform 0.15s ease, color 0.15s ease !important;
+}
+
+.mobile-sidebar-body .mobile-nav-item:hover,
+.mobile-sidebar-body .mobile-nav-item.active {
+    background: #EDE9FE !important;
+    color: #6D28D9 !important;
+    font-weight: 700 !important;
+}
+
+.mobile-sidebar-body .mobile-nav-item:hover i,
+.mobile-sidebar-body .mobile-nav-item.active i {
+    transform: scale(1.15) !important;
+    color: #6D28D9 !important;
+}
+
+/* Footer inside Sidebar */
+.mobile-sidebar-footer {
+    padding: 16px 20px !important;
+    border-top: 1px solid #EDE9FE !important;
+    background: #FAF5FF !important;
 }
 
 /* Swiper Carousel Navigation Controls */
