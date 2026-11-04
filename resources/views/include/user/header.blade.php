@@ -3,7 +3,8 @@
         <!-- Logo -->
         <a href="{{ request()->is('/') ? '#hero' : url('/') }}" class="header-logo d-flex align-items-center text-decoration-none">
             <span class="header-logo-badge d-inline-flex align-items-center">
-                <img src="{{ asset('user/assets/img/logo mini.png') }}" height="42" alt="Victory English School" style="object-fit: contain;">
+                <img src="{{ asset('user/assets/img/logo-white.png') }}" height="42" alt="Victory English School" class="header-logo-img logo-white" style="object-fit: contain;">
+                <img src="{{ asset('user/assets/img/logo mini.png') }}" height="42" alt="Victory English School" class="header-logo-img logo-color" style="object-fit: contain;">
             </span>
         </a>
 

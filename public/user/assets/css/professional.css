@@ -105,10 +105,42 @@ a:hover {
 }
 
 #header .header-logo img {
-    height: 46px;
+    height: 44px;
     width: auto;
     object-fit: contain;
-    transition: all 0.3s ease;
+    transition: opacity 0.25s ease, transform 0.2s ease;
+}
+
+#header .header-logo-badge {
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    display: inline-flex;
+    align-items: center;
+}
+
+#header.header-transparent:not(.header-scrolled) .header-logo .logo-white {
+    display: inline-block !important;
+}
+
+#header.header-transparent:not(.header-scrolled) .header-logo .logo-color {
+    display: none !important;
+}
+
+#header.header-scrolled .header-logo .logo-white,
+#header.header-solid .header-logo .logo-white {
+    display: none !important;
+}
+
+#header.header-scrolled .header-logo .logo-color,
+#header.header-solid .header-logo .logo-color {
+    display: inline-block !important;
+}
+
+#header .header-logo:hover img {
+    transform: scale(1.02);
 }
 
 /* Nav Links: Capsule Base */
@@ -192,12 +224,10 @@ a:hover {
 }
 
 #header.header-transparent:not(.header-scrolled) .header-logo-badge {
-    background: #FFFFFF;
-    padding: 5px 12px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    transition: all 0.3s ease;
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
 /* State 2: Scrolled State (Transparent Frosted Glassmorphism) */
