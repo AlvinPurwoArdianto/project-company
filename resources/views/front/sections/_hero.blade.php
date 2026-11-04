@@ -1,10 +1,10 @@
 <!-- Hero Section -->
 <section id="hero" class="hero-purple">
     <div class="container">
-        <div class="row gy-5 align-items-center">
+        <div class="row gy-4 gy-lg-5 align-items-center">
             <!-- Teks Hero -->
             <div class="col-12 col-lg-7 text-start d-flex flex-column justify-content-center" data-aos="fade-up">
-                <div>
+                <div class="mb-2">
                     <span class="hero-badge">Victory English School &bull; Sejak 1998</span>
                 </div>
                 <h1 class="hero-title-white">
@@ -14,7 +14,8 @@
                     Metode belajar interaktif, kurikulum aplikatif, dan dibimbing langsung oleh instruktur berpengalaman. Kami membantu siswa dari seluruh jenjang meraih kemampuan berbahasa Inggris terbaik.
                 </p>
 
-                <div class="hero-btn-group d-flex flex-wrap gap-2 gap-sm-3 mb-4 mb-lg-5">
+                <!-- CTA Buttons: Desktop Only (In Column 1) -->
+                <div class="hero-btn-group d-none d-lg-flex gap-3 mb-5" style="max-width: 460px;">
                     <a href="{{ route('daftar') }}" class="btn-hero-white">
                         Daftar Sekarang
                     </a>
@@ -23,8 +24,8 @@
                     </a>
                 </div>
 
-                <!-- Highlight Metrics (Glass Style on Purple) -->
-                <div class="row g-3" style="max-width: 540px;">
+                <!-- Highlight Metrics: Desktop Only (In Column 1, under buttons) -->
+                <div class="row g-3 d-none d-lg-flex" style="max-width: 540px;">
                     <div class="col-4">
                         <div class="hero-metric-pill text-center">
                             <div class="metric-val">25+</div>
@@ -46,9 +47,9 @@
                 </div>
             </div>
 
-            <!-- Navista-style Floating 3D Showcase -->
-            <div class="col-12 col-lg-5 text-center" data-aos="zoom-in" data-aos-delay="100">
-                <div class="hero-stage">
+            <!-- 3D Showcase (Desktop & Mobile) -->
+            <div class="col-12 col-lg-5 text-center my-2 my-lg-0" data-aos="zoom-in" data-aos-delay="100">
+                <div class="hero-stage mx-auto">
                     <!-- Ambient Glow Aura -->
                     <div class="hero-glow-aura"></div>
 
@@ -63,7 +64,7 @@
                         <div class="hero-card-sub">Speaking & Conversation</div>
                     </div>
 
-                    <!-- Floating Glass Card 2 (Top Right - Digeser Lebih Luar Agar Balon 3D Terlihat) -->
+                    <!-- Floating Glass Card 2 (Top Right) -->
                     <div class="hero-glass-card hero-card-2">
                         <div class="hero-card-title">Semua Jenjang Usia</div>
                         <div class="hero-card-sub">TK, SD, SMP, SMA & Dewasa</div>
@@ -76,7 +77,37 @@
                     </div>
                 </div>
             </div>
+
+            <!-- CTA Buttons & Trust Proof Bar: Mobile Only (Placed right under the 3D Visual!) -->
+            <div class="col-12 d-block d-lg-none mt-2" data-aos="fade-up" data-aos-delay="150">
+                <!-- Mobile CTA Buttons (Side-by-side compact) -->
+                <div class="d-flex gap-2 mb-3 mx-auto justify-content-center" style="max-width: 360px;">
+                    <a href="{{ route('daftar') }}" class="btn-hero-white flex-grow-1 text-center py-2 px-3 small">
+                        <span>Daftar Sekarang</span>
+                        <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                    <a href="{{ url('/#program') }}" class="btn-hero-outline flex-grow-1 text-center py-2 px-3 small">
+                        Pelajari Program
+                    </a>
+                </div>
+                <!-- Mobile Trust Proof Bar (Frosted Glass Card) -->
+                <div class="hero-trust-bar mx-auto">
+                    <div class="row g-2 align-items-center justify-content-center text-center">
+                        <div class="col-4 hero-trust-col">
+                            <div class="hero-trust-val">25+</div>
+                            <div class="hero-trust-lbl">Tahun Berdiri</div>
+                        </div>
+                        <div class="col-4 hero-trust-col">
+                            <div class="hero-trust-val">100%</div>
+                            <div class="hero-trust-lbl">Fokus Praktik</div>
+                        </div>
+                        <div class="col-4 hero-trust-col">
+                            <div class="hero-trust-val">Semua Usia</div>
+                            <div class="hero-trust-lbl">Anak & Dewasa</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 </section>
 <!-- /Hero Section -->

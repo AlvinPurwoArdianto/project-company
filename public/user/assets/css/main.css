@@ -2085,37 +2085,6 @@ section,
     }
 }
 
-@media (max-width: 576px) {
-    #hero h1 {
-        font-size: 4.5rem !important;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-        flex-direction: column;
-    }
-
-    #hero h2 {
-        font-size: 1.9rem !important;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-        flex-direction: column;
-    }
-
-    #hero p {
-        font-size: 1.4rem !important;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-        flex-direction: column;
-    }
-
-    #hero a.btn-get-started {
-        display: inline-block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
 
 /*--------------------------------------------------------------
 # Registration Form Button

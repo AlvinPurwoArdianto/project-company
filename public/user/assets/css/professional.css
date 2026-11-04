@@ -402,6 +402,37 @@ a:hover {
     font-weight: 500;
 }
 
+/* Hero Glass Trust Proof Bar (Mobile) */
+.hero-trust-bar {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
+    padding: 14px 18px;
+    max-width: 480px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.hero-trust-val {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.hero-trust-lbl {
+    font-size: 0.75rem;
+    color: #E9D5FF;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.hero-trust-col:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 /* Navista-style Floating Hero Visuals */
 .hero-stage {
     position: relative;
@@ -584,61 +615,77 @@ a:hover {
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 767px) {
+    #hero.hero-purple,
     .hero-purple {
-        padding: 95px 0 45px 0 !important;
+        min-height: 100vh !important;
+        min-height: 100dvh !important;
+        padding: 76px 0 30px 0 !important;
+        display: flex !important;
+        align-items: center !important;
     }
+    #hero.hero-purple > .container,
+    .hero-purple > .container {
+        width: 100%;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    #hero .hero-badge,
     .hero-purple .hero-badge {
-        font-size: 0.72rem;
-        padding: 0.35rem 0.85rem;
-        margin-bottom: 0.75rem;
+        font-size: 0.68rem;
+        padding: 0.25rem 0.75rem;
+        margin-bottom: 0.45rem;
         letter-spacing: 0.05em;
     }
+    #hero h1,
+    #hero .hero-title-white,
     .hero-purple .hero-title-white {
-        font-size: clamp(1.55rem, 6.4vw, 1.95rem) !important;
+        font-size: clamp(1.35rem, 5.2vw, 1.65rem) !important;
         line-height: 1.25 !important;
-        letter-spacing: -0.01em;
-        margin-bottom: 0.85rem !important;
+        letter-spacing: -0.015em;
+        margin-bottom: 0.45rem !important;
+        display: block !important;
     }
+    #hero p,
+    #hero .hero-subtitle-white,
     .hero-purple .hero-subtitle-white {
-        font-size: 0.875rem !important;
-        line-height: 1.6 !important;
-        margin-bottom: 1.25rem !important;
-    }
-    .btn-hero-white,
-    .btn-hero-outline {
-        padding: 0.65rem 1.35rem !important;
-        font-size: 0.875rem !important;
-        flex: 1 1 auto;
-        text-align: center;
-    }
-    .hero-metric-pill {
-        padding: 8px 6px;
-        border-radius: 10px;
-    }
-    .hero-metric-pill .metric-val {
-        font-size: 1.15rem;
-    }
-    .hero-metric-pill .metric-lbl {
-        font-size: 0.68rem;
+        font-size: 0.8125rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 0 !important;
+        display: block !important;
     }
     .hero-stage {
-        max-width: 300px;
+        max-width: 250px !important;
+        padding: 4px 0 !important;
+        margin: 0 auto !important;
     }
     .hero-3d-main {
-        max-width: 220px;
+        max-width: 205px !important;
     }
     .hero-glass-card {
-        max-width: 280px;
-        padding: 8px 14px;
-        margin: 6px auto;
-        border-radius: 12px;
+        display: none !important;
     }
-    .hero-card-title {
-        font-size: 0.8rem;
+    .btn-hero-white {
+        padding: 0.55rem 1rem !important;
+        font-size: 0.825rem !important;
+        border-radius: 50px !important;
     }
-    .hero-card-sub {
-        font-size: 0.7rem;
+    .btn-hero-outline {
+        padding: 0.55rem 1rem !important;
+        font-size: 0.825rem !important;
+        border-radius: 50px !important;
+    }
+    .hero-trust-bar {
+        padding: 10px 12px !important;
+        border-radius: 12px !important;
+        max-width: 340px !important;
+        margin-top: 0.75rem !important;
+    }
+    .hero-trust-val {
+        font-size: 1.15rem !important;
+    }
+    .hero-trust-lbl {
+        font-size: 0.68rem !important;
     }
 }
 /* ==========================================================================
