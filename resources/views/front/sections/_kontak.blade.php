@@ -71,15 +71,18 @@
 
                                 <div class="col-12">
                                     <label class="form-label text-dark fw-semibold small d-block mb-1">Penilaian (Rating)</label>
-                                    <div class="rating-left-container">
-                                        <div class="rating-left">
-                                            @for ($i = 5; $i >= 1; $i--)
-                                                <input type="radio" name="rating" id="star{{ $i }}"
-                                                    value="{{ $i }}" {{ old('rating', '5') == $i ? 'checked' : '' }}>
-                                                <label for="star{{ $i }}" title="{{ $i }} Bintang">&#9733;</label>
+                                    <div class="d-flex align-items-center flex-wrap gap-2">
+                                        <div id="starRatingGroup" class="d-inline-flex align-items-center" role="radiogroup" aria-label="Penilaian Rating">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                <input type="radio" name="rating" id="rating_star_{{ $i }}" value="{{ $i }}" class="d-none"
+                                                    {{ old('rating', '5') == $i ? 'checked' : '' }} style="display: none !important;">
+                                                <label for="rating_star_{{ $i }}" class="star-item" data-value="{{ $i }}" title="{{ $i }} Bintang"
+                                                    style="cursor: pointer; font-size: 1.85rem; line-height: 1; margin: 0; padding: 0 3px; color: {{ old('rating', '5') >= $i ? '#F59E0B' : '#CBD5E1' }}; transition: transform 0.15s ease, color 0.15s ease; user-select: none;">
+                                                    &#9733;
+                                                </label>
                                             @endfor
                                         </div>
-                                        <span class="ms-2 text-muted small fw-medium" style="font-size: 0.85rem;">(Bintang 1 &ndash; 5)</span>
+                                        <span id="starRatingLabel" class="text-muted small fw-medium" style="font-size: 0.85rem;">({{ old('rating', '5') }} dari 5 Bintang)</span>
                                     </div>
                                     @error('rating')
                                         <div class="text-danger small mt-1">{{ $message }}</div>
@@ -109,4 +112,44 @@
         </div>
     </div>
 </section>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const group = document.getElementById('starRatingGroup');
+    if (!group) return;
+    const stars = group.querySelectorAll('.star-item');
+    const labelText = document.getElementById('starRatingLabel');
+
+    function updateStars(val) {
+        stars.forEach(s => {
+            const starVal = parseInt(s.getAttribute('data-value'), 10);
+            s.style.color = (starVal <= val) ? '#F59E0B' : '#CBD5E1';
+        });
+        if (labelText) {
+            labelText.textContent = `(${val} dari 5 Bintang)`;
+        }
+    }
+
+    stars.forEach(s => {
+        s.addEventListener('mouseenter', function () {
+            const val = parseInt(this.getAttribute('data-value'), 10);
+            updateStars(val);
+            this.style.transform = 'scale(1.2)';
+        });
+        s.addEventListener('mouseleave', function () {
+            this.style.transform = 'scale(1)';
+            const checked = group.querySelector('input[type="radio"]:checked');
+            const currentVal = checked ? parseInt(checked.value, 10) : 5;
+            updateStars(currentVal);
+        });
+        s.addEventListener('click', function () {
+            const val = parseInt(this.getAttribute('data-value'), 10);
+            const radio = document.getElementById('rating_star_' + val);
+            if (radio) {
+                radio.checked = true;
+            }
+            updateStars(val);
+        });
+    });
+});
+</script>
 <!-- /Contact & Testimoni Section -->

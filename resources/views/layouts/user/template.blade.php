@@ -25,8 +25,8 @@
     <link href="{{ asset('user/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Main CSS File -->
-    <link href="{{ asset('user/assets/css/main.css') }}" rel="stylesheet">
-    <link href="{{ asset('user/assets/css/professional.css') }}" rel="stylesheet">
+    <link href="{{ asset('user/assets/css/main.css') }}?v={{ file_exists(public_path('user/assets/css/main.css')) ? filemtime(public_path('user/assets/css/main.css')) : time() }}" rel="stylesheet">
+    <link href="{{ asset('user/assets/css/professional.css') }}?v={{ file_exists(public_path('user/assets/css/professional.css')) ? filemtime(public_path('user/assets/css/professional.css')) : time() }}" rel="stylesheet">
     @stack('styles')
 </head>
 

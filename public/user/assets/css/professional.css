@@ -854,6 +854,16 @@ a:hover {
 }
 
 /* Left-Aligned Star Rating Form */
+#starRatingGroup input[type="radio"],
+.rating-left input[type="radio"] {
+    display: none !important;
+}
+
+#starRatingGroup label.star-item {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
 .rating-left-container {
     display: flex;
     align-items: center;
@@ -866,10 +876,6 @@ a:hover {
     justify-content: flex-end !important;
     width: auto !important;
     direction: ltr !important;
-}
-
-.rating-left input[type="radio"] {
-    display: none;
 }
 
 .rating-left label {
