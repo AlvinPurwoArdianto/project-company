@@ -118,32 +118,38 @@
             handleScrollSpy();
         }
 
-        // Mobile menu toggle
-        if (toggleBtn && navMenu) {
-            toggleBtn.addEventListener("click", function(e) {
-                e.stopPropagation();
-                navMenu.classList.toggle("menu-open");
-                if (navMenu.classList.contains("menu-open")) {
-                    toggleBtn.classList.replace("bi-list", "bi-x-lg");
-                } else {
-                    toggleBtn.classList.replace("bi-x-lg", "bi-list");
-                }
-            });
+        // Mobile menu toggle & backdrop handling (coordinated with main.js)
+        function closeMobileNav() {
+            document.body.classList.remove("mobile-nav-active");
+            if (toggleBtn) {
+                toggleBtn.classList.remove("bi-x", "bi-x-lg");
+                toggleBtn.classList.add("bi-list");
+            }
+        }
 
+        if (navLinks.length > 0) {
             navLinks.forEach(link => {
-                link.addEventListener("click", function() {
-                    navMenu.classList.remove("menu-open");
-                    toggleBtn.classList.replace("bi-x-lg", "bi-list");
-                });
+                link.addEventListener("click", closeMobileNav);
             });
+        }
 
-            document.addEventListener("click", function(e) {
-                if (!navMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
-                    navMenu.classList.remove("menu-open");
-                    toggleBtn.classList.replace("bi-x-lg", "bi-list");
+        // Close when clicking backdrop outside the white card
+        if (navMenu) {
+            navMenu.addEventListener("click", function(e) {
+                if (e.target === navMenu && document.body.classList.contains("mobile-nav-active")) {
+                    closeMobileNav();
                 }
             });
         }
+
+        document.addEventListener("click", function(e) {
+            if (document.body.classList.contains("mobile-nav-active")) {
+                const navUl = navMenu ? navMenu.querySelector("ul") : null;
+                if (navUl && !navUl.contains(e.target) && !toggleBtn.contains(e.target)) {
+                    closeMobileNav();
+                }
+            }
+        });
     });
 </script>
 @endpush
