@@ -21,28 +21,29 @@ class DummyDataSeeder extends Seeder
         // 1. Programs
         $programs = [
             [
-                'nama_program' => 'English for Children (TK & SD)',
-                'deskripsi'    => 'Fondasi bahasa Inggris menyenangkan melalui metode bermain, bernyanyi, visual interaktif, dan kosakata dasar sehari-hari yang membangun kepercayaan diri sejak dini.',
+                'nama_program' => 'Program 1 (Kelompok)',
+                'deskripsi'    => 'Kelas kelompok interaktif untuk jenjang SD, SMP, SMA, dan Umum. Jadwal 1x seminggu (1,5 jam). Biaya pendaftaran Rp 50.000, uang kursus Rp 100.000 / bulan.',
             ],
             [
-                'nama_program' => 'English for Teens (SMP & SMA)',
-                'deskripsi'    => 'Penguatan tata bahasa (grammar), penulisan akademik, serta pembiasaan percakapan aktif untuk mendukung prestasi sekolah dan lomba debat/pidato.',
+                'nama_program' => 'Program 2 (Individu / Semi Private)',
+                'deskripsi'    => 'Kelas kelompok kecil lebih intensif (maksimal 4 orang). Jadwal 1x seminggu (1,5 jam). Biaya pendaftaran Rp 100.000, uang kursus Rp 300.000 / bulan.',
             ],
             [
-                'nama_program' => 'General English & Conversation',
-                'deskripsi'    => 'Fokus pada kelancaran berbicara (fluency), pelafalan (pronunciation), dan percakapan kontekstual untuk mahasiswa serta profesional karier.',
+                'nama_program' => 'Program 3 (Private di Victory)',
+                'deskripsi'    => 'Bimbingan belajar privat eksklusif di gedung Victory (maksimal 3 orang). Jadwal 2x seminggu (1 jam). Biaya pendaftaran Rp 100.000, uang kursus Rp 900.000 / 8x pertemuan.',
             ],
             [
-                'nama_program' => 'TOEFL / IELTS Preparation',
-                'deskripsi'    => 'Strategi intensif menghadapi tes resmi TOEFL dan IELTS, dilengkapi bedah soal terstruktur, tips & trik jitu, serta simulasi ujian (mock test) berkala.',
+                'nama_program' => 'Program 4 (Private di Rumah / Kantor)',
+                'deskripsi'    => 'Pengajar profesional datang langsung ke tempat Anda (maksimal 3 orang). Jadwal 2x seminggu (1 jam). Biaya pendaftaran Rp 100.000, uang kursus Rp 1.200.000 / 8x pertemuan.',
             ],
         ];
 
+        Program::truncate();
         foreach ($programs as $p) {
-            Program::firstOrCreate(
-                ['nama_program' => $p['nama_program']],
-                ['deskripsi' => $p['deskripsi']]
-            );
+            Program::create([
+                'nama_program' => $p['nama_program'],
+                'deskripsi'    => $p['deskripsi'],
+            ]);
         }
 
         // 2. Fasilitas

@@ -37,12 +37,12 @@
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
                             <div class="accordion-body text-muted small" style="line-height: 1.8;">
-                                Kami menyediakan berbagai pilihan program sesuai kebutuhan usia dan tujuan belajar Anda:
+                                Berdasarkan ketentuan resmi proposal kami, tersedia 4 pilihan program belajar:
                                 <ul class="mt-2 mb-0 ps-3">
-                                    <li><strong>English for Children (TK & SD):</strong> Fondasi kosakata dan keberanian berbicara sejak usia dini dengan metode bermain dan visual.</li>
-                                    <li><strong>English for Teens (SMP & SMA):</strong> Penguatan tata bahasa (grammar), percakapan aktif, dan persiapan prestasi sekolah.</li>
-                                    <li><strong>General English & Conversation:</strong> Peningkatan kelancaran berbicara (fluency) untuk mahasiswa dan umum.</li>
-                                    <li><strong>TOEFL / IELTS Preparation:</strong> Program intensif strategi tes untuk keperluan beasiswa, wisuda, atau karier.</li>
+                                    <li><strong>Program 1 (Kelompok):</strong> Untuk jenjang SD, SMP, SMA, dan Umum. Jadwal 1x seminggu (1,5 jam). Biaya pendaftaran Rp 50.000, uang kursus Rp 100.000 / bulan.</li>
+                                    <li><strong>Program 2 (Individu / Semi Private):</strong> Bimbingan kelompok kecil lebih intensif (maksimal 4 orang). Jadwal 1x seminggu (1,5 jam). Biaya pendaftaran Rp 100.000, uang kursus Rp 300.000 / bulan.</li>
+                                    <li><strong>Program 3 (Private di Victory):</strong> Belajar eksklusif di gedung Victory (maksimal 3 orang). Jadwal 2x seminggu (1 jam). Biaya pendaftaran Rp 100.000, uang kursus Rp 900.000 / 8x pertemuan.</li>
+                                    <li><strong>Program 4 (Private di Rumah / Kantor):</strong> Guru profesional datang langsung ke lokasi Anda (maksimal 3 orang). Jadwal 2x seminggu (1 jam). Biaya pendaftaran Rp 100.000, uang kursus Rp 1.200.000 / 8x pertemuan.</li>
                                 </ul>
                             </div>
                         </div>
@@ -71,7 +71,12 @@
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
                             <div class="accordion-body text-muted small" style="line-height: 1.8;">
-                                Jadwal belajar sangat fleksibel. Tersedia pilihan kelas reguler (2 hingga 3 kali pertemuan per minggu pada sore atau malam hari) serta kelas privat intensif dengan jadwal yang dapat disesuaikan langsung dengan kesibukan Anda.
+                                <strong>Jadwal dapat diatur fleksibel sesuai kondisi siswa!</strong>
+                                <ul class="mt-2 mb-2 ps-3">
+                                    <li><strong>Kelas Kelompok & Semi Private:</strong> 1 kali pertemuan per minggu dengan durasi 1,5 jam per sesi.</li>
+                                    <li><strong>Kelas Private (di Lembaga atau Guru Datang):</strong> 2 kali pertemuan per minggu dengan durasi 1 jam per sesi.</li>
+                                </ul>
+                                Setiap tingkat pembelajaran berlangsung selama <strong>&plusmn; 4 bulan</strong>, mulai dari jenjang <em>Pre Elementary (1-3)</em>, <em>Elementary (1-3)</em>, <em>Intermediate (1-3)</em>, <em>Pre Advance</em>, hingga <em>Advance</em>.
                             </div>
                         </div>
                     </div>
@@ -99,7 +104,7 @@
                         </h2>
                         <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
                             <div class="accordion-body text-muted small" style="line-height: 1.8;">
-                                Ya, seluruh peserta yang telah menyelesaikan program dan lulus ujian evaluasi akhir level akan mendapatkan sertifikat resmi (*Certificate of Completion*) dari Victory English School yang dapat digunakan sebagai bukti kecakapan bahasa Inggris untuk keperluan pendidikan maupun portofolio kerja.
+                                Ya, setiap siswa yang menyelesaikan tingkat pembelajaran (&plusmn; 4 bulan) akan mengikuti ujian evaluasi kenaikan tingkat. Biaya ujian sebesar <strong>Rp 75.000</strong> sudah termasuk ijazah/sertifikat resmi dari Victory English School. Untuk kelas privat, ujian juga dapat diselenggarakan langsung di tempat siswa belajar dengan biaya Rp 150.000.
                             </div>
                         </div>
                     </div>

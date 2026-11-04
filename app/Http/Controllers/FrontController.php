@@ -24,7 +24,7 @@ class FrontController extends Controller
         $testimoni = Testimoni::select('id', 'nama', 'testimoni', 'rating')
             ->where('status', 'approved')
             ->latest('id')
-            ->take(6)
+            ->take(12)
             ->get();
 
         return view('index', compact('informasi', 'fasilitas', 'testimoni', 'program'));
@@ -141,8 +141,7 @@ class FrontController extends Controller
             'rating'    => 'required|integer|min:1|max:5',
         ]);
 
-        $validated['status'] = 'pending';
-
+        $validated['status'] = 'approved';
         Testimoni::create($validated);
 
         return redirect()->route('front.index')->with('success', 'Terima Kasih telah memberikan testimoni anda!');

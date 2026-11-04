@@ -50,55 +50,60 @@
             </div>
 
             <!-- Kolom Form Testimoni -->
-            <div class="col-12 col-lg-7" data-aos="fade-up" data-aos-delay="200">
-                <div class="purple-card h-100">
-                    <h4 class="fw-bold mb-2 text-dark" style="font-size: 1.25rem;">Beri Testimoni Anda</h4>
-                    <p class="text-muted small mb-4">Ulasan Anda akan dimoderasi sebelum ditampilkan di halaman utama.</p>
+            <div class="col-12 col-lg-7 d-flex" data-aos="fade-up" data-aos-delay="200">
+                <div class="purple-card w-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <h4 class="fw-bold mb-2 text-dark" style="font-size: 1.25rem;">Beri Testimoni Anda</h4>
+                        <p class="text-muted small mb-4">Bagikan kesan dan pengalaman belajar Anda bersama Victory English School.</p>
 
-                    <form action="{{ route('front.store_testimoni') }}" method="POST">
-                        @csrf
-                        <div class="row g-3">
-                            <div class="col-12 col-sm-6">
-                                <label for="nama" class="form-label text-dark fw-semibold small">Nama Lengkap</label>
-                                <input type="text" name="nama" id="nama"
-                                    class="form-control purple-input @error('nama') is-invalid @enderror"
-                                    value="{{ old('nama') }}" placeholder="Masukkan nama Anda" required maxlength="100">
-                                @error('nama')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="col-12 col-sm-6">
-                                <label class="form-label text-dark fw-semibold small d-block">Penilaian (Rating)</label>
-                                <div class="rating d-flex align-items-center pt-1">
-                                    @for ($i = 5; $i >= 1; $i--)
-                                        <input type="radio" name="rating" id="star{{ $i }}"
-                                            value="{{ $i }}" {{ old('rating', '5') == $i ? 'checked' : '' }}>
-                                        <label for="star{{ $i }}" title="{{ $i }} Bintang" style="cursor: pointer; font-size: 1.5rem; margin-right: 4px;">&#9733;</label>
-                                    @endfor
+                        <form action="{{ route('front.store_testimoni') }}" method="POST">
+                            @csrf
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="nama" class="form-label text-dark fw-semibold small">Nama Lengkap & Profesi / Status</label>
+                                    <input type="text" name="nama" id="nama"
+                                        class="form-control purple-input @error('nama') is-invalid @enderror"
+                                        value="{{ old('nama') }}" placeholder="Contoh: Budi Santoso (Orang Tua Siswa / Alumni)" required maxlength="100">
+                                    @error('nama')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('rating')
-                                    <div class="text-danger small mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
 
-                            <div class="col-12">
-                                <label for="testimoni" class="form-label text-dark fw-semibold small">Pesan Ulasan</label>
-                                <textarea name="testimoni" id="testimoni" rows="5"
-                                    class="form-control purple-input @error('testimoni') is-invalid @enderror"
-                                    placeholder="Ceritakan pengalaman belajar Anda selama di Victory English School..." required maxlength="1000">{{ old('testimoni') }}</textarea>
-                                @error('testimoni')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                                <div class="col-12">
+                                    <label class="form-label text-dark fw-semibold small d-block mb-1">Penilaian (Rating)</label>
+                                    <div class="rating-left-container">
+                                        <div class="rating-left">
+                                            @for ($i = 5; $i >= 1; $i--)
+                                                <input type="radio" name="rating" id="star{{ $i }}"
+                                                    value="{{ $i }}" {{ old('rating', '5') == $i ? 'checked' : '' }}>
+                                                <label for="star{{ $i }}" title="{{ $i }} Bintang">&#9733;</label>
+                                            @endfor
+                                        </div>
+                                        <span class="ms-2 text-muted small fw-medium" style="font-size: 0.85rem;">(Bintang 1 &ndash; 5)</span>
+                                    </div>
+                                    @error('rating')
+                                        <div class="text-danger small mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                            <div class="col-12 mt-4">
-                                <button type="submit" class="btn-purple-primary w-100 py-3">
-                                    Kirimkan Testimoni
-                                </button>
+                                <div class="col-12">
+                                    <label for="testimoni" class="form-label text-dark fw-semibold small">Pesan Pengalaman & Ulasan</label>
+                                    <textarea name="testimoni" id="testimoni" rows="4"
+                                        class="form-control purple-input @error('testimoni') is-invalid @enderror"
+                                        placeholder="Tuliskan pengalaman belajar, metode tutor, atau perkembangan kemampuan bahasa Inggris Anda..." required maxlength="1000">{{ old('testimoni') }}</textarea>
+                                    @error('testimoni')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-12 mt-3">
+                                    <button type="submit" class="btn-purple-primary w-100 py-3 fw-bold">
+                                        <i class="bi bi-send-fill me-1"></i> Kirimkan Testimoni
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

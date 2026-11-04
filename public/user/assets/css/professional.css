@@ -734,21 +734,29 @@ a:hover {
    Responsive Mobile Navbar (< 1200px)
    ========================================================================== */
 @media (max-width: 1199px) {
+    #header .navmenu ul,
     .navmenu ul {
         display: none !important;
         flex-direction: column !important;
         position: absolute !important;
-        top: 68px !important;
+        inset: auto !important;
+        top: calc(100% + 10px) !important;
         right: 15px !important;
         left: 15px !important;
+        bottom: auto !important;
+        width: auto !important;
+        height: auto !important;
+        max-height: calc(100vh - 120px) !important;
         background: #FFFFFF !important;
-        border-radius: 16px !important;
-        padding: 14px !important;
-        box-shadow: 0 15px 35px rgba(76, 29, 149, 0.2) !important;
-        border: 1px solid rgba(134, 47, 233, 0.2) !important;
-        z-index: 9999 !important;
+        border-radius: 18px !important;
+        padding: 12px !important;
+        box-shadow: 0 20px 45px rgba(76, 29, 149, 0.28) !important;
+        border: 1.5px solid rgba(134, 47, 233, 0.25) !important;
+        z-index: 99999 !important;
+        overflow-y: auto !important;
     }
 
+    #header .navmenu.menu-open ul,
     .navmenu.menu-open ul {
         display: flex !important;
         animation: fadeInDown 0.25s ease-out;
@@ -763,7 +771,12 @@ a:hover {
         margin-bottom: 0;
     }
 
-    .navmenu ul li a {
+    /* Maximum specificity to override header-transparent white text on mobile */
+    #header #navmenu ul li a,
+    #header.header-transparent #navmenu ul li a,
+    #header.header-transparent:not(.header-scrolled) #navmenu ul li a,
+    #header.header-scrolled #navmenu ul li a,
+    #header.header-solid #navmenu ul li a {
         display: block !important;
         width: 100% !important;
         padding: 12px 18px !important;
@@ -777,8 +790,14 @@ a:hover {
         text-align: left !important;
     }
 
-    .navmenu ul li a:hover,
-    .navmenu ul li a.active {
+    #header #navmenu ul li a:hover,
+    #header #navmenu ul li a.active,
+    #header.header-transparent #navmenu ul li a:hover,
+    #header.header-transparent #navmenu ul li a.active,
+    #header.header-transparent:not(.header-scrolled) #navmenu ul li a:hover,
+    #header.header-transparent:not(.header-scrolled) #navmenu ul li a.active,
+    #header.header-scrolled #navmenu ul li a:hover,
+    #header.header-scrolled #navmenu ul li a.active {
         background: var(--purple-soft) !important;
         color: var(--purple-primary) !important;
         font-weight: 700 !important;
@@ -794,6 +813,81 @@ a:hover {
             transform: translateY(0);
         }
     }
+}
+
+/* Swiper Carousel Navigation Controls */
+.swiper-nav-wrapper {
+    position: relative;
+    padding: 0 10px;
+}
+
+.swiper-btn-custom {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #FFFFFF !important;
+    color: var(--purple-primary) !important;
+    border: 1.5px solid var(--purple-border) !important;
+    box-shadow: 0 4px 14px rgba(112, 48, 214, 0.18) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.swiper-btn-custom:after {
+    font-size: 1.1rem !important;
+    font-weight: 900 !important;
+    color: var(--purple-primary) !important;
+}
+
+.swiper-btn-custom:hover {
+    background: var(--purple-primary) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 6px 18px rgba(112, 48, 214, 0.3) !important;
+    transform: scale(1.08);
+}
+
+.swiper-btn-custom:hover:after {
+    color: #FFFFFF !important;
+}
+
+/* Left-Aligned Star Rating Form */
+.rating-left-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.rating-left {
+    display: inline-flex !important;
+    flex-direction: row-reverse !important;
+    justify-content: flex-end !important;
+    width: auto !important;
+    direction: ltr !important;
+}
+
+.rating-left input[type="radio"] {
+    display: none;
+}
+
+.rating-left label {
+    font-size: 1.75rem;
+    color: #E2E8F0;
+    cursor: pointer;
+    padding: 0 3px;
+    transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.rating-left label:hover,
+.rating-left label:hover ~ label,
+.rating-left input[type="radio"]:checked ~ label {
+    color: #F59E0B !important;
+}
+
+.rating-left label:hover {
+    transform: scale(1.15);
 }
 
 /* ==========================================================================

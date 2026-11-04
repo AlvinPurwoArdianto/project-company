@@ -16,13 +16,12 @@ class LandingPageTest extends TestCase
         $response->assertSee('Percaya Diri');
     }
 
-    public function test_user_can_submit_testimoni_and_status_is_always_pending()
+    public function test_user_can_submit_testimoni_and_it_is_connected_to_frontend()
     {
         $payload = [
             'nama'      => 'Ahmad Test',
             'testimoni' => 'Kursus ini sangat membantu saya berbicara bahasa Inggris dengan percaya diri.',
             'rating'    => 5,
-            'status'    => 'approved', // Mencoba manipulasi status dari client
         ];
 
         $response = $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class)->post('/', $payload);
@@ -32,7 +31,7 @@ class LandingPageTest extends TestCase
 
         $this->assertDatabaseHas('testimonis', [
             'nama'   => 'Ahmad Test',
-            'status' => 'pending', // Harus tetap pending, bukan approved
+            'status' => 'approved',
         ]);
 
         // Cleanup

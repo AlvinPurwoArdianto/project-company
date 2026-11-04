@@ -24,6 +24,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ $activeTab == 'pending' ? 'active' : '' }}" href="{{ route('testimoni.index', ['tab' => 'pending']) }}">
+                Menunggu Persetujuan
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ $activeTab == 'archived' ? 'active' : '' }}" href="{{ route('testimoni.index', ['tab' => 'archived']) }}">
                 Diarsipkan
             </a>

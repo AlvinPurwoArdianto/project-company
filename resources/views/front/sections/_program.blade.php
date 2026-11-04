@@ -3,23 +3,37 @@
     <div class="container py-4">
         <!-- Section Header -->
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="purple-kicker">Program Kursus</span>
-            <h2 class="purple-heading">Pilihan Program Belajar</h2>
+            <span class="purple-kicker">Program & Biaya Belajar</span>
+            <h2 class="purple-heading">Pilihan Program Kursus</h2>
             <p class="purple-subtitle">
-                Kurikulum terpadu yang disesuaikan dengan kebutuhan dan tujuan pembelajaran Anda.
+                Program pembelajaran efektif dan ekonomis dari Victory English School dengan jadwal fleksibel yang dapat disesuaikan.
             </p>
         </div>
 
         <div class="row gy-4">
             @forelse ($program as $data)
-                <div class="col-12 col-md-6 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-12 col-md-6 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 75 }}">
                     <div class="purple-card purple-card-accent d-flex flex-column w-100">
                         <div class="mb-3">
-                            <span class="badge border small fw-semibold px-2 py-1" style="background-color: var(--purple-soft); color: var(--purple-primary); border-color: var(--purple-border) !important;">
-                                Reguler & Intensif
-                            </span>
+                            @if (str_contains(strtolower($data->nama_program), 'kelompok'))
+                                <span class="badge border small fw-semibold px-2 py-1" style="background-color: #EDE9FE; color: var(--purple-primary); border-color: var(--purple-border) !important;">
+                                    Kelas Kelompok (SD, SMP, SMA, Umum)
+                                </span>
+                            @elseif (str_contains(strtolower($data->nama_program), 'individu') || str_contains(strtolower($data->nama_program), 'semi'))
+                                <span class="badge border small fw-semibold px-2 py-1" style="background-color: #FEF3C7; color: #B45309; border-color: #FCD34D !important;">
+                                    Semi Private &bull; Maks. 4 Orang
+                                </span>
+                            @elseif (str_contains(strtolower($data->nama_program), 'victory'))
+                                <span class="badge border small fw-semibold px-2 py-1" style="background-color: #E0E7FF; color: #4338CA; border-color: #C7D2FE !important;">
+                                    Private di Victory &bull; Maks. 3 Orang
+                                </span>
+                            @else
+                                <span class="badge border small fw-semibold px-2 py-1" style="background-color: #DCFCE7; color: #15803D; border-color: #BBF7D0 !important;">
+                                    Private Home/Office &bull; Maks. 3 Orang
+                                </span>
+                            @endif
                         </div>
-                        <h4 class="fw-bold mb-3 text-dark" style="font-size: 1.25rem;">
+                        <h4 class="fw-bold mb-3 text-dark" style="font-size: 1.15rem; line-height: 1.35;">
                             {{ $data->nama_program }}
                         </h4>
                         <div class="text-muted small flex-grow-1 mb-4" style="line-height: 1.7;">
@@ -27,7 +41,7 @@
                         </div>
                         <div class="pt-3 border-top mt-auto">
                             <a href="{{ route('daftar') }}" class="btn-purple-primary w-100 py-2 small">
-                                Daftar Program
+                                Daftar Program Ini
                             </a>
                         </div>
                     </div>
@@ -41,6 +55,40 @@
                 </div>
             @endforelse
         </div>
+
+        <!-- Highlight Ketentuan Proposal -->
+        <div class="mt-5 p-4 rounded-4 bg-white border shadow-sm" data-aos="fade-up" style="border-color: var(--purple-border) !important;">
+            <div class="row align-items-center g-3">
+                <div class="col-12 col-md-4 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+                        <i class="bi bi-clock-history fs-3" style="color: var(--purple-primary);"></i>
+                        <div>
+                            <div class="fw-bold text-dark small">Jadwal Sangat Fleksibel</div>
+                            <div class="text-muted" style="font-size: 0.8rem;">Dapat diatur sesuai kondisi siswa</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+                        <i class="bi bi-mortarboard-fill fs-3" style="color: var(--purple-primary);"></i>
+                        <div>
+                            <div class="fw-bold text-dark small">Jenjang Terstruktur</div>
+                            <div class="text-muted" style="font-size: 0.8rem;">Pre Elementary s/d Advance (&plusmn; 4 bln/level)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+                        <i class="bi bi-patch-check-fill fs-3" style="color: var(--purple-primary);"></i>
+                        <div>
+                            <div class="fw-bold text-dark small">Ijazah & Sertifikat Resmi</div>
+                            <div class="text-muted" style="font-size: 0.8rem;">Termasuk dalam ujian kenaikan tingkat</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 <!-- /Program Belajar Section -->

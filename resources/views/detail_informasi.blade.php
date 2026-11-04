@@ -3,24 +3,18 @@
 @section('title', $informasi->nama_informasi)
 
 @section('content')
-    <section class="py-5">
+    <section class="py-5" style="padding-top: 120px !important; min-height: 80vh;">
         <div class="container">
             <div class="mb-4">
                 @php
-                    // Ambil URL yang disimpan, default ke Beranda jika tidak ada
-                    $returnUrl = session('last_visited_from_detail', url('index'));
-
-                    // Jika returnUrl ternyata sama dengan URL halaman detail saat ini,
-                    // maka kemungkinan user langsung mengakses halaman detail atau me-refresh.
-                    // Dalam kasus ini, kita paksa kembali ke Beranda sebagai default "kembali".
+                    $returnUrl = session('last_visited_from_detail', url('/'));
                     if (request()->url() == $returnUrl) {
-                        $returnUrl = url('index');
+                        $returnUrl = url('/');
                     }
                 @endphp
 
-                <a href="{{ $returnUrl }}" class="btn-daftar" style="border: 2px solid #a03bff;" title="Kembali"
-                    onclick="window.location.replace('{{ $returnUrl }}'); return false;">
-                    <i class="bi bi-arrow-left"></i> Kembali
+                <a href="{{ $returnUrl }}" class="text-decoration-none fw-semibold small d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill bg-white border shadow-sm" style="color: var(--purple-primary);">
+                    <i class="bi bi-arrow-left"></i> Kembali ke Beranda
                 </a>
             </div>
 
