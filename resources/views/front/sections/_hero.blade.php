@@ -14,7 +14,7 @@
                     Metode belajar interaktif, kurikulum aplikatif, dan dibimbing langsung oleh instruktur berpengalaman. Kami membantu siswa dari seluruh jenjang meraih kemampuan berbahasa Inggris terbaik.
                 </p>
 
-                <div class="d-flex flex-wrap gap-3 mb-5">
+                <div class="hero-btn-group d-flex flex-wrap gap-2 gap-sm-3 mb-4 mb-lg-5">
                     <a href="{{ route('daftar') }}" class="btn-hero-white">
                         Daftar Sekarang
                     </a>

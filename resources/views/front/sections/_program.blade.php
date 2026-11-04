@@ -57,32 +57,38 @@
         </div>
 
         <!-- Highlight Ketentuan Proposal -->
-        <div class="mt-5 p-4 rounded-4 bg-white border shadow-sm" data-aos="fade-up" style="border-color: var(--purple-border) !important;">
-            <div class="row align-items-center g-3">
-                <div class="col-12 col-md-4 text-center text-md-start">
-                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
-                        <i class="bi bi-clock-history fs-3" style="color: var(--purple-primary);"></i>
+        <div class="mt-5 p-3 p-md-4 rounded-4 bg-white border shadow-sm program-features-card" data-aos="fade-up">
+            <div class="row align-items-center g-0">
+                <div class="col-12 col-md-4 program-feature-col">
+                    <div class="d-flex align-items-center gap-3 text-start px-2 px-md-3">
+                        <div class="program-feature-icon rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
+                            <i class="bi bi-clock-history fs-4"></i>
+                        </div>
                         <div>
-                            <div class="fw-bold text-dark small">Jadwal Sangat Fleksibel</div>
-                            <div class="text-muted" style="font-size: 0.8rem;">Dapat diatur sesuai kondisi siswa</div>
+                            <div class="fw-bold text-dark program-feature-title">Jadwal Sangat Fleksibel</div>
+                            <div class="text-muted program-feature-sub">Dapat diatur sesuai kondisi siswa</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 text-center text-md-start">
-                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
-                        <i class="bi bi-mortarboard-fill fs-3" style="color: var(--purple-primary);"></i>
+                <div class="col-12 col-md-4 program-feature-col">
+                    <div class="d-flex align-items-center gap-3 text-start px-2 px-md-3">
+                        <div class="program-feature-icon rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
+                            <i class="bi bi-mortarboard-fill fs-4"></i>
+                        </div>
                         <div>
-                            <div class="fw-bold text-dark small">Jenjang Terstruktur</div>
-                            <div class="text-muted" style="font-size: 0.8rem;">Pre Elementary s/d Advance (&plusmn; 4 bln/level)</div>
+                            <div class="fw-bold text-dark program-feature-title">Jenjang Terstruktur</div>
+                            <div class="text-muted program-feature-sub">Pre Elementary s/d Advance (&plusmn; 4 bln/level)</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 text-center text-md-start">
-                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2">
-                        <i class="bi bi-patch-check-fill fs-3" style="color: var(--purple-primary);"></i>
+                <div class="col-12 col-md-4 program-feature-col">
+                    <div class="d-flex align-items-center gap-3 text-start px-2 px-md-3">
+                        <div class="program-feature-icon rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
+                            <i class="bi bi-patch-check-fill fs-4"></i>
+                        </div>
                         <div>
-                            <div class="fw-bold text-dark small">Ijazah & Sertifikat Resmi</div>
-                            <div class="text-muted" style="font-size: 0.8rem;">Termasuk dalam ujian kenaikan tingkat</div>
+                            <div class="fw-bold text-dark program-feature-title">Ijazah & Sertifikat Resmi</div>
+                            <div class="text-muted program-feature-sub">Termasuk dalam ujian kenaikan tingkat</div>
                         </div>
                     </div>
                 </div>

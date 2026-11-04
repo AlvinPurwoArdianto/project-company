@@ -3,8 +3,8 @@
         <div class="row gy-4">
             <!-- Footer Brand & Kontak -->
             <div class="col-lg-4 col-md-6">
-                <a href="{{ url('/') }}" class="d-flex align-items-center mb-3 text-decoration-none">
-                    <span class="fs-4 fw-bold text-white">Victory English School</span>
+                <a href="{{ url('/') }}" class="footer-brand-wrap d-inline-block mb-3 text-decoration-none">
+                    <span class="footer-brand-title">Victory English School</span>
                 </a>
                 <div class="footer-contact">
                     <p class="mb-2">Komp. Bumi Asri Mekarrahayu Blok 1 D 39 No. 104</p>

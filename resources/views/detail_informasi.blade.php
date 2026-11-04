@@ -55,7 +55,15 @@
                 <div class="col-lg-7">
                     <div class="card shadow-sm border-1">
                         <div class="card-body p-4">
-                            <h4 class="card-title mb-4">Berikan Komentar</h4>
+                            <div class="mb-4 pb-3 border-bottom">
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle flex-shrink-0" style="width: 40px; height: 40px; background: #FAF5FF; color: var(--purple-primary); border: 1.5px solid #EDE9FE;">
+                                        <i class="bi bi-chat-square-text-fill fs-5"></i>
+                                    </div>
+                                    <h3 class="fw-bold mb-0 text-dark" style="font-size: 1.45rem; letter-spacing: -0.01em;">Berikan Komentar</h3>
+                                </div>
+                                <p class="text-muted small mb-0 mt-2">Punya pertanyaan atau tanggapan terkait artikel ini? Tuliskan komentar Anda di bawah ini.</p>
+                            </div>
                             <form action="{{ route('front.store_komentar', $informasi->id) }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="nama" value="Anonymous">
